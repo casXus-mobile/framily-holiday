@@ -37,9 +37,9 @@ section.ev>*{position:relative}
 .tot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid currentColor;padding-top:10px;font-size:12px;opacity:.9}
 .tot b{font-size:18px}
 details{border-radius:10px;padding:10px 14px}
-details summary{list-style:none;display:flex;justify-content:space-between;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer}
+details summary{list-style:none;display:flex;justify-content:space-between;font-size:11px;font-weight:700;letter-spacing:2px}
 details summary::-webkit-details-marker{display:none}
-details ul{margin:8px 0 0;padding-left:18px;font-size:13px;line-height:1.4}
+details ul{margin:8px 0 0;padding-left:16px;font-size:13px;line-height:1.4;display:flex;flex-direction:column;gap:4px}
 details a{font-weight:700}
 a{color:inherit}
 .link{font-size:13px;text-decoration:underline}
@@ -104,7 +104,7 @@ en:{
  hero_sub:"Family, friends and a few nights of holiday fun. Tap <b>I'm in</b> on the ones you'll join.",
  in:"I'm in ✓",maybe:"Maybe",out:"Out",yes_seats:"Yes, save us seats",not_time:"Not this time",
  howmany:"How many coming?",bowlers:"How many bowling?",players:"Players",watching:"Watching",tickets:"Tickets",seats:"How many seats?",
- total:"Your total",payend:"pay at the end",dress:"Dress theme",details:"MORE DETAILS",cal:"Add to calendar · reminder day-of",
+ total:"Your total",payend:"pay at the end",dress:"Dress theme",details:"THE DETAILS",cal:"Add to calendar · reminder day-of",
  lock:"Lock it in",lock_sub:"One RSVP for the whole family. Three quick steps, and you can come back and change it anytime.",
  s1:"1 · WHO'S COMING",s2:"2 · YOUR NIGHTS",s3:"3 · PAY WITH ZELLE",fam:"FAMILY NAME",cell:"CELL (FOR REMINDERS)",
  sms:"Text me RSVP confirmations and reminders from <b>Jared &amp; Vanessa Dunson</b> (FRamily Holiday Fun) for the events I choose. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to cancel, HELP for help. See <a href='privacy.html'>Privacy</a> and <a href='terms.html'>Terms</a>.",
@@ -137,7 +137,7 @@ es:{
  hero_sub:"Familia, amigos y unas noches de diversión navideña. Toca <b>Me apunto</b> en las que vendrás.",
  in:"Me apunto ✓",maybe:"Quizás",out:"No",yes_seats:"Sí, guárdenos asientos",not_time:"Esta vez no",
  howmany:"¿Cuántos vienen?",bowlers:"¿Cuántos juegan boliche?",players:"Jugadores",watching:"Acompañan",tickets:"Boletos",seats:"¿Cuántos asientos?",
- total:"Tu total",payend:"se paga al final",dress:"Vestimenta",details:"MÁS DETALLES",cal:"Agregar al calendario · recordatorio ese día",
+ total:"Tu total",payend:"se paga al final",dress:"Vestimenta",details:"LOS DETALLES",cal:"Agregar al calendario · recordatorio ese día",
  lock:"Confirma",lock_sub:"Un solo RSVP para toda la familia. Tres pasos rápidos, y puedes volver a cambiarlo cuando quieras.",
  s1:"1 · QUIÉNES VIENEN",s2:"2 · TUS NOCHES",s3:"3 · PAGA CON ZELLE",fam:"NOMBRE DE FAMILIA",cell:"CELULAR (PARA RECORDATORIOS)",
  sms:"Envíenme por texto confirmaciones y recordatorios de <b>Jared &amp; Vanessa Dunson</b> (FRamily Holiday Fun) para los eventos que elija. La frecuencia varía. Pueden aplicar tarifas de mensajes y datos. Responde STOP para cancelar, HELP para ayuda. Ver <a href='privacy.html'>Privacidad</a> y <a href='terms.html'>Términos</a>.",
@@ -254,7 +254,7 @@ function totalLine(id,th,label){
 }
 function detailsBlock(ev,th,title,extra){
  const L=t(); const d=L.ev[ev];
- return `<details style="background:${th.card}"><summary style="color:${th.ac2}">${title||L.details}<span style="font-size:16px">+</span></summary><ul>${d.det.map(x=>`<li>${x}</li>`).join('')}</ul>${extra||''}${d.url?`<a href="${d.url}" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:13px;color:${th.ac2}">${esc(d.site)} ↗</a>`:''}</details>`;
+ return `<details open style="background:${th.card}"><summary style="color:${th.ac2};pointer-events:none">${title||L.details}</summary><ul>${d.det.map(x=>`<li>${x}</li>`).join('')}</ul>${extra||''}${d.url?`<a href="${d.url}" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:13px;color:${th.ac2}">${esc(d.site)} ↗</a>`:''}</details>`;
 }
 function calBtn(id){const L=t();return `<button class="cal" data-cal="${id}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>${L.cal}</button>`}
 
