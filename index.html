@@ -14,11 +14,11 @@ html,body{height:100%;overflow:hidden}
 body{margin:0;background:#0E0E10;color:var(--cream);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 #app{max-width:480px;margin:0 auto;height:100vh;height:100svh;overflow:hidden;background:#0E0E10;position:relative;box-shadow:0 0 60px rgba(0,0,0,.6);-webkit-overflow-scrolling:touch}
 #app>section{height:100vh;height:100svh;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
-section.ev{padding:36px 24px calc(118px + var(--barh,0px));display:flex;flex-direction:column;gap:14px;position:relative}
-.next{position:sticky;bottom:var(--barh,0px);margin:auto -24px calc(-118px - var(--barh,0px));width:calc(100% + 48px);padding:28px 0 18px;background:linear-gradient(to top,rgba(0,0,0,.55),transparent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10px;letter-spacing:2px;font-weight:700}
-.next{text-align:center;opacity:.7;cursor:pointer;border:0;color:inherit;font-family:inherit}
-.next svg{animation:bob 1.1s ease-in-out 3;animation-play-state:paused}
-.next.wake svg{animation-play-state:running}
+section.ev{padding:36px 24px calc(72px + var(--barh,0px));display:flex;flex-direction:column;gap:14px;position:relative}
+#nav{position:fixed;left:0;right:0;bottom:calc(var(--barh,0px) + env(safe-area-inset-bottom));z-index:45;display:flex;justify-content:center;pointer-events:none;transition:bottom .25s}
+#nav button{pointer-events:auto;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:7px 16px 7px 18px;margin-bottom:10px;font-family:inherit;font-size:10px;letter-spacing:2px;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+#nav svg{animation:bob 1.1s ease-in-out 3;animation-play-state:paused}
+#nav.wake svg{animation-play-state:running}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
 @media (prefers-reduced-motion:reduce){.next svg{animation:none}}
 section.ev>*{position:relative}
@@ -90,6 +90,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 <body>
 <div id="lang"><button data-l="en">EN</button><button data-l="es">ES</button></div>
 <div id="app"></div>
+<div id="nav"><button data-next aria-label="Next"><span id="navLbl"></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></button></div>
 <div id="bar" class="hidden"><div><div><b id="barTxt"></b><small id="barSub"></small></div><button id="barBtn"></button></div></div>
 <div id="toast" class="toast"></div>
 <div id="admin" class="hidden"></div>
@@ -99,7 +100,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1109.1310';
+const BUILD='1109.1320';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -220,20 +221,19 @@ function render(){
  const evs=visibleEvents();
  const chips=evs.map(e=>`<button class="pill" data-jump="${e.id}" style="color:var(--gold);background:transparent;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:6px 12px">${CHIP_ICON[e.id]||''}${esc(chipLabel(e.id))}</button>`).join('');
  let h=`
- <section id="ev-hero" style="background:#16301F;padding:64px 24px 0;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative">
+ <section id="ev-hero" style="background:#16301F;padding:clamp(48px,8vh,90px) 24px calc(72px + var(--barh,0px));text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;gap:clamp(8px,1.6vh,22px);position:relative">
   <svg aria-hidden="true" width="480" height="60" viewBox="0 0 430 60" style="position:absolute;left:0;top:-4px;width:100%" fill="none"><path d="M-10 6 Q110 60 215 18 T440 6" stroke="#2F5A3C" stroke-width="14" stroke-linecap="round"/><g><circle cx="50" cy="26" r="7" fill="#C8302E"/><circle cx="120" cy="40" r="7" fill="#D9B56C"/><circle cx="215" cy="22" r="7" fill="#F3E7D0"/><circle cx="300" cy="14" r="7" fill="#C8302E"/><circle cx="380" cy="18" r="7" fill="#D9B56C"/></g></svg>
-  <div style="font-family:'Pinyon Script',cursive;font-size:46px;line-height:.9;color:var(--gold);margin-top:10px;margin-bottom:-8px;position:relative">FRamily</div>
-  <div style="font-family:'Fraunces',serif;font-weight:900;font-size:44px;line-height:.95;position:relative">HOLIDAY FUN</div>
+  <div style="font-family:'Pinyon Script',cursive;font-size:clamp(44px,6.5vh,60px);line-height:.9;color:var(--gold);margin-top:10px;margin-bottom:-8px;position:relative">FRamily</div>
+  <div style="font-family:'Fraunces',serif;font-weight:900;font-size:clamp(42px,6vh,56px);line-height:.95;position:relative">HOLIDAY FUN</div>
   <div class="kicker" style="letter-spacing:4px;position:relative">DECEMBER 2026</div>
   <div style="display:flex;gap:8px;margin-top:8px;position:relative">
-   <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(-5deg);box-shadow:0 6px 14px rgba(0,0,0,.4)"><img src="img/bowling-2025.jpg" alt="Bowling 2025" style="width:100px;height:72px;object-fit:cover;object-position:50% 45%;display:block"></div>
-   <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(2deg) translateY(-6px);box-shadow:0 8px 18px rgba(0,0,0,.45)"><img src="img/topgolf-2025.jpg" alt="Topgolf 2025" style="width:110px;height:78px;object-fit:cover;object-position:50% 60%;display:block"></div>
-   <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(5deg);box-shadow:0 6px 14px rgba(0,0,0,.4)"><img src="img/movie-2025.jpg" alt="Movie 2025" style="width:100px;height:72px;object-fit:cover;object-position:50% 55%;display:block"></div>
+   <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(-5deg);box-shadow:0 6px 14px rgba(0,0,0,.4)"><img src="img/bowling-2025.jpg" alt="Bowling 2025" style="width:clamp(96px,26vw,124px);aspect-ratio:100/72;object-fit:cover;object-position:50% 45%;display:block"></div>
+   <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(2deg) translateY(-6px);box-shadow:0 8px 18px rgba(0,0,0,.45)"><img src="img/topgolf-2025.jpg" alt="Topgolf 2025" style="width:clamp(104px,29vw,136px);aspect-ratio:110/78;object-fit:cover;object-position:50% 60%;display:block"></div>
+   <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(5deg);box-shadow:0 6px 14px rgba(0,0,0,.4)"><img src="img/movie-2025.jpg" alt="Movie 2025" style="width:clamp(96px,26vw,124px);aspect-ratio:100/72;object-fit:cover;object-position:50% 55%;display:block"></div>
   </div>
   <div class="lead" style="margin-top:10px;max-width:340px;position:relative">${L.hero_sub}</div>
   <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;justify-content:center;position:relative">${chips}</div>
-  <button class="next" data-next aria-label="Next" style="position:relative;bottom:auto;margin:auto 0 0;width:100%;background:none;padding:14px 0 calc(8px + var(--barh,0px))"><span>${chipLabel(evs[0].id)}</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F3E7D0" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
- </section>`;
+   </section>`;
  for(const e of evs) h+=renderEvent(e);
  h+=renderLock();
  app.innerHTML=h;
@@ -400,7 +400,9 @@ function renderLock(){
  </section>`;
 }
 
+function updateNav(){const ps=pages();const i=curPage();const nav=$('#nav');if(!nav)return;const nxt=ps[i+1];nav.classList.toggle('hidden',S.admin||!nxt);if(!nxt)return;const id=(nxt.id||'').replace('ev-','');$('#navLbl').textContent=nxt.id==='lock'?t().lock.toUpperCase():chipLabel(id);if(P.navFor!==i){P.navFor=i;nav.classList.remove('wake');void nav.offsetWidth;nav.classList.add('wake')}}
 function updateBar(){
+ updateNav();
  const L=t(); const n=inCount(); const bar=$('#bar');
  if(S.admin||n===0){bar.classList.add('hidden');document.documentElement.style.setProperty('--barh','0px');return}
  const lockVisible=curPage()===pages().length-1;
@@ -426,7 +428,7 @@ function bindEvents(){
  });
  document.querySelectorAll('[data-cal]').forEach(b=>b.onclick=()=>downloadIcs(b.dataset.cal));
  document.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>{const el=$('#ev-'+b.dataset.jump);if(el)goTo(pages().indexOf(el))});
- document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>goTo(pages().indexOf(b.closest('section'))+1));
+ $('#nav button').onclick=()=>goTo(curPage()+1);
  document.querySelectorAll('[data-parking]').forEach(b=>b.onclick=showParking);
  const sb_=$('#sendBtn'); if(sb_) sb_.onclick=submitRsvp;
  const cz=$('#copyZ'); if(cz) cz.onclick=()=>{navigator.clipboard?.writeText(ZELLE.replace(/-/g,'')).then(()=>toast(t().copied)).catch(()=>toast(ZELLE))};
@@ -440,7 +442,7 @@ function rerenderEvent(id){
  const app=$('#app'); const appTop=app.scrollTop; const st=old.scrollTop;
  const tmp=document.createElement('div'); tmp.innerHTML=renderEvent(e); const nu=tmp.firstElementChild; old.replaceWith(nu); nu.scrollTop=st;
  const lk=$('#lock'); if(lk){const ls_=lk.scrollTop;const t2=document.createElement('div');t2.innerHTML=renderLock();const nl=t2.firstElementChild;lk.replaceWith(nl);nl.scrollTop=ls_;nl.addEventListener('scroll',updateBar,{passive:true})}
- nu.addEventListener('scroll',updateBar,{passive:true}); if(P.io){P.io.observe(nu);const l2=$('#lock');if(l2)P.io.observe(l2)}
+ nu.addEventListener('scroll',updateBar,{passive:true});
  app.scrollTop=appTop;
  bindEvents();
 }
@@ -517,7 +519,7 @@ function showShare(){
 
 /* ---------- admin ---------- */
 async function renderAdmin(){
- $('#app').classList.add('hidden'); $('#lang').classList.add('hidden'); $('#bar').classList.add('hidden');
+ $('#app').classList.add('hidden'); $('#lang').classList.add('hidden'); $('#bar').classList.add('hidden'); $('#nav').classList.add('hidden');
  const A=$('#admin'); A.classList.remove('hidden');
  let pass=ls('adminpass');
  if(!pass){A.innerHTML=`<div style="max-width:360px;margin:80px auto;display:flex;flex-direction:column;gap:10px"><h2 style="font-family:'Fraunces',serif;margin:0">Admin</h2><input id="ap" type="password" placeholder="Passphrase" style="padding:12px;font-size:16px"><button class="mbtn" id="apb">Open</button></div>`;
@@ -563,7 +565,7 @@ async function renderAdmin(){
 const P={i:0,lock:false,y0:0,t0:0,armed:0};
 const pages=()=>[...document.querySelectorAll('#app>section')];
 function goTo(i){const ps=pages();i=Math.max(0,Math.min(ps.length-1,i));if(P.lock)return;P.lock=true;P.i=i;
- ps[i].scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>{P.lock=false;updateBar()},550)}
+ ps[i].scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>{P.lock=false;updateBar()},550);updateNav()}
 function atTop(el){return el.scrollTop<=1}
 function atBottom(el){return el.scrollTop+el.clientHeight>=el.scrollHeight-2}
 function curPage(){const ps=pages();const top=$('#app').scrollTop;let best=0,d=1e9;ps.forEach((p,k)=>{const dd=Math.abs(p.offsetTop-top);if(dd<d){d=dd;best=k}});return best}
@@ -587,8 +589,6 @@ function initPager(){
   if(now-edgeSince>250&&Math.abs(acc)>200){goTo(curPage()+(acc>0?1:-1));acc=0;edgeSince=0}
  },{passive:true});
  window.addEventListener('resize',()=>{const ps=pages();if(ps[P.i])ps[P.i].scrollIntoView({block:'start'})});
- const io=new IntersectionObserver(es=>es.forEach(x=>{const b=x.target.querySelector('.next');if(!b)return;if(x.intersectionRatio>0.6){b.classList.remove('wake');void b.offsetWidth;b.classList.add('wake')}}),{root:app,threshold:[0.6]});
- pages().forEach(p=>io.observe(p)); P.io=io;
 }
 
 /* ---------- boot ---------- */
@@ -598,7 +598,7 @@ async function boot(){
  const {data:counts}=await sb.rpc('event_counts'); S.counts=counts||{};
  loadLocal(); await loadFamily();
  render();
- initPager(); pages().forEach(p=>p.addEventListener('scroll',updateBar,{passive:true}));
+ initPager(); pages().forEach(p=>p.addEventListener('scroll',updateBar,{passive:true})); $('#app').addEventListener('scroll',updateNav,{passive:true});
  $('#barBtn').onclick=()=>goTo(pages().length-1);
 }
 boot();
