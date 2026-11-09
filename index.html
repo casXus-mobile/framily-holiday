@@ -10,11 +10,13 @@
 <style>
 :root{--cream:#F3E7D0;--ink:#16301F;--gold:#D9B56C}
 *{box-sizing:border-box}
-html{scroll-snap-type:y mandatory;scroll-behavior:smooth;height:100%}
+html,body{height:100%;overflow:hidden}
 body{margin:0;background:#0E0E10;color:var(--cream);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
-#app{max-width:480px;margin:0 auto;min-height:100vh;background:#0E0E10;position:relative;box-shadow:0 0 60px rgba(0,0,0,.6)}
-section.ev{padding:36px 24px 44px;display:flex;flex-direction:column;justify-content:center;gap:14px;position:relative;overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always;min-height:100vh;min-height:100svh}
-.next{position:absolute;left:0;right:0;bottom:8px;text-align:center;opacity:.5;cursor:pointer;background:none;border:0;color:inherit;padding:6px}
+#app{max-width:480px;margin:0 auto;height:100vh;height:100svh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth;background:#0E0E10;position:relative;box-shadow:0 0 60px rgba(0,0,0,.6);-webkit-overflow-scrolling:touch}
+#app>section{height:100vh;height:100svh;overflow-y:auto;overscroll-behavior-y:auto;scroll-snap-align:start;scroll-snap-stop:always;-webkit-overflow-scrolling:touch}
+section.ev{padding:36px 24px 60px;display:flex;flex-direction:column;gap:14px;position:relative}
+.next{position:sticky;bottom:0;margin:0 -24px -60px;padding:8px 0 10px;}
+.next{display:block;width:100%;text-align:center;opacity:.6;cursor:pointer;background:none;border:0;color:inherit}
 section.ev>*{position:relative}
 .kicker{font-size:11px;font-weight:700;letter-spacing:3px}
 .lead{font-size:15px;line-height:1.45}
@@ -211,9 +213,9 @@ function render(){
  document.documentElement.lang=S.lang;
  document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===S.lang));
  const evs=visibleEvents();
- const chips=evs.map(e=>`<span class="pill" style="color:var(--gold)">${esc(chipLabel(e.id))}</span>`).join('');
+ const chips=evs.map(e=>`<button class="pill" data-jump="${e.id}" style="color:var(--gold);background:transparent;font-family:inherit;cursor:pointer">${esc(chipLabel(e.id))}</button>`).join('');
  let h=`
- <section id="ev-hero" style="background:#16301F;padding:64px 24px 36px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative;overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always;min-height:100vh;min-height:100svh">
+ <section id="ev-hero" style="background:#16301F;padding:64px 24px 36px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative">
   <svg aria-hidden="true" width="480" height="60" viewBox="0 0 430 60" style="position:absolute;left:0;top:-4px;width:100%" fill="none"><path d="M-10 6 Q110 60 215 18 T440 6" stroke="#2F5A3C" stroke-width="14" stroke-linecap="round"/><g><circle cx="50" cy="26" r="7" fill="#C8302E"/><circle cx="120" cy="40" r="7" fill="#D9B56C"/><circle cx="215" cy="22" r="7" fill="#F3E7D0"/><circle cx="300" cy="14" r="7" fill="#C8302E"/><circle cx="380" cy="18" r="7" fill="#D9B56C"/></g></svg>
   <div style="font-family:'Pinyon Script',cursive;font-size:46px;line-height:.9;color:var(--gold);margin-top:10px;margin-bottom:-8px;position:relative">FRamily</div>
   <div style="font-family:'Fraunces',serif;font-weight:900;font-size:44px;line-height:.95;position:relative">HOLIDAY FUN</div>
@@ -360,7 +362,7 @@ function renderLock(){
   let right=r.status!=='in'?`<span style="opacity:.6">${r.status==='maybe'?L.maybe:L.out}</span>`:(price(e.id)?`<b>${money(evTotal(e.id))}</b> · <span style="color:${r.paid_confirmed?'#2F7A48':'#C8302E'}">${r.paid_confirmed?L.paid:L.unpaid}</span>`:`<b>${L.in.replace(' ✓','')}</b>`);
   const cal=r.status==='in'?`<button class="cal" data-cal="${e.id}" style="width:auto;padding:4px 10px;font-size:11px;margin-left:8px;border-color:var(--ink)">📅</button>`:'';
   return `<div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;gap:8px"><span>${esc(chipLabel(e.id).slice(0,5))} ${esc(nm)}${cnt?' · '+cnt:''}</span><span style="white-space:nowrap">${right}${cal}</span></div>`}).join('');
- return `<section id="lock" style="background:var(--cream);color:var(--ink);padding:36px 24px 120px;display:flex;flex-direction:column;gap:14px;scroll-snap-align:start;min-height:100vh;min-height:100svh">
+ return `<section id="lock" style="background:var(--cream);color:var(--ink);padding:36px 24px 120px;display:flex;flex-direction:column;gap:14px">
   <div style="font-family:'Fraunces',serif;font-weight:900;font-size:30px;line-height:1">${L.lock}</div>
   <div class="lead" style="font-size:13px;opacity:.85">${L.lock_sub}</div>
   <div class="kicker" style="color:#5A1521;margin-top:4px">${L.s1}</div>
@@ -408,6 +410,7 @@ function bindEvents(){
   rerenderEvent(id); persistLocal(); updateBar();
  });
  document.querySelectorAll('[data-cal]').forEach(b=>b.onclick=()=>downloadIcs(b.dataset.cal));
+ document.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>$('#ev-'+b.dataset.jump)?.scrollIntoView({behavior:'smooth'}));
  document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const n=b.closest('section').nextElementSibling;if(n)n.scrollIntoView({behavior:'smooth'})});
  document.querySelectorAll('[data-parking]').forEach(b=>b.onclick=showParking);
  const sb_=$('#sendBtn'); if(sb_) sb_.onclick=submitRsvp;
@@ -542,7 +545,7 @@ async function boot(){
  const {data:counts}=await sb.rpc('event_counts'); S.counts=counts||{};
  loadLocal(); await loadFamily();
  render();
- window.addEventListener('scroll',updateBar,{passive:true});
+ $('#app').addEventListener('scroll',updateBar,{passive:true});
  $('#barBtn').onclick=()=>$('#lock').scrollIntoView({behavior:'smooth'});
 }
 boot();
