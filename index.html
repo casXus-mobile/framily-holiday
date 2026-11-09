@@ -99,7 +99,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1109.1306';
+const BUILD='1109.1310';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -568,22 +568,23 @@ function atTop(el){return el.scrollTop<=1}
 function atBottom(el){return el.scrollTop+el.clientHeight>=el.scrollHeight-2}
 function curPage(){const ps=pages();const top=$('#app').scrollTop;let best=0,d=1e9;ps.forEach((p,k)=>{const dd=Math.abs(p.offsetTop-top);if(dd<d){d=dd;best=k}});return best}
 function initPager(){
- const app=$('#app'); const TH=70;
- app.addEventListener('touchstart',e=>{P.y0=e.touches[0].clientY;P.t0=Date.now();P.armed=0},{passive:true});
- app.addEventListener('touchmove',e=>{
-  if(P.lock)return; const sec=e.target.closest('#app>section'); if(!sec)return;
-  const dy=P.y0-e.touches[0].clientY; // >0 finger moving up => wants next
-  if(dy>TH && atBottom(sec)){P.armed=1}
-  else if(dy<-TH && atTop(sec)){P.armed=-1}
- },{passive:true});
+ const app=$('#app'); const TH=120;
+ // Paging only happens when a swipe BEGINS with the page already resting at its edge.
+ // The swipe that scrolls you to the bottom never pages; the next deliberate pull does.
+ app.addEventListener('touchstart',e=>{const sec=e.target.closest('#app>section');P.y0=e.touches[0].clientY;P.t0=Date.now();P.eT=sec?atTop(sec):false;P.eB=sec?atBottom(sec):false;P.sec=sec},{passive:true});
  app.addEventListener('touchend',e=>{
-  if(P.lock||!P.armed)return; const sec=e.target.closest('#app>section'); if(!sec)return;
-  if(P.armed===1&&atBottom(sec))goTo(curPage()+1); else if(P.armed===-1&&atTop(sec))goTo(curPage()-1); P.armed=0;
+  if(P.lock||!P.sec)return; const dy=P.y0-(e.changedTouches[0].clientY); const fast=Date.now()-P.t0<700;
+  if(P.eB&&dy>TH&&atBottom(P.sec)&&fast)goTo(curPage()+1);
+  else if(P.eT&&dy<-TH&&atTop(P.sec)&&fast)goTo(curPage()-1);
  },{passive:true});
- let acc=0,last=0;
+ let acc=0,last=0,edgeSince=0;
  app.addEventListener('wheel',e=>{
-  const sec=e.target.closest('#app>section'); if(!sec||P.lock)return; const now=Date.now(); if(now-last>400)acc=0; last=now;
-  if((e.deltaY>0&&atBottom(sec))||(e.deltaY<0&&atTop(sec))){acc+=e.deltaY;if(Math.abs(acc)>120){goTo(curPage()+(acc>0?1:-1));acc=0}}
+  const sec=e.target.closest('#app>section'); if(!sec||P.lock)return; const now=Date.now();
+  const atEdge=(e.deltaY>0&&atBottom(sec))||(e.deltaY<0&&atTop(sec));
+  if(!atEdge){acc=0;edgeSince=0;return}
+  if(!edgeSince){edgeSince=now;acc=0;return} // first tick at the edge just marks arrival
+  if(now-last>500)acc=0; last=now; acc+=e.deltaY;
+  if(now-edgeSince>250&&Math.abs(acc)>200){goTo(curPage()+(acc>0?1:-1));acc=0;edgeSince=0}
  },{passive:true});
  window.addEventListener('resize',()=>{const ps=pages();if(ps[P.i])ps[P.i].scrollIntoView({block:'start'})});
  const io=new IntersectionObserver(es=>es.forEach(x=>{const b=x.target.querySelector('.next');if(!b)return;if(x.intersectionRatio>0.6){b.classList.remove('wake');void b.offsetWidth;b.classList.add('wake')}}),{root:app,threshold:[0.6]});
