@@ -8,17 +8,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500&family=Pinyon+Script&family=Bungee&family=Shrikhand&family=Anton&family=Luckiest+Guy&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--cream:#F3E7D0;--ink:#16301F;--gold:#D9B56C}
+:root{--cream:#F3E7D0;--ink:#16301F;--gold:#D9B56C;--navh:46px}
 *{box-sizing:border-box}
 html,body{height:100%;overflow:hidden}
 body{margin:0;background:#0E0E10;color:var(--cream);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 #app{max-width:480px;margin:0 auto;height:100vh;height:100svh;overflow:hidden;background:#0E0E10;position:relative;box-shadow:0 0 60px rgba(0,0,0,.6);-webkit-overflow-scrolling:touch}
 #app>section{height:100vh;height:100svh;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
-section.ev{padding:36px 24px calc(72px + var(--barh,0px));display:flex;flex-direction:column;gap:14px;position:relative}
-#nav{position:fixed;left:0;right:0;bottom:calc(var(--barh,0px) + env(safe-area-inset-bottom));z-index:45;display:flex;justify-content:center;pointer-events:none;transition:bottom .25s,opacity .2s,transform .2s}
-#nav.scrolling{opacity:0;transform:translateY(10px);pointer-events:none}
-#nav.scrolling button{pointer-events:none}
-#nav button{pointer-events:auto;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:7px 16px 7px 18px;margin-bottom:10px;font-family:inherit;font-size:10px;letter-spacing:2px;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+section.ev{padding:36px 24px calc(var(--navh,46px) + 28px + var(--barh,0px));display:flex;flex-direction:column;gap:14px;position:relative}
+#nav{position:fixed;left:0;right:0;bottom:calc(var(--barh,0px) + env(safe-area-inset-bottom));z-index:45;display:flex;justify-content:center;height:var(--navh,46px);background:rgba(8,8,10,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.12);transition:bottom .25s,opacity .2s}
+#nav.scrolling{opacity:0;pointer-events:none}
+#nav button{background:none;color:#fff;border:0;height:100%;padding:0 24px;font-family:inherit;font-size:11px;letter-spacing:2.5px;font-weight:700;display:flex;align-items:center;gap:10px;cursor:pointer;width:100%;justify-content:center}
 #nav svg{animation:bob 1.1s ease-in-out 3;animation-play-state:paused}
 #nav.wake svg{animation-play-state:running}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
@@ -102,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1109.1330';
+const BUILD='1109.1415';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -115,7 +114,7 @@ en:{
  total:"Your total",payend:"pay at the end",dress:"Dress theme",details:"THE DETAILS",cal:"Add to my calendar",
  lock:"Lock it in",lock_sub:"One RSVP for the whole family. Three quick steps, and you can come back and change it anytime.",
  s1:"1 · WHO'S COMING",s2:"2 · YOUR NIGHTS",s3:"3 · PAY WITH ZELLE",fam:"FAMILY NAME",cell:"CELL (FOR REMINDERS)",
- sms:"Text me RSVP confirmations and reminders from <b>Jared &amp; Vanessa Dunson</b> (FRamily Holiday Fun) for the events I choose. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to cancel, HELP for help. See <a href='privacy.html'>Privacy</a> and <a href='terms.html'>Terms</a>.",
+ sms_h:"Yes, text me the details",sms:"Text me RSVP confirmations and reminders from <b>Jared &amp; Vanessa Dunson</b> (FRamily Holiday Fun) for the events I choose. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to cancel, HELP for help. See <a href='privacy.html'>Privacy</a> and <a href='terms.html'>Terms</a>.",
  owed:"Still owed",zelle_to:"ZELLE $AMT TO",memo:"Jared Dunson · put your family name in the memo",copy:"Copy #",copied:"Copied",
  sent:"I sent my Zelle. (Jared confirms on his end.)",send:"Send my RSVP",saved:"Saved! We'll see you there.",update:"Update my RSVP",
  q:"Questions? Text Jared · 954.376.0188",friend:"Show some love · bring a friend",friend_sub:"Know someone who could use a night out? Bring them.",
@@ -148,7 +147,7 @@ es:{
  total:"Tu total",payend:"se paga al final",dress:"Vestimenta",details:"LOS DETALLES",cal:"Agregar a mi calendario",
  lock:"Confirma",lock_sub:"Un solo RSVP para toda la familia. Tres pasos rápidos, y puedes volver a cambiarlo cuando quieras.",
  s1:"1 · QUIÉNES VIENEN",s2:"2 · TUS NOCHES",s3:"3 · PAGA CON ZELLE",fam:"NOMBRE DE FAMILIA",cell:"CELULAR (PARA RECORDATORIOS)",
- sms:"Envíenme por texto confirmaciones y recordatorios de <b>Jared &amp; Vanessa Dunson</b> (FRamily Holiday Fun) para los eventos que elija. La frecuencia varía. Pueden aplicar tarifas de mensajes y datos. Responde STOP para cancelar, HELP para ayuda. Ver <a href='privacy.html'>Privacidad</a> y <a href='terms.html'>Términos</a>.",
+ sms_h:"Sí, mándenme los detalles por texto",sms:"Envíenme por texto confirmaciones y recordatorios de <b>Jared &amp; Vanessa Dunson</b> (FRamily Holiday Fun) para los eventos que elija. La frecuencia varía. Pueden aplicar tarifas de mensajes y datos. Responde STOP para cancelar, HELP para ayuda. Ver <a href='privacy.html'>Privacidad</a> y <a href='terms.html'>Términos</a>.",
  owed:"Pendiente",zelle_to:"ZELLE $AMT A",memo:"Jared Dunson · pon el nombre de tu familia en la nota",copy:"Copiar #",copied:"Copiado",
  sent:"Ya envié mi Zelle. (Jared lo confirma de su lado.)",send:"Enviar mi RSVP",saved:"¡Listo! Nos vemos allá.",update:"Actualizar mi RSVP",
  q:"¿Preguntas? Escríbele a Jared · 954.376.0188",friend:"Comparte el amor · trae a un amigo",friend_sub:"¿Conoces a alguien que necesita una noche fuera? Tráelo.",
@@ -223,7 +222,7 @@ function render(){
  const evs=visibleEvents();
  const chips=evs.map(e=>`<button class="pill" data-jump="${e.id}" style="color:var(--gold);background:transparent;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:6px 12px">${CHIP_ICON[e.id]||''}${esc(chipLabel(e.id))}</button>`).join('');
  let h=`
- <section id="ev-hero" style="background:#16301F;padding:clamp(48px,8vh,90px) 24px calc(72px + var(--barh,0px));text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;gap:clamp(8px,1.6vh,22px);position:relative">
+ <section id="ev-hero" style="background:#16301F;padding:clamp(48px,8vh,90px) 24px calc(var(--navh,46px) + 24px + var(--barh,0px));text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;gap:clamp(8px,1.6vh,22px);position:relative">
   <svg aria-hidden="true" width="480" height="60" viewBox="0 0 430 60" style="position:absolute;left:0;top:-4px;width:100%" fill="none"><path d="M-10 6 Q110 60 215 18 T440 6" stroke="#2F5A3C" stroke-width="14" stroke-linecap="round"/><g><circle cx="50" cy="26" r="7" fill="#C8302E"/><circle cx="120" cy="40" r="7" fill="#D9B56C"/><circle cx="215" cy="22" r="7" fill="#F3E7D0"/><circle cx="300" cy="14" r="7" fill="#C8302E"/><circle cx="380" cy="18" r="7" fill="#D9B56C"/></g></svg>
   <div style="font-family:'Pinyon Script',cursive;font-size:clamp(44px,6.5vh,60px);line-height:.9;color:var(--gold);margin-top:10px;margin-bottom:-8px;position:relative">FRamily</div>
   <div style="font-family:'Fraunces',serif;font-weight:900;font-size:clamp(42px,6vh,56px);line-height:.95;position:relative">HOLIDAY FUN</div>
@@ -379,13 +378,13 @@ function renderLock(){
   let right=r.status!=='in'?`<span style="opacity:.6">${r.status==='maybe'?L.maybe:L.out}</span>`:(price(e.id)?`<b>${money(evTotal(e.id))}</b> · <span style="color:${r.paid_confirmed?'#2F7A48':'#C8302E'}">${r.paid_confirmed?L.paid:L.unpaid}</span>`:`<b>${L.in.replace(' ✓','')}</b>`);
   const cal=r.status==='in'?`<button class="cal" data-cal="${e.id}" style="width:auto;padding:4px 10px;font-size:11px;margin-left:8px;border-color:var(--ink)">📅</button>`:'';
   return `<div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;gap:8px"><span>${esc(chipLabel(e.id).slice(0,5))} ${esc(nm)}${cnt?' · '+cnt:''}</span><span style="white-space:nowrap">${right}${cal}</span></div>`}).join('');
- return `<section id="lock" style="background:var(--cream);color:var(--ink);padding:36px 24px 60px;display:flex;flex-direction:column;gap:14px">
+ return `<section id="lock" style="background:var(--cream);color:var(--ink);padding:36px 24px calc(60px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:14px">
   <div style="font-family:'Fraunces',serif;font-weight:900;font-size:30px;line-height:1">${L.lock}</div>
   <div class="lead" style="font-size:13px;opacity:.85">${L.lock_sub}</div>
   <div class="kicker" style="color:#5A1521;margin-top:4px">${L.s1}</div>
   <label class="f">${L.fam}<input class="t" id="fName" value="${esc(S.name)}" autocomplete="family-name"></label>
   <label class="f">${L.cell}<input class="t" id="fPhone" type="tel" value="${esc(fmtPhone(S.phone))}" autocomplete="tel" inputmode="tel"></label>
-  <label style="display:flex;align-items:flex-start;gap:10px;background:#fff;border:1px solid var(--gold);border-radius:10px;padding:12px;font-size:12px;line-height:1.4"><input type="checkbox" id="fSms" ${S.sms?'checked':''} style="width:18px;height:18px;margin-top:1px;flex:0 0 auto"><span>${L.sms}</span></label>
+  <label style="display:flex;align-items:flex-start;gap:10px;background:#fff;border:2px solid var(--gold);border-radius:10px;padding:12px;font-size:12px;line-height:1.4"><input type="checkbox" id="fSms" ${S.sms?'checked':''} style="width:22px;height:22px;margin-top:0;flex:0 0 auto;accent-color:#16301F"><span><b style="display:block;font-size:13px;margin-bottom:2px">${L.sms_h}</b>${L.sms}</span></label>
   <div class="kicker" style="color:#5A1521;margin-top:6px">${L.s2}</div>
   <div style="background:#fff;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;border:1px solid var(--gold)">${lines||`<div style="font-size:13px;opacity:.7">${L.nothing}</div>`}
    <div style="border-top:1px dashed var(--ink);padding-top:8px;display:flex;justify-content:space-between;font-size:14px;font-weight:700"><span>${L.owed}</span><span>${money(o)}</span></div></div>
