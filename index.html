@@ -100,7 +100,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1109.1320';
+const BUILD='1109.1322';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -504,7 +504,6 @@ function showShare(){
  const xm=S.tier==='xmas';
  let rows=opts.map(([id,ck])=>{const e=S.events.find(x=>x.id===id);const nm=S.lang==='es'?e.name_es:e.name_en;return `<label class="c"><input type="checkbox" data-sh="${id}" ${ck?'checked':''}><span style="flex:1"><b>${chipLabel(id).split(' ')[0]}</b> ${esc(nm)}</span></label>`}).join('');
  if(xm) rows+=`<label class="c" style="flex-direction:column;align-items:stretch;border:1px dashed #5A1521"><span style="display:flex;gap:10px;align-items:center"><input type="checkbox" data-sh="christmas"><span style="flex:1"><b>12/25</b> FRamily Christmas</span></span><span style="font-size:11px;opacity:.8;padding-left:28px">${L.share_x}</span></label>`;
- rows+=`<div class="c lock" style="display:flex;gap:10px;align-items:center;border-radius:10px;padding:10px 12px;font-size:13px;background:#E6DCC8;opacity:.6">🔒 <span style="flex:1"><b>12/29</b> ${L.lillie_lock}</span></div>`;
  m.innerHTML=`<div><div class="handle"></div><h3>${L.share_t}</h3><div style="font-size:12px;opacity:.8">${L.share_sub}</div>${rows}<button class="mbtn" id="shWrite">${L.write}</button><button class="mbtn alt" id="shCopy">${L.copy_msg}</button></div>`;
  m.onclick=ev=>{if(ev.target===m)m.remove()};
  document.body.appendChild(m);
