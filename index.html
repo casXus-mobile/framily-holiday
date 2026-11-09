@@ -12,8 +12,8 @@
 *{box-sizing:border-box}
 html,body{height:100%;overflow:hidden}
 body{margin:0;background:#0E0E10;color:var(--cream);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
-#app{max-width:480px;margin:0 auto;height:100vh;height:100svh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth;background:#0E0E10;position:relative;box-shadow:0 0 60px rgba(0,0,0,.6);-webkit-overflow-scrolling:touch}
-#app>section{height:100vh;height:100svh;overflow-y:auto;overscroll-behavior-y:auto;scroll-snap-align:start;scroll-snap-stop:always;-webkit-overflow-scrolling:touch}
+#app{max-width:480px;margin:0 auto;height:100vh;height:100svh;overflow:hidden;background:#0E0E10;position:relative;box-shadow:0 0 60px rgba(0,0,0,.6);-webkit-overflow-scrolling:touch}
+#app>section{height:100vh;height:100svh;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 section.ev{padding:36px 24px 60px;display:flex;flex-direction:column;gap:14px;position:relative}
 .next{position:sticky;bottom:0;margin:0 -24px -60px;padding:8px 0 10px;}
 .next{display:block;width:100%;text-align:center;opacity:.6;cursor:pointer;background:none;border:0;color:inherit}
@@ -233,6 +233,7 @@ function render(){
  h+=renderLock();
  app.innerHTML=h;
  bindEvents();
+ const ps=pages(); if(ps[P.i]) app.scrollTop=ps[P.i].offsetTop;
  updateBar();
 }
 function chipLabel(id){return {bowling:'12/8 BOWL',topgolf:'12/15 GOLF',movie:'12/22 MOVIE',crossway:'12/24 EVE',christmas:'12/25 XMAS',lillie:'12/29 LILLIE'}[id]}
@@ -388,7 +389,7 @@ function renderLock(){
 function updateBar(){
  const L=t(); const n=inCount(); const bar=$('#bar');
  if(S.admin||n===0){bar.classList.add('hidden');return}
- const lockVisible=(()=>{const r=$('#lock');if(!r)return false;const b=r.getBoundingClientRect();return b.top<innerHeight*0.6})();
+ const lockVisible=curPage()===pages().length-1;
  bar.classList.toggle('hidden',lockVisible);
  $('#barTxt').textContent=`${n} ${L.bar_n}${owed()?` · ${money(owed())}`:''}`;
  $('#barSub').textContent=S.name||'';
@@ -410,8 +411,8 @@ function bindEvents(){
   rerenderEvent(id); persistLocal(); updateBar();
  });
  document.querySelectorAll('[data-cal]').forEach(b=>b.onclick=()=>downloadIcs(b.dataset.cal));
- document.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>$('#ev-'+b.dataset.jump)?.scrollIntoView({behavior:'smooth'}));
- document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const n=b.closest('section').nextElementSibling;if(n)n.scrollIntoView({behavior:'smooth'})});
+ document.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>{const el=$('#ev-'+b.dataset.jump);if(el)goTo(pages().indexOf(el))});
+ document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>goTo(pages().indexOf(b.closest('section'))+1));
  document.querySelectorAll('[data-parking]').forEach(b=>b.onclick=showParking);
  const sb_=$('#sendBtn'); if(sb_) sb_.onclick=submitRsvp;
  const cz=$('#copyZ'); if(cz) cz.onclick=()=>{navigator.clipboard?.writeText(ZELLE.replace(/-/g,'')).then(()=>toast(t().copied)).catch(()=>toast(ZELLE))};
@@ -432,7 +433,7 @@ function loadLocal(){try{const d=JSON.parse(ls('draft')||'null');if(d){S.name=d.
 async function submitRsvp(){
  const L=t(); S.name=($('#fName').value||'').trim(); S.phone=$('#fPhone').value; S.sms=$('#fSms').checked;
  const digits=S.phone.replace(/\D/g,'').slice(-10);
- if(!S.name||digits.length!==10){toast(!S.name?L.need_name:L.bad_phone);$('#lock').scrollIntoView({behavior:'smooth'});return}
+ if(!S.name||digits.length!==10){toast(!S.name?L.need_name:L.bad_phone);goTo(pages().length-1);return}
  if(!Object.values(S.rs).some(r=>r.status)){toast(L.nothing);return}
  const btn=$('#sendBtn'); btn.disabled=true; btn.textContent='…';
  try{
@@ -445,7 +446,7 @@ async function submitRsvp(){
    const {error:er}=await sb.rpc('rsvp_set',{p_token:S.token,p_event:e.id,p_status:r.status,p_headcount:r.headcount|0,p_players:r.players|0,p_watchers:r.watchers|0,p_paid_claimed:(sent&&evTotal(e.id)>0)?true:null});
    if(er){ if((er.message||'').includes('full')){toast(L.full);r.status='maybe'} else if(!(er.message||'').includes('not_invited')) throw er; }
   }
-  S.done=true; await loadFamily(); toast(L.saved); render(); $('#lock').scrollIntoView({behavior:'smooth'});
+  S.done=true; await loadFamily(); toast(L.saved); render(); goTo(pages().length-1);
  }catch(e){console.error(e);toast('Hmm, that didn\'t save. Try again or text Jared.');}
  btn.disabled=false;
 }
@@ -538,6 +539,36 @@ async function renderAdmin(){
  $('#addF').onclick=async()=>{const n=prompt('Family name');if(!n)return;const p=prompt('Cell');if(!p)return;const tier=confirm('Invited to Christmas? OK = yes')?'xmas':'open';await sb.rpc('admin_add_family',{p_pass:pass,p_name:n,p_phone:p,p_tier:tier});renderAdmin()};
 }
 
+
+/* ---------- pager: pages scroll inside, firm pull or chevron moves between pages ---------- */
+const P={i:0,lock:false,y0:0,t0:0,armed:0};
+const pages=()=>[...document.querySelectorAll('#app>section')];
+function goTo(i){const ps=pages();i=Math.max(0,Math.min(ps.length-1,i));if(P.lock)return;P.lock=true;P.i=i;
+ ps[i].scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>{P.lock=false;updateBar()},550)}
+function atTop(el){return el.scrollTop<=1}
+function atBottom(el){return el.scrollTop+el.clientHeight>=el.scrollHeight-2}
+function curPage(){const ps=pages();const top=$('#app').scrollTop;let best=0,d=1e9;ps.forEach((p,k)=>{const dd=Math.abs(p.offsetTop-top);if(dd<d){d=dd;best=k}});return best}
+function initPager(){
+ const app=$('#app'); const TH=70;
+ app.addEventListener('touchstart',e=>{P.y0=e.touches[0].clientY;P.t0=Date.now();P.armed=0},{passive:true});
+ app.addEventListener('touchmove',e=>{
+  if(P.lock)return; const sec=e.target.closest('#app>section'); if(!sec)return;
+  const dy=P.y0-e.touches[0].clientY; // >0 finger moving up => wants next
+  if(dy>TH && atBottom(sec)){P.armed=1}
+  else if(dy<-TH && atTop(sec)){P.armed=-1}
+ },{passive:true});
+ app.addEventListener('touchend',e=>{
+  if(P.lock||!P.armed)return; const sec=e.target.closest('#app>section'); if(!sec)return;
+  if(P.armed===1&&atBottom(sec))goTo(curPage()+1); else if(P.armed===-1&&atTop(sec))goTo(curPage()-1); P.armed=0;
+ },{passive:true});
+ let acc=0,last=0;
+ app.addEventListener('wheel',e=>{
+  const sec=e.target.closest('#app>section'); if(!sec||P.lock)return; const now=Date.now(); if(now-last>400)acc=0; last=now;
+  if((e.deltaY>0&&atBottom(sec))||(e.deltaY<0&&atTop(sec))){acc+=e.deltaY;if(Math.abs(acc)>120){goTo(curPage()+(acc>0?1:-1));acc=0}}
+ },{passive:true});
+ window.addEventListener('resize',()=>{const ps=pages();if(ps[P.i])ps[P.i].scrollIntoView({block:'start'})});
+}
+
 /* ---------- boot ---------- */
 async function boot(){
  document.querySelectorAll('#lang button').forEach(b=>b.onclick=()=>{S.lang=b.dataset.l;ls('lang',S.lang);render()});
@@ -545,8 +576,8 @@ async function boot(){
  const {data:counts}=await sb.rpc('event_counts'); S.counts=counts||{};
  loadLocal(); await loadFamily();
  render();
- $('#app').addEventListener('scroll',updateBar,{passive:true});
- $('#barBtn').onclick=()=>$('#lock').scrollIntoView({behavior:'smooth'});
+ initPager(); pages().forEach(p=>p.addEventListener('scroll',updateBar,{passive:true}));
+ $('#barBtn').onclick=()=>goTo(pages().length-1);
 }
 boot();
 </script>
