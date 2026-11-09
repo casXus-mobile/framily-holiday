@@ -227,7 +227,7 @@ function render(){
   </div>
   <div class="lead" style="margin-top:10px;max-width:340px;position:relative">${L.hero_sub}</div>
   <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;justify-content:center;position:relative">${chips}</div>
-  <button class="next" data-next aria-label="Next" style="position:relative;margin-top:14px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F3E7D0" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+  <button class="next" data-next aria-label="Next" style="position:relative;margin:14px 0 0;background:none;padding:0"><span>${chipLabel(evs[0].id)}</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F3E7D0" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
  </section>`;
  for(const e of evs) h+=renderEvent(e);
  h+=renderLock();
@@ -354,7 +354,7 @@ function renderEvent(e){
   ${full?`<div class="row" style="background:${th.card};justify-content:center;font-weight:700">${d.full}</div>`:rsvpButtons(id,th)}
   <div class="${hidden}" data-when="${id}">${stepper(id,'headcount',L.howmany,th)}${totalLine(id,th)}</div>`;
  }
- return `<section class="ev" id="ev-${id}" style="background:${th.bg};color:${th.fg}">${inner}${calBtn(id)}<button class="next" data-next aria-label="Next"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button></section>`;
+ return `<section class="ev" id="ev-${id}" style="background:${th.bg};color:${th.fg}">${inner}${calBtn(id)}<button class="next" data-next aria-label="Next"><span>${nextLabel(id)}</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button></section>`;
 }
 
 function renderLock(){
