@@ -14,8 +14,8 @@ html,body{height:100%;overflow:hidden}
 body{margin:0;background:#0E0E10;color:var(--cream);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 #app{max-width:480px;margin:0 auto;height:100vh;height:100svh;overflow:hidden;background:#0E0E10;position:relative;box-shadow:0 0 60px rgba(0,0,0,.6);-webkit-overflow-scrolling:touch}
 #app>section{height:100vh;height:100svh;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
-section.ev{padding:36px 24px 60px;display:flex;flex-direction:column;gap:14px;position:relative}
-.next{position:sticky;bottom:0;margin:0 -24px -60px;padding:8px 0 10px;}
+section.ev{padding:36px 24px calc(96px + var(--barh,0px));display:flex;flex-direction:column;gap:14px;position:relative}
+.next{position:sticky;bottom:var(--barh,0px);margin:12px -24px calc(-96px - var(--barh,0px));padding:10px 0 14px;background:linear-gradient(to top,rgba(0,0,0,.45),transparent);display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;letter-spacing:2px;font-weight:700}
 .next{display:block;width:100%;text-align:center;opacity:.6;cursor:pointer;background:none;border:0;color:inherit}
 section.ev>*{position:relative}
 .kicker{font-size:11px;font-weight:700;letter-spacing:3px}
@@ -215,7 +215,7 @@ function render(){
  const evs=visibleEvents();
  const chips=evs.map(e=>`<button class="pill" data-jump="${e.id}" style="color:var(--gold);background:transparent;font-family:inherit;cursor:pointer">${esc(chipLabel(e.id))}</button>`).join('');
  let h=`
- <section id="ev-hero" style="background:#16301F;padding:64px 24px 36px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative">
+ <section id="ev-hero" style="background:#16301F;padding:64px 24px calc(36px + var(--barh,0px));text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative">
   <svg aria-hidden="true" width="480" height="60" viewBox="0 0 430 60" style="position:absolute;left:0;top:-4px;width:100%" fill="none"><path d="M-10 6 Q110 60 215 18 T440 6" stroke="#2F5A3C" stroke-width="14" stroke-linecap="round"/><g><circle cx="50" cy="26" r="7" fill="#C8302E"/><circle cx="120" cy="40" r="7" fill="#D9B56C"/><circle cx="215" cy="22" r="7" fill="#F3E7D0"/><circle cx="300" cy="14" r="7" fill="#C8302E"/><circle cx="380" cy="18" r="7" fill="#D9B56C"/></g></svg>
   <div style="font-family:'Pinyon Script',cursive;font-size:46px;line-height:.9;color:var(--gold);margin-top:10px;margin-bottom:-8px;position:relative">FRamily</div>
   <div style="font-family:'Fraunces',serif;font-weight:900;font-size:44px;line-height:.95;position:relative">HOLIDAY FUN</div>
@@ -236,6 +236,7 @@ function render(){
  const ps=pages(); if(ps[P.i]) app.scrollTop=ps[P.i].offsetTop;
  updateBar();
 }
+function nextLabel(id){const evs=visibleEvents();const k=evs.findIndex(e=>e.id===id);const n=evs[k+1];return n?chipLabel(n.id):(t().lock.toUpperCase())}
 function chipLabel(id){return {bowling:'12/8 BOWL',topgolf:'12/15 GOLF',movie:'12/22 MOVIE',crossway:'12/24 EVE',christmas:'12/25 XMAS',lillie:'12/29 LILLIE'}[id]}
 
 function rsvpButtons(id,th,labels){
@@ -363,7 +364,7 @@ function renderLock(){
   let right=r.status!=='in'?`<span style="opacity:.6">${r.status==='maybe'?L.maybe:L.out}</span>`:(price(e.id)?`<b>${money(evTotal(e.id))}</b> · <span style="color:${r.paid_confirmed?'#2F7A48':'#C8302E'}">${r.paid_confirmed?L.paid:L.unpaid}</span>`:`<b>${L.in.replace(' ✓','')}</b>`);
   const cal=r.status==='in'?`<button class="cal" data-cal="${e.id}" style="width:auto;padding:4px 10px;font-size:11px;margin-left:8px;border-color:var(--ink)">📅</button>`:'';
   return `<div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;gap:8px"><span>${esc(chipLabel(e.id).slice(0,5))} ${esc(nm)}${cnt?' · '+cnt:''}</span><span style="white-space:nowrap">${right}${cal}</span></div>`}).join('');
- return `<section id="lock" style="background:var(--cream);color:var(--ink);padding:36px 24px 120px;display:flex;flex-direction:column;gap:14px">
+ return `<section id="lock" style="background:var(--cream);color:var(--ink);padding:36px 24px 60px;display:flex;flex-direction:column;gap:14px">
   <div style="font-family:'Fraunces',serif;font-weight:900;font-size:30px;line-height:1">${L.lock}</div>
   <div class="lead" style="font-size:13px;opacity:.85">${L.lock_sub}</div>
   <div class="kicker" style="color:#5A1521;margin-top:4px">${L.s1}</div>
@@ -388,9 +389,9 @@ function renderLock(){
 
 function updateBar(){
  const L=t(); const n=inCount(); const bar=$('#bar');
- if(S.admin||n===0){bar.classList.add('hidden');return}
+ if(S.admin||n===0){bar.classList.add('hidden');document.documentElement.style.setProperty('--barh','0px');return}
  const lockVisible=curPage()===pages().length-1;
- bar.classList.toggle('hidden',lockVisible);
+ bar.classList.toggle('hidden',lockVisible); document.documentElement.style.setProperty('--barh',lockVisible?'0px':'74px');
  $('#barTxt').textContent=`${n} ${L.bar_n}${owed()?` · ${money(owed())}`:''}`;
  $('#barSub').textContent=S.name||'';
  $('#barBtn').textContent=L.bar_fin;
@@ -423,8 +424,11 @@ function bindEvents(){
 }
 function rerenderEvent(id){
  const e=S.events.find(x=>x.id===id); const old=$('#ev-'+id); if(!old)return;
- const tmp=document.createElement('div'); tmp.innerHTML=renderEvent(e); old.replaceWith(tmp.firstElementChild);
- const lk=$('#lock'); if(lk){const t2=document.createElement('div');t2.innerHTML=renderLock();lk.replaceWith(t2.firstElementChild)}
+ const app=$('#app'); const appTop=app.scrollTop; const st=old.scrollTop;
+ const tmp=document.createElement('div'); tmp.innerHTML=renderEvent(e); const nu=tmp.firstElementChild; old.replaceWith(nu); nu.scrollTop=st;
+ const lk=$('#lock'); if(lk){const ls_=lk.scrollTop;const t2=document.createElement('div');t2.innerHTML=renderLock();const nl=t2.firstElementChild;lk.replaceWith(nl);nl.scrollTop=ls_;nl.addEventListener('scroll',updateBar,{passive:true})}
+ nu.addEventListener('scroll',updateBar,{passive:true});
+ app.scrollTop=appTop;
  bindEvents();
 }
 function persistLocal(){ls('draft',JSON.stringify({name:S.name,phone:S.phone,sms:S.sms,rs:S.rs}))}
