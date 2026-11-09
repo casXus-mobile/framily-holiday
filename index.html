@@ -14,8 +14,8 @@ html,body{height:100%;overflow:hidden}
 body{margin:0;background:#0E0E10;color:var(--cream);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 #app{max-width:480px;margin:0 auto;height:100vh;height:100svh;overflow:hidden;background:#0E0E10;position:relative;box-shadow:0 0 60px rgba(0,0,0,.6);-webkit-overflow-scrolling:touch}
 #app>section{height:100vh;height:100svh;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
-section.ev{padding:36px 24px calc(150px + var(--barh,0px));display:flex;flex-direction:column;gap:14px;position:relative}
-.next{position:sticky;bottom:var(--barh,0px);margin:auto -24px calc(-150px - var(--barh,0px));width:calc(100% + 48px);padding:40px 0 22px;background:linear-gradient(to top,rgba(0,0,0,.55),transparent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10px;letter-spacing:2px;font-weight:700}
+section.ev{padding:36px 24px calc(118px + var(--barh,0px));display:flex;flex-direction:column;gap:14px;position:relative}
+.next{position:sticky;bottom:var(--barh,0px);margin:auto -24px calc(-118px - var(--barh,0px));width:calc(100% + 48px);padding:28px 0 18px;background:linear-gradient(to top,rgba(0,0,0,.55),transparent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10px;letter-spacing:2px;font-weight:700}
 .next{text-align:center;opacity:.7;cursor:pointer;border:0;color:inherit;font-family:inherit}
 section.ev>*{position:relative}
 .kicker{font-size:11px;font-weight:700;letter-spacing:3px}
@@ -215,7 +215,7 @@ function render(){
  const evs=visibleEvents();
  const chips=evs.map(e=>`<button class="pill" data-jump="${e.id}" style="color:var(--gold);background:transparent;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:6px 12px">${CHIP_ICON[e.id]||''}${esc(chipLabel(e.id))}</button>`).join('');
  let h=`
- <section id="ev-hero" style="background:#16301F;padding:64px 24px calc(36px + var(--barh,0px));text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative">
+ <section id="ev-hero" style="background:#16301F;padding:64px 24px 0;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative">
   <svg aria-hidden="true" width="480" height="60" viewBox="0 0 430 60" style="position:absolute;left:0;top:-4px;width:100%" fill="none"><path d="M-10 6 Q110 60 215 18 T440 6" stroke="#2F5A3C" stroke-width="14" stroke-linecap="round"/><g><circle cx="50" cy="26" r="7" fill="#C8302E"/><circle cx="120" cy="40" r="7" fill="#D9B56C"/><circle cx="215" cy="22" r="7" fill="#F3E7D0"/><circle cx="300" cy="14" r="7" fill="#C8302E"/><circle cx="380" cy="18" r="7" fill="#D9B56C"/></g></svg>
   <div style="font-family:'Pinyon Script',cursive;font-size:46px;line-height:.9;color:var(--gold);margin-top:10px;margin-bottom:-8px;position:relative">FRamily</div>
   <div style="font-family:'Fraunces',serif;font-weight:900;font-size:44px;line-height:.95;position:relative">HOLIDAY FUN</div>
@@ -227,7 +227,7 @@ function render(){
   </div>
   <div class="lead" style="margin-top:10px;max-width:340px;position:relative">${L.hero_sub}</div>
   <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;justify-content:center;position:relative">${chips}</div>
-  <button class="next" data-next aria-label="Next" style="position:relative;margin:14px 0 0;width:auto;background:none;padding:0"><span>${chipLabel(evs[0].id)}</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F3E7D0" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+  <button class="next" data-next aria-label="Next" style="position:relative;bottom:auto;margin:auto 0 0;width:100%;background:none;padding:14px 0 calc(8px + var(--barh,0px))"><span>${chipLabel(evs[0].id)}</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F3E7D0" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
  </section>`;
  for(const e of evs) h+=renderEvent(e);
  h+=renderLock();
