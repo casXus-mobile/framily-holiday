@@ -213,7 +213,7 @@ function render(){
  document.documentElement.lang=S.lang;
  document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===S.lang));
  const evs=visibleEvents();
- const chips=evs.map(e=>`<button class="pill" data-jump="${e.id}" style="color:var(--gold);background:transparent;font-family:inherit;cursor:pointer">${esc(chipLabel(e.id))}</button>`).join('');
+ const chips=evs.map(e=>`<button class="pill" data-jump="${e.id}" style="color:var(--gold);background:transparent;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:6px 12px">${CHIP_ICON[e.id]||''}${esc(chipLabel(e.id))}</button>`).join('');
  let h=`
  <section id="ev-hero" style="background:#16301F;padding:64px 24px calc(36px + var(--barh,0px));text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative">
   <svg aria-hidden="true" width="480" height="60" viewBox="0 0 430 60" style="position:absolute;left:0;top:-4px;width:100%" fill="none"><path d="M-10 6 Q110 60 215 18 T440 6" stroke="#2F5A3C" stroke-width="14" stroke-linecap="round"/><g><circle cx="50" cy="26" r="7" fill="#C8302E"/><circle cx="120" cy="40" r="7" fill="#D9B56C"/><circle cx="215" cy="22" r="7" fill="#F3E7D0"/><circle cx="300" cy="14" r="7" fill="#C8302E"/><circle cx="380" cy="18" r="7" fill="#D9B56C"/></g></svg>
@@ -236,6 +236,14 @@ function render(){
  const ps=pages(); if(ps[P.i]) app.scrollTop=ps[P.i].offsetTop;
  updateBar();
 }
+const CHIP_ICON={
+ bowling:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="14" cy="8" r="1" fill="currentColor"/><circle cx="13" cy="13" r="1" fill="currentColor"/></svg>',
+ topgolf:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v18M8 3l10 4-10 4"/><path d="M4 21h8"/></svg>',
+ movie:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l1.5 13h11L19 8z"/><circle cx="9" cy="6" r="2.2"/><circle cx="15" cy="6" r="2.2"/><circle cx="12" cy="4" r="2.2"/><path d="M9.5 8l.8 13M14.5 8l-.8 13"/></svg>',
+ crossway:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.8 4.4 4.7.4-3.6 3.1 1.1 4.6L12 13l-4 2.5 1.1-4.6L5.5 7.8l4.7-.4z"/><path d="M12 15v6"/></svg>',
+ christmas:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l5 7h-3l4 5h-4l3 5H7l3-5H6l4-5H7z"/><path d="M12 19v3"/></svg>',
+ lillie:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>'
+};
 function nextLabel(id){const evs=visibleEvents();const k=evs.findIndex(e=>e.id===id);const n=evs[k+1];return n?chipLabel(n.id):(t().lock.toUpperCase())}
 function chipLabel(id){return {bowling:'12/8 BOWL',topgolf:'12/15 GOLF',movie:'12/22 MOVIE',crossway:'12/24 EVE',christmas:'12/25 XMAS',lillie:'12/29 LILLIE'}[id]}
 
