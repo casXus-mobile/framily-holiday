@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//FRamily Holiday Fun//EN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:framily-bowling-2026@framily-holiday
+DTSTAMP:20261109T170000Z
+DTSTART:20261209T003000Z
+DTEND:20261209T033000Z
+SUMMARY:Family Bowling Night (FRamily)
+LOCATION:Lucky Strike · Dania Pointe\, 1841 Way Pointe Pl\, Dania Beach\, FL 33004
+DESCRIPTION:Family Bowling Night · FRamily Holiday Fun\nLucky Strike · Dania Pointe\n1841 Way Pointe Pl\, Dania Beach\, FL 33004\n$24 per person · Zelle 954-376-0188\nDress theme: ugly sweaters\nRSVP: https://casxus-mobile.github.io/framily-holiday/
+URL:https://casxus-mobile.github.io/framily-holiday/
+BEGIN:VALARM
+TRIGGER:-PT10H
+ACTION:DISPLAY
+DESCRIPTION:Family Bowling Night
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//FRamily Holiday Fun//EN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:framily-lillie-2026@framily-holiday
+DTSTAMP:20261109T170000Z
+DTSTART:20261230T003000Z
+DTEND:20261230T033000Z
+SUMMARY:Game show de cumpleaños de Lillie (FRamily)
+LOCATION:Great Big Game Show · Dania Pointe\, 1778 Meridian Dr\, Suite 104A\, Dania Beach\, FL 33004
+DESCRIPTION:Game show de cumpleaños de Lillie · FRamily Holiday Fun\nGreat Big Game Show · Dania Pointe\n1778 Meridian Dr\, Suite 104A\, Dania Beach\, FL 33004\n$38 por persona · Zelle 954-376-0188\nVestimenta: un poco de brillo\nRSVP: https://casxus-mobile.github.io/framily-holiday/
+URL:https://casxus-mobile.github.io/framily-holiday/
+BEGIN:VALARM
+TRIGGER:-PT10H
+ACTION:DISPLAY
+DESCRIPTION:Game show de cumpleaños de Lillie
+END:VALARM
+END:VEVENT
+END:VCALENDAR

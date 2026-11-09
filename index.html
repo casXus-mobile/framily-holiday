@@ -104,7 +104,7 @@ en:{
  hero_sub:"Family, friends and a few nights of holiday fun. Tap <b>I'm in</b> on the ones you'll join.",
  in:"I'm in ✓",maybe:"Maybe",out:"Out",yes_seats:"Yes, save us seats",not_time:"Not this time",
  howmany:"How many coming?",bowlers:"How many bowling?",players:"Players",watching:"Watching",tickets:"Tickets",seats:"How many seats?",
- total:"Your total",payend:"pay at the end",dress:"Dress theme",details:"THE DETAILS",cal:"Add to calendar · reminder day-of",
+ total:"Your total",payend:"pay at the end",dress:"Dress theme",details:"THE DETAILS",cal:"Add to my calendar",
  lock:"Lock it in",lock_sub:"One RSVP for the whole family. Three quick steps, and you can come back and change it anytime.",
  s1:"1 · WHO'S COMING",s2:"2 · YOUR NIGHTS",s3:"3 · PAY WITH ZELLE",fam:"FAMILY NAME",cell:"CELL (FOR REMINDERS)",
  sms:"Text me RSVP confirmations and reminders from <b>Jared &amp; Vanessa Dunson</b> (FRamily Holiday Fun) for the events I choose. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to cancel, HELP for help. See <a href='privacy.html'>Privacy</a> and <a href='terms.html'>Terms</a>.",
@@ -137,7 +137,7 @@ es:{
  hero_sub:"Familia, amigos y unas noches de diversión navideña. Toca <b>Me apunto</b> en las que vendrás.",
  in:"Me apunto ✓",maybe:"Quizás",out:"No",yes_seats:"Sí, guárdenos asientos",not_time:"Esta vez no",
  howmany:"¿Cuántos vienen?",bowlers:"¿Cuántos juegan boliche?",players:"Jugadores",watching:"Acompañan",tickets:"Boletos",seats:"¿Cuántos asientos?",
- total:"Tu total",payend:"se paga al final",dress:"Vestimenta",details:"LOS DETALLES",cal:"Agregar al calendario · recordatorio ese día",
+ total:"Tu total",payend:"se paga al final",dress:"Vestimenta",details:"LOS DETALLES",cal:"Agregar a mi calendario",
  lock:"Confirma",lock_sub:"Un solo RSVP para toda la familia. Tres pasos rápidos, y puedes volver a cambiarlo cuando quieras.",
  s1:"1 · QUIÉNES VIENEN",s2:"2 · TUS NOCHES",s3:"3 · PAGA CON ZELLE",fam:"NOMBRE DE FAMILIA",cell:"CELULAR (PARA RECORDATORIOS)",
  sms:"Envíenme por texto confirmaciones y recordatorios de <b>Jared &amp; Vanessa Dunson</b> (FRamily Holiday Fun) para los eventos que elija. La frecuencia varía. Pueden aplicar tarifas de mensajes y datos. Responde STOP para cancelar, HELP para ayuda. Ver <a href='privacy.html'>Privacidad</a> y <a href='terms.html'>Términos</a>.",
@@ -461,12 +461,14 @@ async function loadFamily(){
 
 /* ---------- calendar ---------- */
 function downloadIcs(id){
- const e=S.events.find(x=>x.id===id); const L=t(); const d=L.ev[id]; const nm=S.lang==='es'?e.name_es:e.name_en;
+ const e=S.events.find(x=>x.id===id); const L=t(); const nm=S.lang==='es'?e.name_es:e.name_en; const d=L.ev[id];
+ const ua=navigator.userAgent; const ios=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1); const mac=/Macintosh/.test(ua)&&!ios;
+ if(ios||mac){ location.href=`${SITE}cal/${id}-${S.lang}.ics`; return }
  const fmt=x=>new Date(x).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
  const start=new Date(e.arrive_at), end=new Date(new Date(e.starts_at).getTime()+2.5*3600e3);
- const desc=[`${nm} · FRamily Holiday Fun`,e.venue,e.address,price(id)?`${money(price(id))} ${S.lang==='es'?'por persona':'per person'} · Zelle ${ZELLE}`:'',d.dress?`${L.dress}: ${d.dress}`:'',`RSVP: ${SITE}`].filter(Boolean).join('\\n');
- const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//FRamily Holiday Fun//EN','BEGIN:VEVENT',`UID:framily-${id}-2026@framily-holiday`,`DTSTAMP:${fmt(new Date())}`,`DTSTART:${fmt(start)}`,`DTEND:${fmt(end)}`,`SUMMARY:${nm} (FRamily)`,`LOCATION:${e.venue}, ${e.address}`,`DESCRIPTION:${desc}`,`URL:${SITE}`,'BEGIN:VALARM','TRIGGER:-PT10H','ACTION:DISPLAY',`DESCRIPTION:${nm} ${S.lang==='es'?'es hoy':'is today'} · ${SITE}`,'END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
- const blob=new Blob([ics],{type:'text/calendar'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`framily-${id}.ics`; document.body.appendChild(a); a.click(); a.remove();
+ const desc=[`${nm} · FRamily Holiday Fun`,price(id)?`${money(price(id))} ${S.lang==='es'?'por persona':'per person'} · Zelle ${ZELLE}`:'',d.dress?`${L.dress}: ${d.dress}`:'',`RSVP: ${SITE}`].filter(Boolean).join('\n');
+ const u=new URL('https://calendar.google.com/calendar/render'); u.searchParams.set('action','TEMPLATE'); u.searchParams.set('text',`${nm} (FRamily)`); u.searchParams.set('dates',`${fmt(start)}/${fmt(end)}`); u.searchParams.set('details',desc); u.searchParams.set('location',`${e.venue}, ${e.address}`);
+ window.open(u.toString(),'_blank');
 }
 
 /* ---------- parking modal ---------- */

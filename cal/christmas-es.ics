@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//FRamily Holiday Fun//EN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:framily-christmas-2026@framily-holiday
+DTSTAMP:20261109T170000Z
+DTSTART:20261225T210000Z
+DTEND:20261225T233000Z
+SUMMARY:Navidad en FRamilia (FRamily)
+LOCATION:500 Bonaventure Blvd\, 500 Bonaventure Blvd\, Weston\, FL 33326
+DESCRIPTION:Navidad en FRamilia · FRamily Holiday Fun\n500 Bonaventure Blvd\n500 Bonaventure Blvd\, Weston\, FL 33326\nVestimenta: Moody\nRSVP: https://casxus-mobile.github.io/framily-holiday/
+URL:https://casxus-mobile.github.io/framily-holiday/
+BEGIN:VALARM
+TRIGGER:-PT10H
+ACTION:DISPLAY
+DESCRIPTION:Navidad en FRamilia
+END:VALARM
+END:VEVENT
+END:VCALENDAR

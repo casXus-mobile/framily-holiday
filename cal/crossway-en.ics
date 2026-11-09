@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//FRamily Holiday Fun//EN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:framily-crossway-2026@framily-holiday
+DTSTAMP:20261109T170000Z
+DTSTART:20261224T221500Z
+DTEND:20261225T010000Z
+SUMMARY:Christmas Eve at Crossway (FRamily)
+LOCATION:Crossway Church\, 1700 S Flamingo Rd\, Davie\, FL 33325
+DESCRIPTION:Christmas Eve at Crossway · FRamily Holiday Fun\nCrossway Church\n1700 S Flamingo Rd\, Davie\, FL 33325\nRSVP: https://casxus-mobile.github.io/framily-holiday/
+URL:https://casxus-mobile.github.io/framily-holiday/
+BEGIN:VALARM
+TRIGGER:-PT10H
+ACTION:DISPLAY
+DESCRIPTION:Christmas Eve at Crossway
+END:VALARM
+END:VEVENT
+END:VCALENDAR
