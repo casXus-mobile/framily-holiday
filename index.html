@@ -113,7 +113,7 @@ en:{
  q:"Questions? Text Jared · 954.376.0188",friend:"Show some love · bring a friend",friend_sub:"Know someone who could use a night out? Bring them.",
  share_t:"Show some love",share_sub:"Know someone who could use a night out this season? Pick the nights to share.",share_x:"Welcome someone to the FRamily fun.",
  write:"Write the text",copy_msg:"Copy message",lillie_lock:"Lillie's · invite only",
- bar_fin:"Finish RSVP ↓",bar_n:"nights",need_name:"Add your family name and cell first.",bad_phone:"That cell number doesn't look right.",
+ bar_fin:"Finish RSVP ↓",bar_n:"events",event_1:"event",total_cost:"Total Cost",need_name:"Add your family name and cell first.",bad_phone:"That cell number doesn't look right.",
  full:"This one's full. Text Jared.",nothing:"Tap I'm in on at least one night.",
  msg_hi:"Hey! The Dunsons are doing holiday nights again and you're invited 🎄",msg_link:"Details + RSVP:",
  paid:"paid",unpaid:"unpaid",pay_now:"Still need to pay",none_owed:"Nothing owed. You're set.",
@@ -146,7 +146,7 @@ es:{
  q:"¿Preguntas? Escríbele a Jared · 954.376.0188",friend:"Comparte el amor · trae a un amigo",friend_sub:"¿Conoces a alguien que necesita una noche fuera? Tráelo.",
  share_t:"Comparte el amor",share_sub:"¿Conoces a alguien que necesita una salida esta temporada? Elige las noches para compartir.",share_x:"Dale la bienvenida a alguien a la diversión FRamily.",
  write:"Escribir el mensaje",copy_msg:"Copiar mensaje",lillie_lock:"Lillie · solo con invitación",
- bar_fin:"Terminar RSVP ↓",bar_n:"noches",need_name:"Primero pon el nombre de tu familia y tu celular.",bad_phone:"Ese número de celular no parece correcto.",
+ bar_fin:"Terminar RSVP ↓",bar_n:"eventos",event_1:"evento",total_cost:"Costo total",need_name:"Primero pon el nombre de tu familia y tu celular.",bad_phone:"Ese número de celular no parece correcto.",
  full:"Ya está lleno. Escríbele a Jared.",nothing:"Toca Me apunto en al menos una noche.",
  msg_hi:"¡Hola! Los Dunson hacen sus noches navideñas otra vez y estás invitado 🎄",msg_link:"Detalles + RSVP:",
  paid:"pagado",unpaid:"pendiente",pay_now:"Falta pagar",none_owed:"No debes nada. Todo listo.",
@@ -400,8 +400,8 @@ function updateBar(){
  if(S.admin||n===0){bar.classList.add('hidden');document.documentElement.style.setProperty('--barh','0px');return}
  const lockVisible=curPage()===pages().length-1;
  bar.classList.toggle('hidden',lockVisible); document.documentElement.style.setProperty('--barh',lockVisible?'0px':'74px');
- $('#barTxt').textContent=`${n} ${L.bar_n}${owed()?` · ${money(owed())}`:''}`;
- $('#barSub').textContent=S.name||'';
+ $('#barTxt').textContent=`${L.total_cost} · ${money(owed())}`;
+ $('#barSub').textContent=`${n} ${n===1?L.event_1:L.bar_n}${S.name?' · '+S.name:''}`;
  $('#barBtn').textContent=L.bar_fin;
 }
 
