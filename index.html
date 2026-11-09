@@ -1,3 +1,544 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>FRamily Holiday Fun</title>
-<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#16301F;color:#F3E7D0;font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;text-align:center}h1{font-weight:900;font-size:40px;margin:0 0 8px}p{opacity:.8}a{color:#D9B56C}</style></head>
-<body><div><h1>FRamily Holiday Fun</h1><p>Invites are on the way. Check back soon.</p><p><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FRamily Holiday Fun</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500&family=Pinyon+Script&family=Bungee&family=Shrikhand&family=Anton&family=Luckiest+Guy&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F3E7D0;--ink:#16301F;--gold:#D9B56C}
+*{box-sizing:border-box}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth}
+body{margin:0;background:#0E0E10;color:var(--cream);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+#app{max-width:480px;margin:0 auto;min-height:100vh;background:#0E0E10;position:relative;box-shadow:0 0 60px rgba(0,0,0,.6)}
+section.ev{padding:36px 24px 28px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;scroll-snap-align:start;min-height:60vh}
+section.ev>*{position:relative}
+.kicker{font-size:11px;font-weight:700;letter-spacing:3px}
+.lead{font-size:15px;line-height:1.45}
+.tiles{display:grid;gap:8px}
+.tile{border-radius:10px;padding:12px;text-align:center}
+.tile .big{font-size:22px;line-height:1}
+.tile .sm{font-size:11px;line-height:1.3;margin-top:4px}
+.btns{display:flex;gap:8px}
+.btn{border:0;border-radius:999px;padding:14px;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;flex:1;transition:transform .1s}
+.btn:active{transform:scale(.97)}
+.btn.o{background:transparent;border:2px solid currentColor;flex:0 0 auto;padding:12px 14px;font-size:14px}
+.btn.o.dim{opacity:.7}
+.btn.sel{outline:3px solid #fff;outline-offset:2px}
+.row{display:flex;align-items:center;justify-content:space-between;border-radius:10px;padding:10px 14px}
+.step{display:flex;align-items:center;gap:12px}
+.step button{width:30px;height:30px;border-radius:50%;border:1px solid currentColor;background:transparent;color:inherit;font-size:18px;cursor:pointer}
+.step span{font-weight:700;font-size:16px;width:22px;text-align:center}
+.tot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid currentColor;padding-top:10px;font-size:12px;opacity:.9}
+.tot b{font-size:18px}
+details{border-radius:10px;padding:10px 14px}
+details summary{list-style:none;display:flex;justify-content:space-between;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer}
+details summary::-webkit-details-marker{display:none}
+details ul{margin:8px 0 0;padding-left:18px;font-size:13px;line-height:1.4}
+details a{font-weight:700}
+a{color:inherit}
+.link{font-size:13px;text-decoration:underline}
+.cal{display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid currentColor;border-radius:999px;padding:10px;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;background:transparent;color:inherit;font-family:inherit;width:100%}
+.hidden{display:none !important}
+.pill{font-size:10px;font-weight:700;letter-spacing:2px;border:1px solid currentColor;border-radius:999px;padding:4px 10px}
+#bar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;justify-content:center;pointer-events:none}
+#bar>div{pointer-events:auto;width:100%;max-width:480px;background:var(--ink);color:var(--cream);padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--gold);box-shadow:0 -8px 30px rgba(0,0,0,.5)}
+#bar b{font-size:14px}
+#bar small{font-size:11px;opacity:.8;display:block}
+#bar button{background:var(--gold);color:var(--ink);border:0;border-radius:999px;padding:10px 16px;font-weight:700;font-family:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+#lang{position:fixed;top:10px;right:10px;z-index:60;display:flex;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.4);border-radius:999px;overflow:hidden;backdrop-filter:blur(6px)}
+#lang button{background:transparent;color:#fff;border:0;padding:6px 10px;font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;opacity:.6}
+#lang button.on{opacity:1;background:rgba(255,255,255,.2)}
+input.t{width:100%;font-family:inherit;font-size:15px;padding:12px;border:1px solid var(--ink);border-radius:8px;background:#fff;color:var(--ink)}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:700;letter-spacing:2px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:90px;background:#fff;color:#111;padding:10px 16px;border-radius:999px;font-size:13px;font-weight:600;z-index:70;box-shadow:0 8px 24px rgba(0,0,0,.4);opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:80;display:flex;align-items:flex-end;justify-content:center}
+.modal>div{width:100%;max-width:480px;background:var(--cream);color:var(--ink);border-radius:20px 20px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;max-height:92vh;overflow:auto}
+.modal h3{font-family:'Fraunces',serif;font-weight:900;font-size:20px;margin:0}
+.modal label.c{display:flex;align-items:flex-start;gap:10px;background:#fff;border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.4}
+.modal label.c input{width:18px;height:18px;margin-top:1px}
+.modal label.c.lock{opacity:.6;background:#E6DCC8}
+.mbtn{background:var(--ink);color:var(--cream);border:0;border-radius:999px;padding:13px;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer}
+.mbtn.alt{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+.handle{width:36px;height:4px;background:#C9BEA9;border-radius:2px;margin:0 auto 4px}
+@media (min-width:600px){body{background:#0a0a0c url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><circle cx=%2230%22 cy=%2230%22 r=%221%22 fill=%22%23222%22/></svg>')}}
+/* admin */
+#admin{max-width:1100px;margin:0 auto;padding:24px;background:var(--cream);color:var(--ink);min-height:100vh;font-size:14px}
+#admin table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;font-size:13px}
+#admin th{background:var(--ink);color:var(--cream);font-size:11px;letter-spacing:2px;padding:10px;text-align:left}
+#admin td{padding:8px 10px;border-bottom:1px solid #EADBC3;vertical-align:top}
+#admin .chip{border-radius:999px;padding:3px 8px;font-size:11px;font-weight:700;display:inline-block}
+#admin .k{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+#admin .k div{border-radius:12px;padding:12px 14px;color:#fff}
+#admin .k b{font-size:26px;display:block}
+#admin button{font-family:inherit;cursor:pointer}
+#admin .tb{background:#fff;border:1px solid var(--ink);border-radius:999px;padding:8px 14px;font-weight:700;font-size:12px;margin-right:6px}
+#admin .tb.on{background:var(--ink);color:var(--cream)}
+#admin input{font-family:inherit;padding:8px;border:1px solid #999;border-radius:6px}
+</style>
+</head>
+<body>
+<div id="lang"><button data-l="en">EN</button><button data-l="es">ES</button></div>
+<div id="app"></div>
+<div id="bar" class="hidden"><div><div><b id="barTxt"></b><small id="barSub"></small></div><button id="barBtn"></button></div></div>
+<div id="toast" class="toast"></div>
+<div id="admin" class="hidden"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
+const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
+const SITE='https://casxus-mobile.github.io/framily-holiday/';
+const ZELLE='954-376-0188', JARED='954-376-0188';
+const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
+
+/* ---------- i18n ---------- */
+const T={
+en:{
+ hero_sub:"Family, friends and a few nights of holiday fun. Tap <b>I'm in</b> on the ones you'll join.",
+ in:"I'm in ✓",maybe:"Maybe",out:"Out",yes_seats:"Yes, save us seats",not_time:"Not this time",
+ howmany:"How many coming?",bowlers:"How many bowling?",players:"Players",watching:"Watching",tickets:"Tickets",seats:"How many seats?",
+ total:"Your total",payend:"pay at the end",dress:"Dress theme",details:"MORE DETAILS",cal:"Add to calendar · reminder day-of",
+ lock:"Lock it in",lock_sub:"One RSVP for the whole family. Three quick steps, and you can come back and change it anytime.",
+ s1:"1 · WHO'S COMING",s2:"2 · YOUR NIGHTS",s3:"3 · PAY WITH ZELLE",fam:"FAMILY NAME",cell:"CELL (FOR REMINDERS)",
+ sms:"Text me RSVP confirmations and reminders from <b>Jared &amp; Vanessa Dunson</b> (FRamily Holiday Fun) for the events I choose. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to cancel, HELP for help. See <a href='privacy.html'>Privacy</a> and <a href='terms.html'>Terms</a>.",
+ owed:"Still owed",zelle_to:"ZELLE $AMT TO",memo:"Jared Dunson · put your family name in the memo",copy:"Copy #",copied:"Copied",
+ sent:"I sent my Zelle. (Jared confirms on his end.)",send:"Send my RSVP",saved:"Saved! We'll see you there.",update:"Update my RSVP",
+ q:"Questions? Text Jared · 954.376.0188",friend:"Show some love · bring a friend",friend_sub:"Know someone who could use a night out? Bring them.",
+ share_t:"Show some love",share_sub:"Know someone who could use a night out this season? Pick the nights to share.",share_x:"Welcome someone to the FRamily fun.",
+ write:"Write the text",copy_msg:"Copy message",lillie_lock:"Lillie's · invite only",
+ bar_fin:"Finish RSVP ↓",bar_n:"nights",need_name:"Add your family name and cell first.",bad_phone:"That cell number doesn't look right.",
+ full:"This one's full. Text Jared.",nothing:"Tap I'm in on at least one night.",
+ msg_hi:"Hey! The Dunsons are doing holiday nights again and you're invited 🎄",msg_link:"Details + RSVP:",
+ paid:"paid",unpaid:"unpaid",pay_now:"Still need to pay",none_owed:"Nothing owed. You're set.",
+ cal_note:"Calendar events include the address, time, cost and dress theme, with a reminder the morning of.",
+ map:"Map",parking:"View parking map",parking_t:"Parking at our place",parking_b:["Park in the numbered spots, 1 to 30 first, then 31 to 38 on the street if those fill up.","Keep the yellow \"don't block\" lanes clear. Neighbors need to get out.","Carpool if you can. Pinch to zoom."],close:"Close",
+ ev:{
+  bowling:{k:"TUESDAY 12/8 · 7:30 PM",h:"STRIKE|UP THE|HOLIDAYS",lead:"",t1:"NIGHT STRIKE",t1b:"per bowler · unlimited games, shoes included",t2:"LANES RESERVED",t2b:"6 per lane, side by side. Be on time.",dress:"ugly sweaters",
+   det:["Night Strike runs 8 PM to close. We arrive 7:30 to settle in before lanes start.","Shoes included. Bring socks!","Park free in the Way Pointe Garage, walk to the Lucky Strike entrance on the plaza level.","Food and drinks available at the lanes. Kids welcome."],site:"Lucky Strike Dania Beach",url:"https://www.luckystrikeent.com/"},
+  topgolf:{k:"TUESDAY 12/15 · 6:30 PM",h:"Tee'd Up|for the|Holidays",t1:"2 hrs",t1b:"6 per bay, side by side",t2:"$12",t2b:"per player",t3:"Free",t3b:"non-players",dress:"Santa hats · full menu at the bay",
+   det:["Bays are reserved under Dunson. We check in together at 6:30, play 7 to 9.","Clubs provided. No golf experience needed, the targets do the work.","Non-players hang in the bay, order from the full menu, and heckle.","Heated bays, so it works rain or shine. Free parking on site."],site:"Topgolf Pompano Beach",url:"https://topgolf.com/us/pompano-beach/"},
+  movie:{k:"TUESDAY 12/22 · 7:30 PM",h:"AVENGERS:|DOOMSDAY",sup:"5TH ANNUAL AMC TAKEOVER",sub:"A PRIVATE SHOWING OF",lead:"AMC Weston · $18 a seat",lead2:"Our block is first come, first seated, so be on time. Nobody has to sit in the front row. 99 tickets total.",dress:"pajamas",
+   det:["Showtime 8:00 PM. Meet at the lobby at 7:30 so we sit as a group.","Tickets are already purchased, so your $18 is a reimbursement. Jared hands them out at the door.","Rated PG-13, about 3 hours. Good for ages 10+.","Reserved recliners. Concessions are on you. Park in the Weston Town Center lot."],site:"AMC Weston 8",url:"https://www.amctheatres.com/movie-theatres/miami/amc-weston-8",trailer:"Watch the trailer",catchup:"New to Marvel? Catch up"},
+  crossway:{k:"THURSDAY 12/24 · CHRISTMAS EVE",lead:"Before the gifts and the games, the real gift. Come celebrate the birth of Jesus with us. Two services, we'll be at the <b>5:30</b>. Everyone's welcome.",t1:"SERVICE 1",t2:"WE'LL BE HERE",ask:"Want us to save you a seat with us at 5:30?",site:"crossway.church",url:"https://crossway.church"},
+  christmas:{k:"FRIDAY 12/25 · BEGINS @ 4:00 PM",sub:"Faith, Family, Friends &amp; Fun",cap:"Nutcracker Games Champions - 2025",host:"Our place · 500 Bonaventure Blvd, Weston",t:"THE SIMPLE STUFF",
+   det:["Come at 4, stay as long as you want. Food's handled.","Street parking. Carpool if you can.","Kids, grandparents, everybody. Games after dinner.","Dress theme is \"Moody.\" Inspo pics coming."],btn:"We'll be there ✓"},
+  lillie:{k:"TUESDAY 12/29 · 7:30 PM",sup:"TONIGHT'S CONTESTANTS: YOU!",h:"COME ON|DOWN!",sub:"It's Lillie's Birthday Game Show Night",t1:"$38",t1b:"per person",t2:"60 min",t2b:"of competitions",t3:"Boys vs Girls",t3b:"kids & adults",dress:"a little sparkle · waiver link coming by text",
+   det:["Doors 7:30, show starts 8:00 sharp. 60 minutes of live game-show rounds, Boys vs. Girls.","Every player signs a quick online waiver. Jared texts the link the week of.","Ages 6+. Kids and adults play together on the same teams.","Free parking in the Way Pointe Garage, Dania Pointe."],site:"Great Big Game Show",url:"https://greatbiggameshow.com/",pill:"INVITE ONLY",full:"This one's full. Text Jared."}
+ }
+},
+es:{
+ hero_sub:"Familia, amigos y unas noches de diversión navideña. Toca <b>Me apunto</b> en las que vendrás.",
+ in:"Me apunto ✓",maybe:"Quizás",out:"No",yes_seats:"Sí, guárdenos asientos",not_time:"Esta vez no",
+ howmany:"¿Cuántos vienen?",bowlers:"¿Cuántos juegan boliche?",players:"Jugadores",watching:"Acompañan",tickets:"Boletos",seats:"¿Cuántos asientos?",
+ total:"Tu total",payend:"se paga al final",dress:"Vestimenta",details:"MÁS DETALLES",cal:"Agregar al calendario · recordatorio ese día",
+ lock:"Confirma",lock_sub:"Un solo RSVP para toda la familia. Tres pasos rápidos, y puedes volver a cambiarlo cuando quieras.",
+ s1:"1 · QUIÉNES VIENEN",s2:"2 · TUS NOCHES",s3:"3 · PAGA CON ZELLE",fam:"NOMBRE DE FAMILIA",cell:"CELULAR (PARA RECORDATORIOS)",
+ sms:"Envíenme por texto confirmaciones y recordatorios de <b>Jared &amp; Vanessa Dunson</b> (FRamily Holiday Fun) para los eventos que elija. La frecuencia varía. Pueden aplicar tarifas de mensajes y datos. Responde STOP para cancelar, HELP para ayuda. Ver <a href='privacy.html'>Privacidad</a> y <a href='terms.html'>Términos</a>.",
+ owed:"Pendiente",zelle_to:"ZELLE $AMT A",memo:"Jared Dunson · pon el nombre de tu familia en la nota",copy:"Copiar #",copied:"Copiado",
+ sent:"Ya envié mi Zelle. (Jared lo confirma de su lado.)",send:"Enviar mi RSVP",saved:"¡Listo! Nos vemos allá.",update:"Actualizar mi RSVP",
+ q:"¿Preguntas? Escríbele a Jared · 954.376.0188",friend:"Comparte el amor · trae a un amigo",friend_sub:"¿Conoces a alguien que necesita una noche fuera? Tráelo.",
+ share_t:"Comparte el amor",share_sub:"¿Conoces a alguien que necesita una salida esta temporada? Elige las noches para compartir.",share_x:"Dale la bienvenida a alguien a la diversión FRamily.",
+ write:"Escribir el mensaje",copy_msg:"Copiar mensaje",lillie_lock:"Lillie · solo con invitación",
+ bar_fin:"Terminar RSVP ↓",bar_n:"noches",need_name:"Primero pon el nombre de tu familia y tu celular.",bad_phone:"Ese número de celular no parece correcto.",
+ full:"Ya está lleno. Escríbele a Jared.",nothing:"Toca Me apunto en al menos una noche.",
+ msg_hi:"¡Hola! Los Dunson hacen sus noches navideñas otra vez y estás invitado 🎄",msg_link:"Detalles + RSVP:",
+ paid:"pagado",unpaid:"pendiente",pay_now:"Falta pagar",none_owed:"No debes nada. Todo listo.",
+ cal_note:"Los eventos del calendario incluyen dirección, hora, costo y vestimenta, con recordatorio esa mañana.",
+ map:"Mapa",parking:"Ver mapa de estacionamiento",parking_t:"Estacionamiento en casa",parking_b:["Usa los espacios numerados, primero del 1 al 30, y del 31 al 38 en la calle si se llenan.","Deja libres las zonas amarillas de \"no bloquear\". Los vecinos necesitan salir.","Compartan carro si pueden. Haz zoom con dos dedos."],close:"Cerrar",
+ ev:{
+  bowling:{k:"MARTES 12/8 · 7:30 PM",h:"STRIKE|UP THE|HOLIDAYS",t1:"NIGHT STRIKE",t1b:"por jugador · juegos ilimitados, zapatos incluidos",t2:"CARRILES RESERVADOS",t2b:"6 por carril, uno al lado del otro. Llega a tiempo.",dress:"suéteres feos",
+   det:["Night Strike va de 8 PM al cierre. Llegamos 7:30 para acomodarnos antes de empezar.","Zapatos incluidos. ¡Trae calcetines!","Estaciona gratis en el Way Pointe Garage y camina a la entrada de Lucky Strike en la plaza.","Comida y bebidas en los carriles. Niños bienvenidos."],site:"Lucky Strike Dania Beach",url:"https://www.luckystrikeent.com/"},
+  topgolf:{k:"MARTES 12/15 · 6:30 PM",h:"Tee'd Up|for the|Holidays",t1:"2 hrs",t1b:"6 por bay, uno al lado del otro",t2:"$12",t2b:"por jugador",t3:"Gratis",t3b:"acompañantes",dress:"gorros de Santa · menú completo en el bay",
+   det:["Los bays están reservados a nombre de Dunson. Entramos juntos a las 6:30, jugamos de 7 a 9.","Palos incluidos. No hace falta saber golf, los blancos hacen el trabajo.","Los acompañantes se quedan en el bay, piden del menú y animan.","Bays con calefacción, llueva o no. Estacionamiento gratis."],site:"Topgolf Pompano Beach",url:"https://topgolf.com/us/pompano-beach/"},
+  movie:{k:"MARTES 12/22 · 7:30 PM",h:"AVENGERS:|DOOMSDAY",sup:"5TO AMC TAKEOVER ANUAL",sub:"FUNCIÓN PRIVADA DE",lead:"AMC Weston · $18 por asiento",lead2:"Nuestro bloque es por orden de llegada, así que llega a tiempo. Nadie tiene que sentarse en primera fila. 99 boletos en total.",dress:"pijamas",
+   det:["La función empieza 8:00 PM. Nos vemos en el lobby a las 7:30 para sentarnos juntos.","Los boletos ya están comprados; tus $18 son un reembolso. Jared los entrega en la puerta.","Clasificación PG-13, unas 3 horas. Apta para 10+.","Butacas reclinables reservadas. Las palomitas van por tu cuenta. Estaciona en Weston Town Center."],site:"AMC Weston 8",url:"https://www.amctheatres.com/movie-theatres/miami/amc-weston-8",trailer:"Ver el tráiler",catchup:"¿Nuevo en Marvel? Ponte al día"},
+  crossway:{k:"JUEVES 12/24 · NOCHEBUENA",lead:"Antes de los regalos y los juegos, el verdadero regalo. Ven a celebrar el nacimiento de Jesús con nosotros. Dos servicios, estaremos en el de las <b>5:30</b>. Todos son bienvenidos.",t1:"SERVICIO 1",t2:"AQUÍ ESTAREMOS",ask:"¿Quieres que te guardemos asiento con nosotros a las 5:30?",site:"crossway.church",url:"https://crossway.church"},
+  christmas:{k:"VIERNES 12/25 · EMPIEZA @ 4:00 PM",sub:"Fe, Familia, Amigos y Diversión",cap:"Campeones de los Nutcracker Games - 2025",host:"Nuestra casa · 500 Bonaventure Blvd, Weston",t:"LO BÁSICO",
+   det:["Llega a las 4 y quédate lo que quieras. La comida está resuelta.","Estacionamiento en la calle. Compartan carro si pueden.","Niños, abuelos, todos. Juegos después de la cena.","Vestimenta: \"Moody\". Pronto mandamos fotos de inspiración."],btn:"Ahí estaremos ✓"},
+  lillie:{k:"MARTES 12/29 · 7:30 PM",sup:"LOS CONCURSANTES DE HOY: ¡USTEDES!",h:"COME ON|DOWN!",sub:"Noche de Game Show por el cumple de Lillie",t1:"$38",t1b:"por persona",t2:"60 min",t2b:"de competencias",t3:"Niños vs Niñas",t3b:"chicos y adultos",dress:"un poco de brillo · el enlace del waiver llega por texto",
+   det:["Puertas 7:30, el show empieza 8:00 en punto. 60 minutos de rondas de game show en vivo, Niños vs. Niñas.","Cada jugador firma un waiver rápido en línea. Jared manda el enlace esa semana.","Edad 6+. Niños y adultos juegan juntos en los mismos equipos.","Estacionamiento gratis en el Way Pointe Garage, Dania Pointe."],site:"Great Big Game Show",url:"https://greatbiggameshow.com/",pill:"SOLO CON INVITACIÓN",full:"Ya está lleno. Escríbele a Jared."}
+ }
+}};
+
+/* ---------- state ---------- */
+const S={lang:'en',tier:'open',lillie:false,token:null,name:'',phone:'',sms:false,events:[],counts:{},rs:{},sentClaim:false,done:false};
+const EV_THEME={
+ bowling:{bg:'#15122B',fg:'#F6EBD9',ac:'#FF5A5F',ac2:'#5EE6C3',card:'#2A2350',font:"'Bungee',sans-serif"},
+ topgolf:{bg:'#123D2C',fg:'#F4EFE3',ac:'#F07167',ac2:'#E9B949',card:'#0A2A1E',font:"'Shrikhand',serif"},
+ movie:{bg:'#0D0C12',fg:'#F5EEDC',ac:'#F2C14E',ac2:'#F2C14E',card:'#1E1A2A',font:"'Anton',sans-serif"},
+ crossway:{bg:'#7A2E22',fg:'#F1DCC8',ac:'#F1DCC8',ac2:'#C86A4A',card:'#5E2119',font:"'Fraunces',serif"},
+ christmas:{bg:'#16301F',fg:'#F3E7D0',ac:'#D9B56C',ac2:'#D9B56C',card:'#0F2217',font:"'Fraunces',serif"},
+ lillie:{bg:'#0B0B0E',fg:'#F3EBDD',ac:'#D4AF37',ac2:'#C9CBD1',card:'#17150F',font:"'Luckiest Guy',cursive"}
+};
+const t=()=>T[S.lang];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),2200)}
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+
+/* ---------- url params (self-erasing) ---------- */
+(function(){
+ const u=new URL(location.href);
+ const v=u.searchParams.get('v'); const l=u.searchParams.get('lang'); const a=u.searchParams.get('admin');
+ if(v==='xmas'){ls('tier','xmas')}
+ if(l==='es'||l==='en'){ls('lang',l)}
+ if(a!==null){S.admin=true}
+ if(v||l){u.searchParams.delete('v');u.searchParams.delete('lang');history.replaceState({},'',u.pathname+(u.search||''))}
+ S.tier=ls('tier')==='xmas'?'xmas':'open';
+ S.lang=ls('lang')||((navigator.language||'').toLowerCase().startsWith('es')?'es':'en');
+ S.token=ls('token');
+})();
+
+/* ---------- helpers ---------- */
+const price=id=>(S.events.find(e=>e.id===id)||{}).price_cents||0;
+const rs=id=>S.rs[id]||(S.rs[id]={status:null,headcount:0,players:0,watchers:0,paid_claimed:false,paid_confirmed:false});
+const visibleEvents=()=>S.events.filter(e=>e.tier==='open'||(e.tier==='xmas'&&S.tier==='xmas')||(e.tier==='lillie'&&S.lillie));
+function evTotal(id){const r=rs(id);if(r.status!=='in')return 0;const n=id==='topgolf'?r.players:r.headcount;return n*price(id)}
+function owed(){return visibleEvents().filter(e=>!rs(e.id).paid_confirmed).reduce((a,e)=>a+evTotal(e.id),0)}
+function inCount(){return visibleEvents().filter(e=>rs(e.id).status==='in').length}
+const money=c=>'$'+(c/100).toFixed(0);
+function fmtPhone(p){p=(p||'').replace(/\D/g,'').slice(-10);return p.length===10?`(${p.slice(0,3)}) ${p.slice(3,6)}-${p.slice(6)}`:p}
+
+/* ---------- render ---------- */
+function render(){
+ if(S.admin){renderAdmin();return}
+ const L=t(); const app=$('#app');
+ document.documentElement.lang=S.lang;
+ document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===S.lang));
+ const evs=visibleEvents();
+ const chips=evs.map(e=>`<span class="pill" style="color:var(--gold)">${esc(chipLabel(e.id))}</span>`).join('');
+ let h=`
+ <section style="background:#16301F;padding:64px 24px 36px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;overflow:hidden;scroll-snap-align:start">
+  <svg aria-hidden="true" width="480" height="60" viewBox="0 0 430 60" style="position:absolute;left:0;top:-4px;width:100%" fill="none"><path d="M-10 6 Q110 60 215 18 T440 6" stroke="#2F5A3C" stroke-width="14" stroke-linecap="round"/><g><circle cx="50" cy="26" r="7" fill="#C8302E"/><circle cx="120" cy="40" r="7" fill="#D9B56C"/><circle cx="215" cy="22" r="7" fill="#F3E7D0"/><circle cx="300" cy="14" r="7" fill="#C8302E"/><circle cx="380" cy="18" r="7" fill="#D9B56C"/></g></svg>
+  <div style="font-family:'Pinyon Script',cursive;font-size:46px;line-height:.9;color:var(--gold);margin-top:10px;margin-bottom:-8px;position:relative">FRamily</div>
+  <div style="font-family:'Fraunces',serif;font-weight:900;font-size:44px;line-height:.95;position:relative">HOLIDAY FUN</div>
+  <div class="kicker" style="letter-spacing:4px;position:relative">DECEMBER 2026</div>
+  <div style="display:flex;gap:8px;margin-top:8px;position:relative">
+   <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(-5deg);box-shadow:0 6px 14px rgba(0,0,0,.4)"><img src="img/bowling-2025.jpg" alt="Bowling 2025" style="width:100px;height:72px;object-fit:cover;object-position:50% 45%;display:block"></div>
+   <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(2deg) translateY(-6px);box-shadow:0 8px 18px rgba(0,0,0,.45)"><img src="img/topgolf-2025.jpg" alt="Topgolf 2025" style="width:110px;height:78px;object-fit:cover;object-position:50% 60%;display:block"></div>
+   <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(5deg);box-shadow:0 6px 14px rgba(0,0,0,.4)"><img src="img/movie-2025.jpg" alt="Movie 2025" style="width:100px;height:72px;object-fit:cover;object-position:50% 55%;display:block"></div>
+  </div>
+  <div class="lead" style="margin-top:10px;max-width:340px;position:relative">${L.hero_sub}</div>
+  <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;justify-content:center;position:relative">${chips}</div>
+  <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F3E7D0" stroke-width="2" style="margin-top:10px;opacity:.6;position:relative"><path d="M6 9l6 6 6-6"/></svg>
+ </section>`;
+ for(const e of evs) h+=renderEvent(e);
+ h+=renderLock();
+ app.innerHTML=h;
+ bindEvents();
+ updateBar();
+}
+function chipLabel(id){return {bowling:'12/8 BOWL',topgolf:'12/15 GOLF',movie:'12/22 MOVIE',crossway:'12/24 EVE',christmas:'12/25 XMAS',lillie:'12/29 LILLIE'}[id]}
+
+function rsvpButtons(id,th,labels){
+ const r=rs(id); const L=t();
+ const b=(st,txt,cls)=>`<button class="btn ${cls} ${r.status===st?'sel':''}" data-rsvp="${id}" data-st="${st}" style="${cls?'':`background:${th.ac};color:${th.bg}`}">${txt}</button>`;
+ if(labels) return `<div class="btns">${b('in',labels[0],'')}${b('out',labels[1],'o')}</div>`;
+ return `<div class="btns">${b('in',L.in,'')}${b('maybe',L.maybe,'o')}${b('out',L.out,'o dim')}</div>`;
+}
+function stepper(id,field,label,th,small){
+ const r=rs(id); const v=r[field]||0;
+ return `<div class="row" style="background:${th.card};${small?'padding:10px 12px':''}"><div style="font-size:${small?12:13}px">${label}</div><div class="step"><button data-step="${id}" data-f="${field}" data-d="-1" aria-label="-" ${small?'style="width:26px;height:26px"':''}>−</button><span>${v}</span><button data-step="${id}" data-f="${field}" data-d="1" aria-label="+" ${small?'style="width:26px;height:26px"':''}>+</button></div></div>`;
+}
+function totalLine(id,th,label){
+ const r=rs(id); if(r.status!=='in')return ''; const L=t(); const n=id==='topgolf'?r.players:r.headcount; const tot=evTotal(id);
+ return `<div class="tot" style="border-color:${th.ac}"><div>${label?label+' · ':''}${L.total}</div><div><b style="color:${th.ac}">${money(tot)}</b> <span style="font-size:11px;opacity:.8">· ${r.paid_confirmed?L.paid:L.payend}</span></div></div>`;
+}
+function detailsBlock(ev,th,title,extra){
+ const L=t(); const d=L.ev[ev];
+ return `<details style="background:${th.card}"><summary style="color:${th.ac2}">${title||L.details}<span style="font-size:16px">+</span></summary><ul>${d.det.map(x=>`<li>${x}</li>`).join('')}</ul>${extra||''}${d.url?`<a href="${d.url}" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;font-size:13px;color:${th.ac2}">${esc(d.site)} ↗</a>`:''}</details>`;
+}
+function calBtn(id){const L=t();return `<button class="cal" data-cal="${id}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>${L.cal}</button>`}
+
+function renderEvent(e){
+ const id=e.id, th=EV_THEME[id], L=t(), d=L.ev[id], r=rs(id);
+ const hidden=r.status==='in'?'':'hidden';
+ const mapA=`<a class="link" href="${esc(e.map_url||'#')}" target="_blank" rel="noopener" style="color:${th.ac2}">${esc(e.address.replace(/, FL \d+$/,''))} · ${L.map}</a>`;
+ let inner='';
+ if(id==='bowling'){
+  inner=`<div style="position:absolute;right:-30px;top:20px;width:160px;height:300px;background:#1F1A3D;transform:skewX(-16deg)"></div>
+  <div class="kicker" style="color:${th.ac}">${d.k}</div>
+  <div style="font-family:${th.font};font-size:44px;line-height:.95">STRIKE<br><span style="color:${th.ac}">UP THE</span><br>HOLIDAYS</div>
+  <div style="font-size:15px;font-weight:600">${esc(e.venue)}</div>${mapA}
+  <div class="tiles" style="grid-template-columns:1fr 1fr">
+   <div class="tile" style="background:${th.card};text-align:left"><div class="kicker" style="font-size:10px;letter-spacing:2px;color:${th.ac2}">${d.t1}</div><div style="font-family:${th.font};font-size:26px;line-height:1;margin-top:4px;color:${th.ac}">$24</div><div class="sm" style="font-size:12px">${d.t1b}</div></div>
+   <div class="tile" style="background:${th.card};text-align:left"><div class="kicker" style="font-size:10px;letter-spacing:2px;color:${th.ac2}">${d.t2}</div><div class="sm" style="font-size:13px">${d.t2b}</div></div>
+  </div>
+  ${detailsBlock(id,th)}
+  <div style="font-size:12px;font-style:italic;opacity:.85">${L.dress}: ${d.dress}</div>
+  ${rsvpButtons(id,th)}
+  <div class="${hidden}" data-when="${id}">${stepper(id,'headcount',L.bowlers,th)}${totalLine(id,th)}</div>`;
+ } else if(id==='topgolf'){
+  inner=`<svg aria-hidden="true" width="100%" height="50" viewBox="0 0 430 50" style="position:absolute;left:0;top:0" fill="none"><path d="M0 10 Q110 50 215 16 T430 16" stroke="#0A2A1E" stroke-width="2"/><g><circle cx="40" cy="24" r="5" fill="#E9B949"/><circle cx="120" cy="36" r="5" fill="#F07167"/><circle cx="215" cy="18" r="5" fill="#F4EFE3"/><circle cx="300" cy="14" r="5" fill="#E9B949"/><circle cx="390" cy="20" r="5" fill="#F07167"/></g></svg>
+  <div class="kicker" style="color:${th.ac2};margin-top:16px">${d.k}</div>
+  <div style="display:flex;align-items:center;justify-content:space-between"><div style="font-family:${th.font};font-size:40px;line-height:1">Tee'd Up<br><span style="color:${th.ac}">for the</span><br>Holidays</div>
+  <svg aria-hidden="true" width="86" height="100" viewBox="0 -40 230 270" fill="none"><circle cx="115" cy="105" r="88" fill="#F4EFE3"/><path d="M48 44 C60 -10 110 -30 150 -22 C180 -16 196 2 198 20 C170 10 150 28 160 40 C130 30 90 36 48 44 Z" fill="#D9473A"/><path d="M32 46 C70 26 160 26 188 48 C192 60 186 68 178 68 C150 50 70 50 40 70 C30 68 26 56 32 46 Z" fill="#F4EFE3"/><circle cx="204" cy="20" r="15" fill="#F4EFE3"/><path d="M95 190h40l-10 36h-20z" fill="#E9B949"/></svg></div>
+  <div style="font-size:15px;font-weight:600">${esc(e.venue)}</div>${mapA}
+  <div class="tiles" style="grid-template-columns:1fr 1fr 1fr">
+   <div class="tile" style="background:${th.card}"><div class="big" style="font-family:${th.font};color:${th.ac2}">${d.t1}</div><div class="sm">${d.t1b}</div></div>
+   <div class="tile" style="background:${th.card}"><div class="big" style="font-family:${th.font};color:${th.ac2}">${d.t2}</div><div class="sm">${d.t2b}</div></div>
+   <div class="tile" style="background:${th.card}"><div class="big" style="font-family:${th.font};color:${th.ac2}">${d.t3}</div><div class="sm">${d.t3b}</div></div>
+  </div>
+  ${detailsBlock(id,th)}
+  <div style="font-size:12px;font-style:italic;opacity:.85">${L.dress}: ${d.dress}</div>
+  ${rsvpButtons(id,th)}
+  <div class="${hidden}" data-when="${id}"><div class="tiles" style="grid-template-columns:1fr 1fr">${stepper(id,'players',L.players,th,true)}${stepper(id,'watchers',L.watching,th,true)}</div>${totalLine(id,th)}</div>`;
+ } else if(id==='movie'){
+  inner=`<div class="kicker" style="color:${th.ac}">${d.k}</div>
+  <div style="background:#7A1222;border-radius:14px;padding:10px;display:flex;flex-direction:column"><div style="height:12px;background:radial-gradient(circle,#F2C14E 3px,transparent 4px) 0 0/16px 12px"></div>
+   <div style="background:#14121B;border-radius:8px;margin:4px 0;padding:18px 12px;text-align:center"><div class="kicker" style="font-size:10px;letter-spacing:4px;color:${th.ac}">${d.sup}</div><div style="font-size:11px;letter-spacing:2px;opacity:.85;margin-top:4px">${d.sub}</div><div style="font-family:${th.font};font-size:46px;line-height:.95;margin-top:6px">AVENGERS:<br>DOOMSDAY</div></div>
+   <div style="height:12px;background:radial-gradient(circle,#F2C14E 3px,transparent 4px) 0 0/16px 12px"></div></div>
+  <div style="font-size:15px;font-weight:600">${d.lead}</div>${mapA}
+  <div class="lead" style="font-size:13px;opacity:.85">${d.lead2}</div>
+  <div style="display:flex;gap:8px">
+   <a href="https://youtu.be/irVNGjRFZGk" target="_blank" rel="noopener" style="flex:1;display:flex;flex-direction:column;background:${th.card};border-radius:12px;overflow:hidden;text-decoration:none"><img src="https://img.youtube.com/vi/irVNGjRFZGk/hqdefault.jpg" alt="" style="width:100%;height:96px;object-fit:cover;display:block"><div style="padding:8px 10px 10px;font-size:12px;font-weight:700">▶ ${d.trailer}</div></a>
+   <a href="https://youtu.be/WwyYWfX1Vtk" target="_blank" rel="noopener" style="flex:1;display:flex;flex-direction:column;background:${th.card};border-radius:12px;overflow:hidden;text-decoration:none"><img src="https://img.youtube.com/vi/WwyYWfX1Vtk/hqdefault.jpg" alt="" style="width:100%;height:96px;object-fit:cover;display:block"><div style="padding:8px 10px 10px;font-size:12px;font-weight:700">▶ ${d.catchup}</div></a>
+  </div>
+  ${detailsBlock(id,th)}
+  <div style="font-size:12px;font-style:italic;opacity:.85">${L.dress}: ${d.dress}</div>
+  ${rsvpButtons(id,th)}
+  <div class="${hidden}" data-when="${id}">${stepper(id,'headcount',L.tickets,th)}${totalLine(id,th)}</div>`;
+ } else if(id==='crossway'){
+  inner=`<div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,#8F3A2B 0,transparent 45%),radial-gradient(circle at 80% 90%,#5E2119 0,transparent 50%)"></div>
+  <svg aria-hidden="true" width="100%" height="700" viewBox="0 0 430 700" style="position:absolute;left:0;top:0" fill="none"><g fill="#C86A4A" opacity=".28"><path d="M215 40 l6 46 46 6 -46 6 -6 46 -6 -46 -46 -6 46 -6z"/><path d="M215 92 L190 330 M215 92 L240 330" stroke="#C86A4A" stroke-width="1.2"/><path d="M215 92 L150 330 M215 92 L280 330" stroke="#C86A4A" stroke-width=".8"/></g><g fill="#5E2119" opacity=".9"><path d="M40 420 L215 300 L390 420 L390 432 L370 420 L215 316 L60 420 L60 432 L40 432 Z"/><path d="M60 432 h14 v170 h-14z M356 432 h14 v170 h-14z"/><path d="M150 520 q0 -30 30 -36 l6 -24 q4 -10 12 -6 q8 4 6 14 l-4 18 q22 10 24 36 l4 60 h-82z"/><path d="M300 470 q-10 -22 2 -40 l-2 -22 q0 -12 10 -12 q10 0 10 12 l-2 22 q14 18 6 42 l6 130 h-16 l-4 -60 l-8 60 h-16z"/><path d="M215 540 q-40 0 -48 22 h96 q-8 -22 -48 -22z"/><path d="M172 562 h86 l8 40 h-102z"/><ellipse cx="215" cy="548" rx="22" ry="9" fill="#C86A4A" opacity=".7"/></g><path d="M0 602 H430" stroke="#5E2119" stroke-width="3" opacity=".9"/></svg>
+  <div class="kicker">${d.k}</div>
+  <div style="text-align:center;display:flex;flex-direction:column;gap:2px;padding:10px 0 4px"><div style="font-size:13px;font-weight:600;letter-spacing:5px">BE OUR GUEST</div><div style="font-family:'Fraunces',serif;font-weight:700;font-size:30px;line-height:1;margin-top:10px">Christmas at</div><div style="font-family:'Pinyon Script',cursive;font-size:82px;line-height:.85;margin-top:-6px">Crossway</div></div>
+  <div class="lead">${d.lead}</div>
+  <div class="tiles" style="grid-template-columns:1fr 1fr"><div class="tile" style="background:${th.card}"><div class="kicker" style="font-size:10px;letter-spacing:2px;color:${th.ac2}">${d.t1}</div><div style="font-family:'Fraunces',serif;font-weight:700;font-size:24px">4:00 PM</div></div><div class="tile" style="background:${th.fg};color:${th.bg}"><div class="kicker" style="font-size:10px;letter-spacing:2px">${d.t2}</div><div style="font-family:'Fraunces',serif;font-weight:700;font-size:24px">5:30 PM</div></div></div>
+  <div style="font-size:15px;font-weight:600">${esc(e.venue)} · Davie</div>${mapA}
+  <a href="${d.url}" target="_blank" rel="noopener" class="link" style="font-weight:700;color:${th.ac2}">${d.site} ↗</a>
+  <div style="font-size:14px;font-weight:700;margin-top:4px">${d.ask}</div>
+  ${rsvpButtons(id,th,[L.yes_seats,L.not_time])}
+  <div class="${hidden}" data-when="${id}">${stepper(id,'headcount',L.seats,th)}</div>`;
+ } else if(id==='christmas'){
+  inner=`<div style="background:#5A1521;margin:-36px -24px -28px;padding:12px;display:flex"><div style="flex:1;background:#16301F;border:2px solid #D9B56C;border-radius:14px;padding:28px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px">
+   <div class="kicker" style="color:${th.ac}">${d.k}</div>
+   <div style="font-family:'Pinyon Script',cursive;font-size:40px;line-height:.9;color:${th.ac};margin-bottom:-10px">2026 FRamily</div>
+   <div style="font-family:'Fraunces',serif;font-weight:900;font-size:52px;line-height:.95">CHRISTMAS</div>
+   <div style="font-family:'Fraunces',serif;font-style:italic;font-size:14px">${d.sub}</div>
+   <div style="background:#F3E7D0;padding:8px;border-radius:4px;transform:rotate(-1.5deg);box-shadow:0 8px 20px rgba(0,0,0,.35)"><div style="width:280px;max-width:72vw;aspect-ratio:300/190;overflow:hidden;border-radius:2px"><img src="img/nutcracker-2025.jpg" alt="${esc(d.cap)}" style="width:173%;height:auto;display:block;margin-top:-33%;margin-left:-30%"></div><div style="font-family:'Pinyon Script',cursive;font-size:16px;color:#5A1521;margin-top:4px">${d.cap}</div></div>
+   <div style="font-size:13px;font-weight:700">${d.host}</div>
+   <div style="width:100%;text-align:left">${detailsBlock(id,th,d.t,`<button class="cal" data-parking="1" style="margin-top:10px;border-color:${th.ac}">${L.parking}</button>`)}</div>
+   <div style="width:100%">${rsvpButtons(id,th,[d.btn,L.not_time])}</div>
+   <div class="${hidden}" data-when="${id}" style="width:100%">${stepper(id,'headcount',L.howmany,th)}</div>
+  </div></div>`;
+ } else if(id==='lillie'){
+  const c=S.counts[id]||{}; const full=c.cap&&c.in>=c.cap&&r.status!=='in';
+  inner=`<svg aria-hidden="true" width="100%" height="520" viewBox="0 0 430 520" style="position:absolute;left:0;top:0" fill="none"><defs><linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3E2A8" stop-opacity=".5"/><stop offset="1" stop-color="#D4AF37" stop-opacity=".02"/></linearGradient></defs><path d="M60 -10 L40 -10 L300 520 L430 520 L430 470 Z" fill="url(#gb)"/><path d="M370 -10 L390 -10 L130 520 L0 520 L0 470 Z" fill="url(#gb)"/></svg>
+  <div style="display:flex;justify-content:space-between;align-items:center"><div class="kicker" style="color:${th.ac}">${d.k}</div><span class="pill" style="color:${th.ac}">${d.pill}</span></div>
+  <div class="kicker" style="font-size:12px;letter-spacing:4px;color:${th.ac2}">${d.sup}</div>
+  <div style="font-family:${th.font};font-size:48px;line-height:.95;color:${th.ac};text-shadow:3px 3px 0 #2A2418">COME ON<br>DOWN!</div>
+  <div style="font-family:${th.font};font-size:22px;line-height:1.1">${d.sub}</div>
+  <div style="font-size:15px;font-weight:600">${esc(e.venue)}</div>${mapA}
+  <div class="tiles" style="grid-template-columns:1fr 1fr 1fr">
+   <div class="tile" style="background:${th.card};border:1px solid ${th.ac}"><div class="big" style="font-family:${th.font};color:${th.ac}">${d.t1}</div><div class="sm">${d.t1b}</div></div>
+   <div class="tile" style="background:${th.card};border:1px solid ${th.ac}"><div class="big" style="font-family:${th.font};color:${th.ac}">${d.t2}</div><div class="sm">${d.t2b}</div></div>
+   <div class="tile" style="background:${th.ac2};color:${th.bg}"><div class="big" style="font-family:${th.font};font-size:18px">${d.t3}</div><div class="sm" style="font-weight:700">${d.t3b}</div></div>
+  </div>
+  ${detailsBlock(id,th)}
+  <div style="font-size:12px;font-style:italic;opacity:.85">${L.dress}: ${d.dress}</div>
+  ${full?`<div class="row" style="background:${th.card};justify-content:center;font-weight:700">${d.full}</div>`:rsvpButtons(id,th)}
+  <div class="${hidden}" data-when="${id}">${stepper(id,'headcount',L.howmany,th)}${totalLine(id,th)}</div>`;
+ }
+ return `<section class="ev" id="ev-${id}" style="background:${th.bg};color:${th.fg}">${inner}${calBtn(id)}</section>`;
+}
+
+function renderLock(){
+ const L=t(); const evs=visibleEvents(); const o=owed();
+ const lines=evs.filter(e=>rs(e.id).status).map(e=>{const r=rs(e.id);const d=L.ev[e.id];const nm=S.lang==='es'?e.name_es:e.name_en;
+  let cnt=r.status==='in'?(e.id==='topgolf'?`${r.players}+${r.watchers}`:r.headcount):'';
+  let right=r.status!=='in'?`<span style="opacity:.6">${r.status==='maybe'?L.maybe:L.out}</span>`:(price(e.id)?`<b>${money(evTotal(e.id))}</b> · <span style="color:${r.paid_confirmed?'#2F7A48':'#C8302E'}">${r.paid_confirmed?L.paid:L.unpaid}</span>`:`<b>${L.in.replace(' ✓','')}</b>`);
+  const cal=r.status==='in'?`<button class="cal" data-cal="${e.id}" style="width:auto;padding:4px 10px;font-size:11px;margin-left:8px;border-color:var(--ink)">📅</button>`:'';
+  return `<div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;gap:8px"><span>${esc(chipLabel(e.id).slice(0,5))} ${esc(nm)}${cnt?' · '+cnt:''}</span><span style="white-space:nowrap">${right}${cal}</span></div>`}).join('');
+ return `<section id="lock" style="background:var(--cream);color:var(--ink);padding:36px 24px 120px;display:flex;flex-direction:column;gap:14px;scroll-snap-align:start">
+  <div style="font-family:'Fraunces',serif;font-weight:900;font-size:30px;line-height:1">${L.lock}</div>
+  <div class="lead" style="font-size:13px;opacity:.85">${L.lock_sub}</div>
+  <div class="kicker" style="color:#5A1521;margin-top:4px">${L.s1}</div>
+  <label class="f">${L.fam}<input class="t" id="fName" value="${esc(S.name)}" autocomplete="family-name"></label>
+  <label class="f">${L.cell}<input class="t" id="fPhone" type="tel" value="${esc(fmtPhone(S.phone))}" autocomplete="tel" inputmode="tel"></label>
+  <label style="display:flex;align-items:flex-start;gap:10px;background:#fff;border:1px solid var(--gold);border-radius:10px;padding:12px;font-size:12px;line-height:1.4"><input type="checkbox" id="fSms" ${S.sms?'checked':''} style="width:18px;height:18px;margin-top:1px;flex:0 0 auto"><span>${L.sms}</span></label>
+  <div class="kicker" style="color:#5A1521;margin-top:6px">${L.s2}</div>
+  <div style="background:#fff;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;border:1px solid var(--gold)">${lines||`<div style="font-size:13px;opacity:.7">${L.nothing}</div>`}
+   <div style="border-top:1px dashed var(--ink);padding-top:8px;display:flex;justify-content:space-between;font-size:14px;font-weight:700"><span>${L.owed}</span><span>${money(o)}</span></div></div>
+  ${o>0?`<div class="kicker" style="color:#5A1521;margin-top:6px">${L.s3}</div>
+  <div style="background:#6D1ED4;color:#fff;border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px"><div><div class="kicker" style="font-size:10px;letter-spacing:2px;opacity:.85">${L.zelle_to.replace('$AMT',money(o))}</div><div style="font-size:20px;font-weight:700">${ZELLE}</div><div style="font-size:11px;opacity:.85">${L.memo}</div></div><button class="mbtn" id="copyZ" style="background:#fff;color:#6D1ED4;padding:10px 14px;font-size:13px;white-space:nowrap">${L.copy}</button></div>
+  <label style="display:flex;align-items:center;gap:10px;font-size:13px;background:#fff;border-radius:10px;padding:10px 12px;border:1px solid var(--gold)"><input type="checkbox" id="fSent" ${S.sentClaim?'checked':''} style="width:18px;height:18px"><span>${L.sent}</span></label>`:(lines?`<div style="font-size:13px;opacity:.8">${L.none_owed}</div>`:'')}
+  <button class="mbtn" id="sendBtn" style="padding:16px;font-size:16px">${S.done?L.update:L.send}</button>
+  <div style="font-size:11px;text-align:center;opacity:.75">${L.cal_note}</div>
+  <div style="border-top:1px dashed var(--ink);padding-top:14px;margin-top:4px;display:flex;flex-direction:column;gap:6px">
+   <button class="mbtn alt" id="friendBtn">💛 ${L.friend}</button>
+   <div style="font-size:11px;text-align:center;opacity:.7">${L.friend_sub}</div></div>
+  <div style="font-size:12px;text-align:center;opacity:.75">${L.q}</div>
+  <div style="font-size:10px;text-align:center;opacity:.5"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div>
+ </section>`;
+}
+
+function updateBar(){
+ const L=t(); const n=inCount(); const bar=$('#bar');
+ if(S.admin||n===0){bar.classList.add('hidden');return}
+ const lockVisible=(()=>{const r=$('#lock');if(!r)return false;const b=r.getBoundingClientRect();return b.top<innerHeight*0.6})();
+ bar.classList.toggle('hidden',lockVisible);
+ $('#barTxt').textContent=`${n} ${L.bar_n}${owed()?` · ${money(owed())}`:''}`;
+ $('#barSub').textContent=S.name||'';
+ $('#barBtn').textContent=L.bar_fin;
+}
+
+/* ---------- events ---------- */
+function bindEvents(){
+ document.querySelectorAll('[data-rsvp]').forEach(b=>b.onclick=async()=>{
+  const id=b.dataset.rsvp, st=b.dataset.st, r=rs(id);
+  r.status=st;
+  if(st==='in'){ if(id==='topgolf'){if(!r.players&&!r.watchers)r.players=1} else if(!r.headcount) r.headcount=1 }
+  rerenderEvent(id); persistLocal(); updateBar();
+ });
+ document.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>{
+  const id=b.dataset.step,f=b.dataset.f,d=+b.dataset.d,r=rs(id);
+  r[f]=Math.max(0,(r[f]||0)+d);
+  const c=S.counts[id]; if(c&&c.cap&&f==='headcount'&&r[f]>c.cap){r[f]=c.cap}
+  rerenderEvent(id); persistLocal(); updateBar();
+ });
+ document.querySelectorAll('[data-cal]').forEach(b=>b.onclick=()=>downloadIcs(b.dataset.cal));
+ document.querySelectorAll('[data-parking]').forEach(b=>b.onclick=showParking);
+ const sb_=$('#sendBtn'); if(sb_) sb_.onclick=submitRsvp;
+ const cz=$('#copyZ'); if(cz) cz.onclick=()=>{navigator.clipboard?.writeText(ZELLE.replace(/-/g,'')).then(()=>toast(t().copied)).catch(()=>toast(ZELLE))};
+ const fb=$('#friendBtn'); if(fb) fb.onclick=showShare;
+ ['fName','fPhone'].forEach(i=>{const el=$('#'+i);if(el)el.oninput=()=>{S.name=$('#fName').value;S.phone=$('#fPhone').value;persistLocal()}});
+ const fs=$('#fSms'); if(fs) fs.onchange=()=>{S.sms=fs.checked;persistLocal()};
+ const fsent=$('#fSent'); if(fsent) fsent.onchange=()=>{S.sentClaim=fsent.checked};
+}
+function rerenderEvent(id){
+ const e=S.events.find(x=>x.id===id); const old=$('#ev-'+id); if(!old)return;
+ const tmp=document.createElement('div'); tmp.innerHTML=renderEvent(e); old.replaceWith(tmp.firstElementChild);
+ const lk=$('#lock'); if(lk){const t2=document.createElement('div');t2.innerHTML=renderLock();lk.replaceWith(t2.firstElementChild)}
+ bindEvents();
+}
+function persistLocal(){ls('draft',JSON.stringify({name:S.name,phone:S.phone,sms:S.sms,rs:S.rs}))}
+function loadLocal(){try{const d=JSON.parse(ls('draft')||'null');if(d){S.name=d.name||'';S.phone=d.phone||'';S.sms=!!d.sms;S.rs=d.rs||{}}}catch(e){}}
+
+async function submitRsvp(){
+ const L=t(); S.name=($('#fName').value||'').trim(); S.phone=$('#fPhone').value; S.sms=$('#fSms').checked;
+ const digits=S.phone.replace(/\D/g,'').slice(-10);
+ if(!S.name||digits.length!==10){toast(!S.name?L.need_name:L.bad_phone);$('#lock').scrollIntoView({behavior:'smooth'});return}
+ if(!Object.values(S.rs).some(r=>r.status)){toast(L.nothing);return}
+ const btn=$('#sendBtn'); btn.disabled=true; btn.textContent='…';
+ try{
+  const {data:fam,error}=await sb.rpc('family_start',{p_name:S.name,p_phone:digits,p_lang:S.lang,p_tier:S.tier});
+  if(error)throw error;
+  S.token=fam.token; ls('token',S.token); S.lillie=!!fam.lillie; if(fam.tier==='xmas'){S.tier='xmas';ls('tier','xmas')}
+  await sb.rpc('family_update',{p_token:S.token,p_name:S.name,p_lang:S.lang,p_sms_optin:S.sms});
+  const sent=$('#fSent')?.checked||false;
+  for(const e of visibleEvents()){const r=rs(e.id); if(!r.status)continue;
+   const {error:er}=await sb.rpc('rsvp_set',{p_token:S.token,p_event:e.id,p_status:r.status,p_headcount:r.headcount|0,p_players:r.players|0,p_watchers:r.watchers|0,p_paid_claimed:(sent&&evTotal(e.id)>0)?true:null});
+   if(er){ if((er.message||'').includes('full')){toast(L.full);r.status='maybe'} else if(!(er.message||'').includes('not_invited')) throw er; }
+  }
+  S.done=true; await loadFamily(); toast(L.saved); render(); $('#lock').scrollIntoView({behavior:'smooth'});
+ }catch(e){console.error(e);toast('Hmm, that didn\'t save. Try again or text Jared.');}
+ btn.disabled=false;
+}
+async function loadFamily(){
+ if(!S.token)return;
+ const {data:f}=await sb.rpc('family_get',{p_token:S.token}); if(!f){ls('token','');S.token=null;return}
+ S.name=f.name;S.phone=f.phone;S.sms=!!f.sms_optin;S.lillie=!!f.lillie;if(f.tier==='xmas'){S.tier='xmas';ls('tier','xmas')}
+ S.lang=f.lang||S.lang; S.done=true;
+ const srv={}; for(const r of (f.rsvps||[])) srv[r.event_id]={status:r.status,headcount:r.headcount,players:r.players,watchers:r.watchers,paid_claimed:r.paid_claimed,paid_confirmed:r.paid_confirmed};
+ S.rs=Object.assign({},S.rs,srv); persistLocal();
+}
+
+/* ---------- calendar ---------- */
+function downloadIcs(id){
+ const e=S.events.find(x=>x.id===id); const L=t(); const d=L.ev[id]; const nm=S.lang==='es'?e.name_es:e.name_en;
+ const fmt=x=>new Date(x).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+ const start=new Date(e.arrive_at), end=new Date(new Date(e.starts_at).getTime()+2.5*3600e3);
+ const desc=[`${nm} · FRamily Holiday Fun`,e.venue,e.address,price(id)?`${money(price(id))} ${S.lang==='es'?'por persona':'per person'} · Zelle ${ZELLE}`:'',d.dress?`${L.dress}: ${d.dress}`:'',`RSVP: ${SITE}`].filter(Boolean).join('\\n');
+ const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//FRamily Holiday Fun//EN','BEGIN:VEVENT',`UID:framily-${id}-2026@framily-holiday`,`DTSTAMP:${fmt(new Date())}`,`DTSTART:${fmt(start)}`,`DTEND:${fmt(end)}`,`SUMMARY:${nm} (FRamily)`,`LOCATION:${e.venue}, ${e.address}`,`DESCRIPTION:${desc}`,`URL:${SITE}`,'BEGIN:VALARM','TRIGGER:-PT10H','ACTION:DISPLAY',`DESCRIPTION:${nm} ${S.lang==='es'?'es hoy':'is today'} · ${SITE}`,'END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+ const blob=new Blob([ics],{type:'text/calendar'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`framily-${id}.ics`; document.body.appendChild(a); a.click(); a.remove();
+}
+
+/* ---------- parking modal ---------- */
+function showParking(){
+ const L=t(); const m=document.createElement('div'); m.className='modal';
+ m.innerHTML=`<div style="background:#16301F;color:#F3E7D0;border:1px solid var(--gold)"><div class="handle"></div><div style="display:flex;justify-content:space-between;align-items:center"><h3 style="color:#F3E7D0">${L.parking_t}</h3><button class="mbtn alt" data-x style="padding:6px 12px;background:transparent;color:#F3E7D0;border-color:var(--gold)">✕</button></div><img src="img/parking-map.png" alt="Parking map" style="width:100%;border-radius:8px"><ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.45">${L.parking_b.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+ m.onclick=ev=>{if(ev.target===m||ev.target.dataset.x!==undefined)m.remove()}; document.body.appendChild(m);
+}
+
+/* ---------- share ---------- */
+function showShare(){
+ const L=t(); const m=document.createElement('div'); m.className='modal';
+ const opts=[['bowling',true],['topgolf',true],['movie',true],['crossway',true]];
+ const xm=S.tier==='xmas';
+ let rows=opts.map(([id,ck])=>{const e=S.events.find(x=>x.id===id);const nm=S.lang==='es'?e.name_es:e.name_en;return `<label class="c"><input type="checkbox" data-sh="${id}" ${ck?'checked':''}><span style="flex:1"><b>${chipLabel(id).split(' ')[0]}</b> ${esc(nm)}</span></label>`}).join('');
+ if(xm) rows+=`<label class="c" style="flex-direction:column;align-items:stretch;border:1px dashed #5A1521"><span style="display:flex;gap:10px;align-items:center"><input type="checkbox" data-sh="christmas"><span style="flex:1"><b>12/25</b> FRamily Christmas</span></span><span style="font-size:11px;opacity:.8;padding-left:28px">${L.share_x}</span></label>`;
+ rows+=`<div class="c lock" style="display:flex;gap:10px;align-items:center;border-radius:10px;padding:10px 12px;font-size:13px;background:#E6DCC8;opacity:.6">🔒 <span style="flex:1"><b>12/29</b> ${L.lillie_lock}</span></div>`;
+ m.innerHTML=`<div><div class="handle"></div><h3>${L.share_t}</h3><div style="font-size:12px;opacity:.8">${L.share_sub}</div>${rows}<button class="mbtn" id="shWrite">${L.write}</button><button class="mbtn alt" id="shCopy">${L.copy_msg}</button></div>`;
+ m.onclick=ev=>{if(ev.target===m)m.remove()};
+ document.body.appendChild(m);
+ const build=()=>{const ids=[...m.querySelectorAll('[data-sh]:checked')].map(i=>i.dataset.sh);
+  const lines=ids.map(id=>{const e=S.events.find(x=>x.id===id);const nm=S.lang==='es'?e.name_es:e.name_en;const dt=new Date(e.arrive_at).toLocaleString(S.lang==='es'?'es-US':'en-US',{weekday:'short',month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit',timeZone:'America/New_York'});return `${dt} · ${nm} · ${e.venue}`});
+  const link=SITE+(ids.includes('christmas')?'?v=xmas':'');
+  if(ids.includes('christmas')&&S.token) sb.rpc('family_update',{p_token:S.token,p_name:null,p_lang:null,p_sms_optin:null,p_invited_xmas:true});
+  return `${L.msg_hi}\n\n${lines.join('\n')}\n\n${L.msg_link} ${link}`};
+ $('#shWrite').onclick=()=>{const body=build();location.href='sms:?&body='+encodeURIComponent(body)};
+ $('#shCopy').onclick=()=>{navigator.clipboard?.writeText(build()).then(()=>toast(t().copied)).catch(()=>{})};
+}
+
+/* ---------- admin ---------- */
+async function renderAdmin(){
+ $('#app').classList.add('hidden'); $('#lang').classList.add('hidden'); $('#bar').classList.add('hidden');
+ const A=$('#admin'); A.classList.remove('hidden');
+ let pass=ls('adminpass');
+ if(!pass){A.innerHTML=`<div style="max-width:360px;margin:80px auto;display:flex;flex-direction:column;gap:10px"><h2 style="font-family:'Fraunces',serif;margin:0">Admin</h2><input id="ap" type="password" placeholder="Passphrase" style="padding:12px;font-size:16px"><button class="mbtn" id="apb">Open</button></div>`;
+  $('#apb').onclick=async()=>{const p=$('#ap').value;const {data}=await sb.rpc('admin_ok',{p_pass:p});if(data){ls('adminpass',p);renderAdmin()}else toast('Nope.')}; $('#ap').onkeydown=e=>{if(e.key==='Enter')$('#apb').click()}; return}
+ const {data,error}=await sb.rpc('admin_overview',{p_pass:pass}); if(error){ls('adminpass','');renderAdmin();return}
+ const evs=S.events; const fams=data.families||[]; const filt=S.adminFilter||'all';
+ const stat={}; for(const e of evs){stat[e.id]={in:0,maybe:0,players:0,watchers:0,owed:0,paid:0,fams:0}}
+ for(const f of fams)for(const r of f.rsvps){const s=stat[r.event_id];if(!s)continue;if(r.status==='in'){s.in+=r.headcount;s.players+=r.players;s.watchers+=r.watchers;s.fams++;const amt=(r.event_id==='topgolf'?r.players:r.headcount)*price(r.event_id);if(r.paid_confirmed)s.paid+=amt;else s.owed+=amt}else if(r.status==='maybe')s.maybe+=r.headcount}
+ const col={bowling:'#15122B',topgolf:'#123D2C',movie:'#0D0C12',crossway:'#7A2E22',christmas:'#5A1521',lillie:'#0B0B0E'};
+ const kpi=evs.map(e=>{const s=stat[e.id];const n=e.id==='topgolf'?`${s.players} <span style="font-size:13px;font-weight:400">+${s.watchers}</span>`:s.in;const cap=e.cap?` <span style="font-size:13px;font-weight:400">/ ${e.cap}</span>`:'';const lanes=e.id==='bowling'?` · ${Math.ceil(s.in/6)} lanes`:e.id==='topgolf'?` · ${Math.ceil(s.players/6)} bays`:'';
+  return `<div style="background:${col[e.id]}"><div style="font-size:10px;letter-spacing:2px;font-weight:700;opacity:.85">${esc(chipLabel(e.id))}</div><b>${n}${cap}</b><div style="font-size:11px;opacity:.85">${s.fams} families${lanes}${price(e.id)?` · $${s.paid/100} / $${(s.paid+s.owed)/100}`:''}${s.maybe?` · ${s.maybe} maybe`:''}</div></div>`}).join('');
+ const unpaidTotal=Object.values(stat).reduce((a,s)=>a+s.owed,0);
+ const rows=fams.filter(f=>filt==='all'||f.rsvps.some(r=>r.event_id===filt&&r.status!=='out')).map(f=>{
+  const cells=evs.map(e=>{const r=f.rsvps.find(x=>x.event_id===e.id);const inv=e.tier==='open'||(e.tier==='xmas'&&f.tier==='xmas')||(e.tier==='lillie'&&f.lillie);
+   if(!inv)return `<td style="opacity:.35">—</td>`; if(!r)return `<td style="opacity:.5">?</td>`;
+   if(r.status==='out')return `<td style="opacity:.5">out</td>`; if(r.status==='maybe')return `<td style="color:#9A6B00">maybe ${r.headcount}</td>`;
+   const amt=(e.id==='topgolf'?r.players:r.headcount)*price(e.id); const cnt=e.id==='topgolf'?`${r.players}+${r.watchers}`:r.headcount;
+   let pay=''; if(amt){pay=r.paid_confirmed?`<span class="chip" style="background:#DFF2E4;color:#2F7A48">paid</span>`:`<button class="chip" data-pay="${f.id}|${e.id}" style="background:${r.paid_claimed?'#FFF1D6':'#FBE3E1'};color:${r.paid_claimed?'#9A6B00':'#C8302E'};border:0">${r.paid_claimed?'says sent':'due'} $${amt/100} ✓?</button>`}
+   return `<td><b>${cnt}</b> ${pay}</td>`}).join('');
+  return `<tr><td><b>${esc(f.name)}</b><br><span style="font-size:11px;opacity:.7">${f.tier==='xmas'?'family':'open'}${f.lillie?' · lillie':''}${f.invited_friend_to_xmas?' · invited friend to xmas':''}${f.sms_optin?' · 📱':''} · ${f.lang}</span></td><td>${fmtPhone(f.phone)}</td>${cells}</tr>`}).join('');
+ const lil=(data.lillie_list||[]).map(l=>`<span class="chip" style="background:#fff;border:1px solid #D4AF37;margin:2px">${esc(l.name||'')} ${fmtPhone(l.phone)} <button data-lrm="${l.phone}" style="border:0;background:none;color:#C8302E;font-weight:700">×</button></span>`).join('');
+ A.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px"><div><div style="font-size:11px;letter-spacing:3px;font-weight:700;color:#5A1521">FRAMILY HOLIDAY FUN · ADMIN</div><div style="font-family:'Fraunces',serif;font-weight:900;font-size:30px">RSVPs &amp; payments</div></div>
+  <div><button class="tb" id="copyPh">Copy phone list</button><button class="tb" id="csv">Download CSV</button><button class="tb" id="addF">+ Add family</button><button class="tb" id="out">Log out</button></div></div>
+  <div class="k">${kpi}</div>
+  <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center;margin:8px 0"><button class="tb ${filt==='all'?'on':''}" data-f="all">All</button>${evs.map(e=>`<button class="tb ${filt===e.id?'on':''}" data-f="${e.id}">${esc(chipLabel(e.id).split(' ')[1])}</button>`).join('')}<span style="margin-left:auto;font-weight:700;color:#C8302E">Unpaid: $${unpaidTotal/100}</span></div>
+  <table><thead><tr><th>Family</th><th>Cell</th>${evs.map(e=>`<th>${esc(chipLabel(e.id).split(' ')[1])}</th>`).join('')}</tr></thead><tbody>${rows||'<tr><td colspan="8" style="opacity:.6;padding:20px">No RSVPs yet.</td></tr>'}</tbody></table>
+  <div style="font-size:11px;opacity:.7;margin:8px 0 20px">Tap a red/yellow chip to mark it paid after you see the Zelle. "says sent" = guest tapped "I sent it".</div>
+  <h3 style="font-family:'Fraunces',serif;margin:0 0 6px">Lillie's list (${(data.lillie_list||[]).length}/30)</h3>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px"><input id="ln" placeholder="Name"><input id="lp" placeholder="Cell" inputmode="tel"><button class="tb on" id="ladd">Add</button></div>
+  <div>${lil||'<span style="opacity:.6">Empty. Add names and cells above, or paste a list to Claude.</span>'}</div>`;
+ A.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{S.adminFilter=b.dataset.f;renderAdmin()});
+ A.querySelectorAll('[data-pay]').forEach(b=>b.onclick=async()=>{const [fid,eid]=b.dataset.pay.split('|');await sb.rpc('admin_set_paid',{p_pass:pass,p_family:fid,p_event:eid,p_paid:true});renderAdmin()});
+ A.querySelectorAll('[data-lrm]').forEach(b=>b.onclick=async()=>{await sb.rpc('admin_lillie_set',{p_pass:pass,p_phone:b.dataset.lrm,p_name:null,p_remove:true});renderAdmin()});
+ $('#ladd').onclick=async()=>{const n=$('#ln').value,p=$('#lp').value;if(p.replace(/\D/g,'').length<10)return toast('Need a 10-digit cell');await sb.rpc('admin_lillie_set',{p_pass:pass,p_phone:p,p_name:n});renderAdmin()};
+ $('#out').onclick=()=>{ls('adminpass','');renderAdmin()};
+ $('#copyPh').onclick=()=>{const list=fams.filter(f=>filt==='all'||f.rsvps.some(r=>r.event_id===filt&&r.status==='in')).map(f=>fmtPhone(f.phone)).join(', ');navigator.clipboard?.writeText(list).then(()=>toast('Copied '+list.split(', ').length+' numbers'))};
+ $('#csv').onclick=()=>{const h=['family','cell','tier','lillie','sms','lang',...evs.flatMap(e=>[e.id+'_status',e.id+'_count',e.id+'_paid'])];const r=fams.map(f=>[f.name,f.phone,f.tier,f.lillie,f.sms_optin,f.lang,...evs.flatMap(e=>{const x=f.rsvps.find(y=>y.event_id===e.id)||{};return [x.status||'',x.status==='in'?(e.id==='topgolf'?`${x.players}+${x.watchers}`:x.headcount):'',x.paid_confirmed?'paid':(x.paid_claimed?'claimed':'')]})]);const csv=[h,...r].map(a=>a.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='framily-rsvps.csv';a.click()};
+ $('#addF').onclick=async()=>{const n=prompt('Family name');if(!n)return;const p=prompt('Cell');if(!p)return;const tier=confirm('Invited to Christmas? OK = yes')?'xmas':'open';await sb.rpc('admin_add_family',{p_pass:pass,p_name:n,p_phone:p,p_tier:tier});renderAdmin()};
+}
+
+/* ---------- boot ---------- */
+async function boot(){
+ document.querySelectorAll('#lang button').forEach(b=>b.onclick=()=>{S.lang=b.dataset.l;ls('lang',S.lang);render()});
+ const {data:evs}=await sb.from('events').select('*').order('sort'); S.events=evs||[];
+ const {data:counts}=await sb.rpc('event_counts'); S.counts=counts||{};
+ loadLocal(); await loadFamily();
+ render();
+ window.addEventListener('scroll',updateBar,{passive:true});
+ $('#barBtn').onclick=()=>$('#lock').scrollIntoView({behavior:'smooth'});
+}
+boot();
+</script>
+</body>
+</html>
