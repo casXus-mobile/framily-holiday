@@ -15,8 +15,8 @@ body{margin:0;background:#0E0E10;color:var(--cream);font-family:'DM Sans',sans-s
 #app{max-width:480px;margin:0 auto;height:100vh;height:100svh;overflow:hidden;background:#0E0E10;position:relative;box-shadow:0 0 60px rgba(0,0,0,.6);-webkit-overflow-scrolling:touch}
 #app>section{height:100vh;height:100svh;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 section.ev{padding:36px 24px calc(96px + var(--barh,0px));display:flex;flex-direction:column;gap:14px;position:relative}
-.next{position:sticky;bottom:var(--barh,0px);margin:12px -24px calc(-96px - var(--barh,0px));padding:10px 0 14px;background:linear-gradient(to top,rgba(0,0,0,.45),transparent);display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;letter-spacing:2px;font-weight:700}
-.next{display:block;width:100%;text-align:center;opacity:.6;cursor:pointer;background:none;border:0;color:inherit}
+.next{position:sticky;bottom:var(--barh,0px);margin:auto -24px calc(-96px - var(--barh,0px));width:calc(100% + 48px);padding:14px 0 16px;background:linear-gradient(to top,rgba(0,0,0,.45),transparent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10px;letter-spacing:2px;font-weight:700}
+.next{text-align:center;opacity:.7;cursor:pointer;border:0;color:inherit;font-family:inherit}
 section.ev>*{position:relative}
 .kicker{font-size:11px;font-weight:700;letter-spacing:3px}
 .lead{font-size:15px;line-height:1.45}
@@ -227,7 +227,7 @@ function render(){
   </div>
   <div class="lead" style="margin-top:10px;max-width:340px;position:relative">${L.hero_sub}</div>
   <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;justify-content:center;position:relative">${chips}</div>
-  <button class="next" data-next aria-label="Next" style="position:relative;margin:14px 0 0;background:none;padding:0"><span>${chipLabel(evs[0].id)}</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F3E7D0" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+  <button class="next" data-next aria-label="Next" style="position:relative;margin:14px 0 0;width:auto;background:none;padding:0"><span>${chipLabel(evs[0].id)}</span><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F3E7D0" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
  </section>`;
  for(const e of evs) h+=renderEvent(e);
  h+=renderLock();
