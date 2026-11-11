@@ -103,8 +103,9 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1300';
+const BUILD='1111.1312';
 const ZELLE='954-376-0188', JARED='954-376-0188';
+const LANE='data:image/svg+xml;utf8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20430%201000%22%20preserveAspectRatio=%22none%22%3E%3Crect%20width=%22430%22%20height=%221000%22%20fill=%22%2315122B%22/%3E%3Cpath%20d=%22M0%201000%20L168%200%20L262%200%20L430%201000%20Z%22%20fill=%22%231F1A3D%22/%3E%3Cpath%20d=%22M55%201000%20L183%200%20M127%201000%20L199%200%20M215%201000%20L215%200%20M303%201000%20L231%200%20M375%201000%20L247%200%22%20stroke=%22%232A2350%22%20stroke-width=%221.2%22/%3E%3Cpath%20d=%22M168%200%20L0%201000%20M262%200%20L430%201000%22%20stroke=%22%23FF5A5F%22%20stroke-width=%221.4%22/%3E%3Cg%20fill=%22%23F6EBD9%22%3E%3Ccircle%20cx=%22193%22%20cy=%2214%22%20r=%225%22/%3E%3Ccircle%20cx=%22215%22%20cy=%2214%22%20r=%225%22/%3E%3Ccircle%20cx=%22237%22%20cy=%2214%22%20r=%225%22/%3E%3Ccircle%20cx=%22204%22%20cy=%2230%22%20r=%225%22/%3E%3Ccircle%20cx=%22226%22%20cy=%2230%22%20r=%225%22/%3E%3Ccircle%20cx=%22215%22%20cy=%2246%22%20r=%225%22/%3E%3C/g%3E%3C/svg%3E';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
 /* ---------- i18n ---------- */
@@ -423,13 +424,11 @@ function renderEvent(e){
    <div style="position:relative">${rsvpButtons(id,th,null,L.coming)}</div>
    <div class="${hidden}" data-when="${id}" style="position:relative">${stepper(id,'headcount',L.howmany,th)}</div>
    <div style="position:relative">${bringBoard(id,th)}</div>
-   <div style="position:relative">${calBtn(id)}</div>
   </div>
   <div style="position:relative;background:#F4ECDC;border-radius:14px;padding:4px">${hostPanel(id,th)}</div>`;
   return `<section class="ev" id="ev-${id}" style="background:#8E1B1B;color:${th.fg}">${inner}<div class="sp"></div></section>`;
  } else if(id==='bowling'){
-  inner=`<svg aria-hidden="true" width="100%" height="240" viewBox="0 0 430 240" preserveAspectRatio="none" style="position:absolute;left:0;top:0" fill="none"><path d="M0 240 L183 0 L247 0 L430 240 Z" fill="#1F1A3D"/><path d="M56 240 L198 0 M127 240 L206 0 M215 240 L215 0 M303 240 L224 0 M374 240 L232 0" stroke="#2A2350" stroke-width="1.5"/><path d="M183 0 L0 240 M247 0 L430 240" stroke="${th.ac}" stroke-width="1.5"/></svg>
-  <div class="kicker" style="color:${th.ac}">${d.k}</div>
+  inner=`<div class="kicker" style="color:${th.ac};margin-top:28px">${d.k}</div>
   <div style="display:flex;gap:12px;align-items:flex-end;justify-content:space-between"><div style="font-family:${th.font};font-size:44px;line-height:.95">STRIKE<br><span style="color:${th.ac}">UP THE</span><br>HOLIDAYS</div>
   <svg aria-hidden="true" width="84" height="132" viewBox="0 0 190 300" fill="none" stroke="#F6EBD9" stroke-width="5" style="flex:0 0 auto"><path d="M45 20c-14 0-18 22-14 44c3 18 12 24 12 38c0 20-25 40-25 90c0 50 18 90 27 90s27-40 27-90c0-50-25-70-25-90c0-14 9-20 12-38c4-22 0-44-14-44z" fill="#15122B"/><path d="M27 92h36M24 104h42" stroke="${th.ac}" stroke-width="6"/><path d="M18 30 Q45 -26 72 30 Q50 22 18 30 Z" fill="#D9473A" stroke="none"/><path d="M12 30 Q45 18 78 30 Q78 42 70 42 Q45 32 20 42 Q12 42 12 30 Z" fill="#F6EBD9" stroke="none"/><circle cx="72" cy="6" r="9" fill="#F6EBD9" stroke="none"/><path d="M135 50c-14 0-18 22-14 44c3 18 12 24 12 38c0 20-25 40-25 70c0 40 18 80 27 80s27-40 27-80c0-30-25-50-25-70c0-14 9-20 12-38c4-22 0-44-14-44z" fill="#15122B"/><path d="M117 122h36M114 134h42" stroke="${th.ac}" stroke-width="6"/><g stroke="#5EE6C3" stroke-width="3" fill="none"><path d="M150 230v40M130 250h40M136 236l28 28M164 236l-28 28"/></g></svg></div>
   <div style="font-size:15px;font-weight:600">${esc(e.venue)}</div>${mapA}
@@ -517,7 +516,8 @@ function renderEvent(e){
   ${full?`<div class="row" style="background:${th.card};justify-content:center;font-weight:700">${d.full}</div>`:rsvpButtons(id,th)}
   <div class="${hidden}" data-when="${id}">${stepper(id,'headcount',L.howmany,th)}${totalLine(id,th)}</div>`;
  }
- return `<section class="ev" id="ev-${id}" style="background:${th.bg};color:${th.fg}">${inner}${calBtn(id)}${hostPanel(id,th)}<div class="sp"></div></section>`;
+ const bgx=id==='bowling'?`background:url("${LANE}") center/100% 100% no-repeat ${th.bg};background-attachment:local;`:`background:${th.bg};`;
+ return `<section class="ev" id="ev-${id}" style="${bgx}color:${th.fg}">${inner}${hostPanel(id,th)}<div class="sp"></div></section>`;
 }
 
 function renderLock(){
