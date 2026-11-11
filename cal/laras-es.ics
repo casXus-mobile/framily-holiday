@@ -9,8 +9,8 @@ DTSTART:20261224T230000Z
 DTEND:20261225T020000Z
 SUMMARY:Nochebuena en casa de los Lara (FRamily)
 LOCATION:The Laras'\, 8841 NW 4th St\, Pembroke Pines\, FL 33024
-DESCRIPTION:Nochebuena en casa de los Lara · FRamily Holiday Fun\nThe Laras'\n8841 NW 4th St\, Pembroke Pines\, FL 33024\nVestimenta: Vístete como en 1996\nRSVP: https://casxus-mobile.github.io/framily-holiday/
-URL:https://casxus-mobile.github.io/framily-holiday/
+DESCRIPTION:Nochebuena en casa de los Lara · FRamily Holiday Fun\nThe Laras'\n8841 NW 4th St\, Pembroke Pines\, FL 33024\nVestimenta: Vístete como en 1996\nRSVP: https://casxus-mobile.github.io/framily-holiday/#laras
+URL:https://casxus-mobile.github.io/framily-holiday/#laras
 BEGIN:VALARM
 TRIGGER:-PT10H
 ACTION:DISPLAY

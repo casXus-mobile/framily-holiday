@@ -9,8 +9,8 @@ DTSTART:20261127T000000Z
 DTEND:20261127T030000Z
 SUMMARY:Acción de Gracias en casa de los Espinal (FRamily)
 LOCATION:The Espinals'\, 311 SW 96th Terrace\, Pembroke Pines\, FL 33025
-DESCRIPTION:Acción de Gracias en casa de los Espinal · FRamily Holiday Fun\nThe Espinals'\n311 SW 96th Terrace\, Pembroke Pines\, FL 33025\nVestimenta: Thanksgiving clásico\nRSVP: https://casxus-mobile.github.io/framily-holiday/
-URL:https://casxus-mobile.github.io/framily-holiday/
+DESCRIPTION:Acción de Gracias en casa de los Espinal · FRamily Holiday Fun\nThe Espinals'\n311 SW 96th Terrace\, Pembroke Pines\, FL 33025\nVestimenta: Thanksgiving clásico\nRSVP: https://casxus-mobile.github.io/framily-holiday/#thanksgiving
+URL:https://casxus-mobile.github.io/framily-holiday/#thanksgiving
 BEGIN:VALARM
 TRIGGER:-PT10H
 ACTION:DISPLAY

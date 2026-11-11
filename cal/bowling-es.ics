@@ -9,8 +9,8 @@ DTSTART:20261209T003000Z
 DTEND:20261209T033000Z
 SUMMARY:Noche de boliche en familia (FRamily)
 LOCATION:Lucky Strike · Dania Pointe\, 1841 Way Pointe Pl\, Dania Beach\, FL 33004
-DESCRIPTION:Noche de boliche en familia · FRamily Holiday Fun\nLucky Strike · Dania Pointe\n1841 Way Pointe Pl\, Dania Beach\, FL 33004\n$24 por persona · Zelle 954-376-0188\nVestimenta: suéteres feos\nRSVP: https://casxus-mobile.github.io/framily-holiday/
-URL:https://casxus-mobile.github.io/framily-holiday/
+DESCRIPTION:Noche de boliche en familia · FRamily Holiday Fun\nLucky Strike · Dania Pointe\n1841 Way Pointe Pl\, Dania Beach\, FL 33004\n$24 por persona · Zelle 954-376-0188\nVestimenta: suéteres feos\nRSVP: https://casxus-mobile.github.io/framily-holiday/#bowling
+URL:https://casxus-mobile.github.io/framily-holiday/#bowling
 BEGIN:VALARM
 TRIGGER:-PT10H
 ACTION:DISPLAY

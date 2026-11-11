@@ -9,8 +9,8 @@ DTSTART:20261224T230000Z
 DTEND:20261225T020000Z
 SUMMARY:Christmas Eve at the Lara's (FRamily)
 LOCATION:The Laras'\, 8841 NW 4th St\, Pembroke Pines\, FL 33024
-DESCRIPTION:Christmas Eve at the Lara's · FRamily Holiday Fun\nThe Laras'\n8841 NW 4th St\, Pembroke Pines\, FL 33024\nDress: Dress like it's 1996\nRSVP: https://casxus-mobile.github.io/framily-holiday/
-URL:https://casxus-mobile.github.io/framily-holiday/
+DESCRIPTION:Christmas Eve at the Lara's · FRamily Holiday Fun\nThe Laras'\n8841 NW 4th St\, Pembroke Pines\, FL 33024\nDress: Dress like it's 1996\nRSVP: https://casxus-mobile.github.io/framily-holiday/#laras
+URL:https://casxus-mobile.github.io/framily-holiday/#laras
 BEGIN:VALARM
 TRIGGER:-PT10H
 ACTION:DISPLAY

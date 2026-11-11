@@ -9,8 +9,8 @@ DTSTART:20261223T003000Z
 DTEND:20261223T033000Z
 SUMMARY:Avengers: Doomsday (FRamily)
 LOCATION:AMC Weston 8\, 1338 SW 160th Ave\, Weston\, FL 33326
-DESCRIPTION:Avengers: Doomsday · FRamily Holiday Fun\nAMC Weston 8\n1338 SW 160th Ave\, Weston\, FL 33326\n$18 por persona · Zelle 954-376-0188\nVestimenta: pijamas\nRSVP: https://casxus-mobile.github.io/framily-holiday/
-URL:https://casxus-mobile.github.io/framily-holiday/
+DESCRIPTION:Avengers: Doomsday · FRamily Holiday Fun\nAMC Weston 8\n1338 SW 160th Ave\, Weston\, FL 33326\n$18 por persona · Zelle 954-376-0188\nVestimenta: pijamas\nRSVP: https://casxus-mobile.github.io/framily-holiday/#movie
+URL:https://casxus-mobile.github.io/framily-holiday/#movie
 BEGIN:VALARM
 TRIGGER:-PT10H
 ACTION:DISPLAY

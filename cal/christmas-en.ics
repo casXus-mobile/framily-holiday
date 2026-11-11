@@ -9,8 +9,8 @@ DTSTART:20261225T210000Z
 DTEND:20261225T233000Z
 SUMMARY:FRamily Christmas (FRamily)
 LOCATION:500 Bonaventure Blvd\, 500 Bonaventure Blvd\, Weston\, FL 33326
-DESCRIPTION:FRamily Christmas · FRamily Holiday Fun\n500 Bonaventure Blvd\n500 Bonaventure Blvd\, Weston\, FL 33326\nDress theme: Moody\nRSVP: https://casxus-mobile.github.io/framily-holiday/
-URL:https://casxus-mobile.github.io/framily-holiday/
+DESCRIPTION:FRamily Christmas · FRamily Holiday Fun\n500 Bonaventure Blvd\n500 Bonaventure Blvd\, Weston\, FL 33326\nDress theme: Moody\nRSVP: https://casxus-mobile.github.io/framily-holiday/#christmas
+URL:https://casxus-mobile.github.io/framily-holiday/#christmas
 BEGIN:VALARM
 TRIGGER:-PT10H
 ACTION:DISPLAY

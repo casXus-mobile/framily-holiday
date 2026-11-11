@@ -101,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1215';
+const BUILD='1111.1220';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -207,10 +207,11 @@ function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorag
 /* ---------- url params (self-erasing) ---------- */
 (function(){
  const u=new URL(location.href);
- const v=u.searchParams.get('v'); const l=u.searchParams.get('lang'); const a=u.searchParams.get('admin');
+ const v=u.searchParams.get('v'); const l=u.searchParams.get('lang'); const a=u.searchParams.get('admin'); const e=u.searchParams.get('e')||(location.hash||'').replace('#','');
+ if(e){S.deep=e}
  if(l==='es'||l==='en'){ls('lang',l)}
  if(a!==null){S.admin=true}
- if(v||l){u.searchParams.delete('v');u.searchParams.delete('lang');history.replaceState({},'',u.pathname+(u.search||''))}
+ if(v||l||u.searchParams.get('e')){u.searchParams.delete('v');u.searchParams.delete('lang');u.searchParams.delete('e');history.replaceState({},'',u.pathname+(u.search||''))}
  S.lang=ls('lang')||((navigator.language||'').toLowerCase().startsWith('es')?'es':'en');
  S.token=ls('token');
 })();
@@ -233,6 +234,9 @@ function famLabel(n){ n=(n||'').trim().replace(/\s+/g,' '); if(!n) return '';
  if(S.lang==='es') return hasFam?n:`familia ${n}`;
  return hasFam?n:`${n} family`; }
 function famGreet(n){ const l=famLabel(n); if(!l) return ''; return S.lang==='es'?`Hola, ${l} 👋`:`Hey, ${l.replace(/ family$/,' Family')} 👋`; }
+
+
+function jumpDeep(){ if(!S.deep)return; const el=document.getElementById('ev-'+S.deep); S.deep=null; if(!el)return; const i=pages().indexOf(el); if(i<0)return; P.i=i; $('#app').scrollTop=el.offsetTop; updateBar(); }
 
 /* ---------- gate ---------- */
 function renderGate(){
@@ -262,7 +266,7 @@ function bindGate(){
   try{
    const {data:f,error}=await sb.rpc('family_start',{p_name:name,p_phone:digits,p_lang:S.lang,p_tier:'open',p_sms:sms});
    if(error)throw error;
-   applyFamily(f); ls('token',S.token); persistLocal(); await loadBring(); for(const id of (S.hosts||[])) await loadHost(id); render(); P.i=0; $('#app').scrollTop=0;
+   applyFamily(f); ls('token',S.token); persistLocal(); await loadBring(); for(const id of (S.hosts||[])) await loadHost(id); render(); P.i=0; $('#app').scrollTop=0; jumpDeep();
   }catch(e){console.error(e);toast("Hmm, that didn't work. Try again or text Jared.");b.disabled=false;b.textContent=L.gate_btn}
  };
  $('#gPhone').onkeydown=e=>{if(e.key==='Enter')$('#gBtn').click()};
@@ -637,7 +641,7 @@ function downloadIcs(id){
  if(ios||mac){ location.href=`${SITE}cal/${id}-${S.lang}.ics`; return }
  const fmt=x=>new Date(x).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
  const start=new Date(e.arrive_at), end=new Date(new Date(e.starts_at).getTime()+2.5*3600e3);
- const desc=[`${nm} · FRamily Holiday Fun`,price(id)?`${money(price(id))} ${S.lang==='es'?'por persona':'per person'} · Zelle ${ZELLE}`:'',d.dress?`${L.dress}: ${d.dress}`:'',`RSVP: ${SITE}`].filter(Boolean).join('\n');
+ const desc=[`${nm} · FRamily Holiday Fun`,price(id)?`${money(price(id))} ${S.lang==='es'?'por persona':'per person'} · Zelle ${ZELLE}`:'',d.dress?`${L.dress}: ${d.dress}`:'',`RSVP: ${SITE}#${id}`].filter(Boolean).join('\n');
  const u=new URL('https://calendar.google.com/calendar/render'); u.searchParams.set('action','TEMPLATE'); u.searchParams.set('text',`${nm} (FRamily)`); u.searchParams.set('dates',`${fmt(start)}/${fmt(end)}`); u.searchParams.set('details',desc); u.searchParams.set('location',`${e.venue}, ${e.address}`);
  window.open(u.toString(),'_blank');
 }
@@ -796,7 +800,7 @@ async function boot(){
  const {data:evs}=await sb.from('events').select('*').order('sort'); S.events=evs||[];
  const {data:counts}=await sb.rpc('event_counts'); S.counts=counts||{};
  loadLocal(); await loadFamily();
- render();
+ render(); jumpDeep();
  initPager(); $('#app').addEventListener('scroll',updateNav,{passive:true});
  $('#barBtn').onclick=()=>goTo(pages().length-1);
 }

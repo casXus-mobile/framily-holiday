@@ -9,8 +9,8 @@ DTSTART:20261215T233000Z
 DTEND:20261216T023000Z
 SUMMARY:Topgolf Night (FRamily)
 LOCATION:Topgolf Pompano Beach\, 400 Lucky Lane\, Pompano Beach\, FL 33060
-DESCRIPTION:Topgolf Night · FRamily Holiday Fun\nTopgolf Pompano Beach\n400 Lucky Lane\, Pompano Beach\, FL 33060\n$12 per person · Zelle 954-376-0188\nDress theme: Santa hats\nRSVP: https://casxus-mobile.github.io/framily-holiday/
-URL:https://casxus-mobile.github.io/framily-holiday/
+DESCRIPTION:Topgolf Night · FRamily Holiday Fun\nTopgolf Pompano Beach\n400 Lucky Lane\, Pompano Beach\, FL 33060\n$12 per person · Zelle 954-376-0188\nDress theme: Santa hats\nRSVP: https://casxus-mobile.github.io/framily-holiday/#topgolf
+URL:https://casxus-mobile.github.io/framily-holiday/#topgolf
 BEGIN:VALARM
 TRIGGER:-PT10H
 ACTION:DISPLAY
