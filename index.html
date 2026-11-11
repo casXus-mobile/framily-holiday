@@ -103,7 +103,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1312';
+const BUILD='1111.1420';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const LANE='data:image/svg+xml;utf8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20430%201000%22%20preserveAspectRatio=%22none%22%3E%3Crect%20width=%22430%22%20height=%221000%22%20fill=%22%2315122B%22/%3E%3Cpath%20d=%22M0%201000%20L168%200%20L262%200%20L430%201000%20Z%22%20fill=%22%231F1A3D%22/%3E%3Cpath%20d=%22M55%201000%20L183%200%20M127%201000%20L199%200%20M215%201000%20L215%200%20M303%201000%20L231%200%20M375%201000%20L247%200%22%20stroke=%22%232A2350%22%20stroke-width=%221.2%22/%3E%3Cpath%20d=%22M168%200%20L0%201000%20M262%200%20L430%201000%22%20stroke=%22%23FF5A5F%22%20stroke-width=%221.4%22/%3E%3Cg%20fill=%22%23F6EBD9%22%3E%3Ccircle%20cx=%22193%22%20cy=%2214%22%20r=%225%22/%3E%3Ccircle%20cx=%22215%22%20cy=%2214%22%20r=%225%22/%3E%3Ccircle%20cx=%22237%22%20cy=%2214%22%20r=%225%22/%3E%3Ccircle%20cx=%22204%22%20cy=%2230%22%20r=%225%22/%3E%3Ccircle%20cx=%22226%22%20cy=%2230%22%20r=%225%22/%3E%3Ccircle%20cx=%22215%22%20cy=%2246%22%20r=%225%22/%3E%3C/g%3E%3C/svg%3E';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
@@ -130,7 +130,7 @@ en:{
  calsub_t:"Put these on your calendar, automatically?",calsub_sub:"One tap adds a FRamily calendar to your phone. Every night you say I'm in to shows up on its own, with a reminder the morning of. Change an RSVP and it updates itself.",calsub_yes:"Yes, add it",calsub_later:"Maybe later",calsub_chip:"📅 FRamily calendar",calsub_on:"📅 Calendar added",calsub_android:"On Android: Google Calendar → Settings → Add calendar → From URL, and paste the link we copied.",cal_note:"Calendar events include the address, time, cost and dress theme, with a reminder the morning of.",
  gate_h:"Welcome to the FRamily.",gate_sub:"One place for the gatherings, all year. Tell us who you are once and we'll show you what you're invited to. Your cell is how we keep your RSVP, and it stays with us.",gate_btn:"Come on in →",gate_foot:"Expecting an invite you don't see? Text Jared · 954.376.0188",gate_tag:"Faith · Family · Friends · Fun",hey:"HEY, $NAME 👋",your_invites:"YOUR INVITES",
  coming:"We're coming ✓",bring_h:"BRINGING A DISH?",bring_ask:"would love:",bring_add:"+ I'll bring…",bring_save:"Add",bring_others:"ALSO COMING TO THE TABLE",bring_none:"Or just bring yourselves. Nobody's checking.",bring_taken:"Someone grabbed that one.",bring_what:"What are you bringing?",
- host_h:"YOU'RE HOSTING",host_in:"in",host_maybe:"maybe",host_none:"no answer",host_add:"+ Add a guest",host_copy:"Copy phones",host_req:"Requests",host_req_add:"+ Request a dish",host_need:"need",
+ via_h:"{host} INVITED YOU TO",via_circle:"{host} keep you in their {circle} circle — names only, numbers stay private.",link_h:"Your invite links",link_sub:"Make a link for a group chat or a friend. Whoever opens it is invited to this night and shows up below — you can remove anyone.",link_new:"+ New link",link_copy:"Share",link_copied:"Copied — paste it anywhere",link_uses:"opened",link_any:"Link",link_via:"Came through your link",link_remove:"Remove",link_remove_q:"Remove them from this night?",link_circle_q:"How do you know them? (Family, Church, Friends, Work… or leave blank)",link_cohost_q:"Make whoever joins a CO-HOST of this night? (OK = yes)",link_grant_q:"Let them host their OWN nights later? (OK = yes)",me_h:"ME",me_rsvps:"My RSVPs",me_sms:"Text reminders",me_on:"On",me_off:"Off",me_cal:"FRamily calendar",me_lang:"Language",me_host:"Host a night",me_host_sub:"Want to host something for the FRamily? Text Jared and he'll set it up.",me_hosting:"You're hosting",me_none:"No RSVPs yet — tap I'm in on a night above.",host_h:"YOU'RE HOSTING",host_in:"in",host_maybe:"maybe",host_none:"no answer",host_add:"+ Add a guest",host_copy:"Copy phones",host_req:"Requests",host_req_add:"+ Request a dish",host_need:"need",
  map:"Map",tap_dir:"Tap the address for directions",parking:"View parking map",parking_t:"Parking at our place",parking_b:["Park in the numbered spots, 1 to 30 first, then 31 to 38 on the street if those fill up.","Keep the yellow \"don't block\" lanes clear. Neighbors need to get out.","Carpool if you can. Pinch to zoom."],close:"Close",
  ev:{
   thanksgiving:{k:"THURSDAY 11/26 · 7:00 PM",sup:"YOU'RE INVITED TO OUR",sub:"CELEBRATION",lead:"Good food, great company and so much to be thankful for. We would love for you to join us!",day:"THURSDAY",date:"November 26",close:"We look forward to celebrating with you!",hosted:"HOSTED BY THE ESPINAL FAMILY",det:[]},
@@ -169,7 +169,7 @@ es:{
  calsub_t:"¿Ponemos esto en tu calendario, automáticamente?",calsub_sub:"Un toque agrega un calendario FRamily a tu teléfono. Cada noche a la que digas Me apunto aparece sola, con recordatorio esa mañana. Si cambias tu RSVP, se actualiza solo.",calsub_yes:"Sí, agrégalo",calsub_later:"Después",calsub_chip:"📅 Calendario FRamily",calsub_on:"📅 Calendario agregado",calsub_android:"En Android: Google Calendar → Ajustes → Agregar calendario → Desde URL, y pega el enlace que copiamos.",cal_note:"Los eventos del calendario incluyen dirección, hora, costo y vestimenta, con recordatorio esa mañana.",
  gate_h:"Bienvenidos a la FRamily.",gate_sub:"Un solo lugar para las reuniones, todo el año. Dinos quién eres una vez y te mostramos a qué estás invitado. Tu celular es cómo guardamos tu RSVP, y se queda con nosotros.",gate_btn:"Adelante →",gate_foot:"¿Esperabas una invitación que no ves? Escríbele a Jared · 954.376.0188",gate_tag:"Fe · Familia · Amigos · Diversión",hey:"HOLA, $NAME 👋",your_invites:"TUS INVITACIONES",
  coming:"Ahí estaremos ✓",bring_h:"¿TRAES UN PLATO?",bring_ask:"agradecerían:",bring_add:"+ Yo traigo…",bring_save:"Agregar",bring_others:"TAMBIÉN LLEGA A LA MESA",bring_none:"O solo vengan ustedes. Nadie está revisando.",bring_taken:"Alguien ya tomó ese.",bring_what:"¿Qué vas a traer?",
- host_h:"TÚ ERES ANFITRIÓN",host_in:"vienen",host_maybe:"quizás",host_none:"sin respuesta",host_add:"+ Agregar invitado",host_copy:"Copiar celulares",host_req:"Pedidos",host_req_add:"+ Pedir un plato",host_need:"faltan",
+ via_h:"{host} TE INVITA A",via_circle:"{host} te tienen en su círculo {circle} — solo nombres, los números quedan privados.",link_h:"Tus enlaces de invitación",link_sub:"Crea un enlace para un chat de grupo o un amigo. Quien lo abra queda invitado a esta noche y aparece abajo — puedes quitar a quien sea.",link_new:"+ Nuevo enlace",link_copy:"Compartir",link_copied:"Copiado — pégalo donde quieras",link_uses:"abierto",link_any:"Enlace",link_via:"Llegaron por tu enlace",link_remove:"Quitar",link_remove_q:"¿Quitarlos de esta noche?",link_circle_q:"¿De dónde los conoces? (Familia, Iglesia, Amigos, Trabajo… o déjalo vacío)",link_cohost_q:"¿Hacer CO-ANFITRIÓN de esta noche a quien entre? (OK = sí)",link_grant_q:"¿Permitirles organizar SUS PROPIAS noches después? (OK = sí)",me_h:"YO",me_rsvps:"Mis RSVPs",me_sms:"Recordatorios por texto",me_on:"Sí",me_off:"No",me_cal:"Calendario FRamily",me_lang:"Idioma",me_host:"Organiza una noche",me_host_sub:"¿Quieres organizar algo para la FRamily? Escríbele a Jared y lo configura.",me_hosting:"Eres anfitrión",me_none:"Aún sin RSVPs — toca Me apunto en alguna noche arriba.",host_h:"TÚ ERES ANFITRIÓN",host_in:"vienen",host_maybe:"quizás",host_none:"sin respuesta",host_add:"+ Agregar invitado",host_copy:"Copiar celulares",host_req:"Pedidos",host_req_add:"+ Pedir un plato",host_need:"faltan",
  map:"Mapa",tap_dir:"Toca la dirección para llegar",parking:"Ver mapa de estacionamiento",parking_t:"Estacionamiento en casa",parking_b:["Usa los espacios numerados, primero del 1 al 30, y del 31 al 38 en la calle si se llenan.","Deja libres las zonas amarillas de \"no bloquear\". Los vecinos necesitan salir.","Compartan carro si pueden. Haz zoom con dos dedos."],close:"Cerrar",
  ev:{
   thanksgiving:{k:"JUEVES 11/26 · 7:00 PM",sup:"ESTÁN INVITADOS A NUESTRA",sub:"CELEBRACIÓN",lead:"Buena comida, buena compañía y mucho que agradecer. ¡Nos encantaría que nos acompañen!",day:"JUEVES",date:"26 de noviembre",close:"¡Esperamos celebrar con ustedes!",hosted:"ANFITRIONES: LA FAMILIA ESPINAL",det:[]},
@@ -190,7 +190,7 @@ es:{
 }};
 
 /* ---------- state ---------- */
-const S={lang:'en',token:null,name:'',phone:'',sms:false,events:[],counts:{},rs:{},sentClaim:false,done:false,invites:null,hosts:[],bring:{},host:{}};
+const S={lang:'en',token:null,name:'',phone:'',sms:false,events:[],counts:{},rs:{},sentClaim:false,done:false,invites:null,hosts:[],bring:{},host:{},links:{}};
 const EV_THEME={
  thanksgiving:{bg:'#E6D7C0',fg:'#5A3A1E',ac:'#8A5A2B',ac2:'#8A5A2B',card:'rgba(255,250,242,.85)',font:"'Great Vibes',cursive"},
  laras:{bg:'#F4ECDC',fg:'#2B1A12',ac:'#8E1B1B',ac2:'#1E6B3A',card:'#fff',font:"'Playfair Display',serif"},
@@ -210,11 +210,15 @@ function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorag
 /* ---------- url params (self-erasing) ---------- */
 (function(){
  const u=new URL(location.href);
- const v=u.searchParams.get('v'); const l=u.searchParams.get('lang'); const a=u.searchParams.get('admin'); const e=u.searchParams.get('e')||(location.hash||'').replace('#','');
+ const v=u.searchParams.get('v'); const l=u.searchParams.get('lang'); const a=u.searchParams.get('admin');
+ const hraw=(location.hash||'').replace('#',''); const hq=hraw.includes('?')?new URLSearchParams(hraw.split('?')[1]):null;
+ const e=u.searchParams.get('e')||hraw.split('?')[0]; const via=u.searchParams.get('via')||(hq&&hq.get('via'));
  if(e){S.deep=e}
+ if(via){ls('via',via.toLowerCase())} S.via=ls('via')||null;
+ if(hraw.includes('?')){history.replaceState({},'',u.pathname+(u.search||'')+'#'+e)}
  if(l==='es'||l==='en'){ls('lang',l)}
  if(a!==null){S.admin=true}
- if(v||l||u.searchParams.get('e')){u.searchParams.delete('v');u.searchParams.delete('lang');u.searchParams.delete('e');history.replaceState({},'',u.pathname+(u.search||''))}
+ if(v||l||u.searchParams.get('e')||u.searchParams.get('via')){u.searchParams.delete('v');u.searchParams.delete('lang');u.searchParams.delete('e');u.searchParams.delete('via');history.replaceState({},'',u.pathname+(u.search||''))}
  S.lang=ls('lang')||((navigator.language||'').toLowerCase().startsWith('es')?'es':'en');
  S.token=ls('token');
 })();
@@ -242,6 +246,10 @@ function famGreet(n){ const l=famLabel(n); if(!l) return ''; return S.lang==='es
 function jumpDeep(){ if(!S.deep)return; const el=document.getElementById('ev-'+S.deep); S.deep=null; if(!el)return; const i=pages().indexOf(el); if(i<0)return; P.i=i; $('#app').scrollTop=el.offsetTop; updateBar(); }
 
 /* ---------- gate ---------- */
+function viaCard(){ const L=t(); const li=S.viaInfo; if(!li||!li.events||!li.events.length) return '';
+ const names=li.events.map(e=>S.lang==='es'?(e.name_es||e.name_en):e.name_en).join(' · ');
+ return `<div style="background:#F3E7D0;color:#16301F;border:2px solid #D9B56C;border-radius:12px;padding:12px 14px;position:relative"><div style="font-size:11px;letter-spacing:2px;font-weight:700;opacity:.65">${L.via_h.replace('{host}',esc(li.host))}</div><div style="font-family:'Fraunces',serif;font-weight:700;font-size:16px;margin-top:3px">${esc(names)}</div>${li.circle?`<div style="font-size:12px;opacity:.75;margin-top:4px">${L.via_circle.replace('{circle}',esc(li.circle)).replace('{host}',esc(li.host))}</div>`:''}</div>`; }
+async function loadVia(){ if(!S.via||S.viaInfo)return; try{const {data}=await sb.rpc('link_info',{p_code:S.via}); if(data&&data.code){S.viaInfo=data}else{ls('via','');S.via=null}}catch(e){} }
 function renderGate(){
  const L=t();
  return `<section id="gate" style="background:#0F1A14;color:#F3E7D0;padding:0;display:block;position:relative"><div style="position:relative;min-height:100svh;padding:72px 26px 28px;display:flex;flex-direction:column;gap:14px;background:radial-gradient(circle at 20% 0%,rgba(29,158,117,.28) 0,transparent 45%),radial-gradient(circle at 90% 100%,rgba(217,181,108,.22) 0,transparent 50%)">
@@ -253,7 +261,8 @@ function renderGate(){
   </div>
   <div style="font-family:'Fraunces',serif;font-weight:700;font-size:26px;line-height:1.1;margin-top:18px;position:relative">${L.gate_h}</div>
   <div style="font-size:14px;line-height:1.5;opacity:.9;position:relative">${L.gate_sub}</div>
-  <label class="f" style="position:relative">${L.fam}<input class="t" id="gName" value="${esc(S.name)}" autocomplete="family-name" placeholder="${L.fam_ph}" style="border-color:#D9B56C"></label>
+  ${viaCard()}
+  <label class="f" style="position:relative">${L.fam}<input class="t" id="gName" value="${esc(S.name)}" autocomplete="family-name" placeholder="${L.fam_ph||''}" style="border-color:#D9B56C"></label>
   <label class="f" style="position:relative">${L.cell}<input class="t" id="gPhone" type="tel" value="${esc(fmtPhone(S.phone))}" autocomplete="tel" inputmode="tel" style="border-color:#D9B56C"></label>
   <label style="display:flex;align-items:flex-start;gap:10px;background:#F3E7D0;color:#16301F;border:2px solid #D9B56C;border-radius:10px;padding:12px;font-size:12px;line-height:1.4;position:relative"><input type="checkbox" id="gSms" ${S.sms?'checked':''} style="width:22px;height:22px;flex:0 0 auto;accent-color:#16301F"><span><b style="display:block;font-size:13px;margin-bottom:2px">${L.sms_h}</b>${L.sms}</span></label>
   <button class="mbtn" id="gBtn" style="background:#D9B56C;color:#16301F;padding:16px;font-size:16px;position:relative">${L.gate_btn}</button>
@@ -267,18 +276,46 @@ function bindGate(){
   if(!name||digits.length!==10){toast(!name?L.need_name:L.bad_phone);return}
   const b=$('#gBtn'); b.disabled=true; b.textContent='…';
   try{
-   const {data:f,error}=await sb.rpc('family_start',{p_name:name,p_phone:digits,p_lang:S.lang,p_tier:'open',p_sms:sms});
-   if(error)throw error;
+   const {data:f,error}=await sb.rpc('family_start',{p_name:name,p_phone:digits,p_lang:S.lang,p_tier:'open',p_sms:sms,p_via:S.via||null});
+   if(error)throw error; if(S.via){ls('via','');S.via=null;S.viaInfo=null}
    applyFamily(f); ls('token',S.token); persistLocal(); await loadBring(); for(const id of (S.hosts||[])) await loadHost(id); render(); P.i=0; $('#app').scrollTop=0; jumpDeep();
   }catch(e){console.error(e);toast("Hmm, that didn't work. Try again or text Jared.");b.disabled=false;b.textContent=L.gate_btn}
  };
  $('#gPhone').onkeydown=e=>{if(e.key==='Enter')$('#gBtn').click()};
 }
 function applyFamily(f){
- S.token=f.token; S.name=f.name||S.name; S.phone=f.phone; S.sms=!!f.sms_optin; S.lang=f.lang||S.lang; S.invites=f.invites||[]; S.hosts=f.hosts||[];
+ S.token=f.token; S.name=f.name||S.name; S.phone=f.phone; S.sms=!!f.sms_optin; S.lang=f.lang||S.lang; S.invites=f.invites||[]; S.hosts=f.hosts||[]; S.canHost=!!f.can_host;
  const srv={}; for(const r of (f.rsvps||[])) srv[r.event_id]={status:r.status,headcount:r.headcount,players:r.players,watchers:r.watchers,paid_claimed:r.paid_claimed,paid_confirmed:r.paid_confirmed};
  S.rs=Object.assign({},S.rs,srv); S.done=(f.rsvps||[]).length>0;
 }
+
+/* ---------- me page ---------- */
+function renderMe(){
+ const L=t(); const evs=visibleEvents(); const mine=evs.filter(e=>rs(e.id).status&&rs(e.id).status!=='out');
+ const row=(k,v)=>`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(243,231,208,.15);font-size:14px"><span>${k}</span><span>${v}</span></div>`;
+ const chip=(txt,on,attr)=>`<button ${attr} class="pill" style="font-family:inherit;cursor:pointer;padding:6px 12px;${on?'background:var(--gold);color:#16301F;border-color:var(--gold)':'color:var(--gold);background:transparent'}">${txt}</button>`;
+ const rsv=mine.length?mine.map(e=>{const r=rs(e.id);const nm=S.lang==='es'?e.name_es:e.name_en;const cnt=e.id==='topgolf'?r.players:r.headcount;const tot=evTotal(e.id);
+   return row(`<b>${esc(nm)}</b><div style="font-size:11px;opacity:.65">${esc(chipLabel(e.id))}${isHost(e.id)?' · '+L.me_hosting:''}</div>`,`${r.status==='in'?`${cnt} ${L.host_in}`:L.host_maybe}${tot?` · ${money(tot)}${r.paid_confirmed?' ✓':''}`:''}`)}).join(''):`<div style="font-size:13px;opacity:.7;padding:8px 0">${L.me_none}</div>`;
+ return `<section id="ev-me" style="background:#16301F;color:#F3E7D0;padding:clamp(48px,8vh,80px) 24px 0;display:flex;flex-direction:column;gap:10px;position:relative">
+  <div class="kicker" style="color:var(--gold)">${L.me_h}</div>
+  <div style="font-family:'Fraunces',serif;font-weight:900;font-size:30px;line-height:1">${esc(S.name||'')}</div>
+  <div style="font-size:13px;opacity:.7">${esc(fmtPhone(S.phone))}</div>
+  <div class="kicker" style="font-size:10px;opacity:.7;margin-top:10px">${L.me_rsvps}</div>
+  <div>${rsv}</div>
+  <div class="kicker" style="font-size:10px;opacity:.7;margin-top:10px">${L.settings||'SETTINGS'}</div>
+  ${row(`📱 ${L.me_sms}`,chip(S.sms?L.me_on:L.me_off,S.sms,'id="meSms"'))}
+  ${row(`📅 ${L.me_cal}`,chip((S.calsub||ls('calsub'))?L.calsub_on.replace('📅 ',''):'+',!!(S.calsub||ls('calsub')),'id="meCal"'))}
+  ${row(`🌐 ${L.me_lang}`,`<span style="display:inline-flex;gap:4px">${chip('EN',S.lang==='en','data-melang="en"')}${chip('ES',S.lang==='es','data-melang="es"')}</span>`)}
+  <div style="margin-top:10px;background:rgba(243,231,208,.08);border:1px solid rgba(217,181,108,.4);border-radius:12px;padding:12px 14px"><div style="font-weight:700">✨ ${L.me_host}</div><div style="font-size:12px;opacity:.8;line-height:1.4;margin-top:3px">${L.me_host_sub}</div></div>
+  <div style="font-size:10px;opacity:.5;margin-top:auto;text-align:center"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · v${BUILD}</div>
+  <div class="sp"></div></section>`;
+}
+function bindMe(){
+ const b=$('#meSms'); if(b) b.onclick=async()=>{S.sms=!S.sms; if(S.token) await sb.rpc('family_update',{p_token:S.token,p_name:null,p_lang:null,p_sms_optin:S.sms,p_invited_xmas:null}); persistLocal(); rerenderMe()};
+ const c=$('#meCal'); if(c) c.onclick=()=>subscribeCal();
+ document.querySelectorAll('[data-melang]').forEach(x=>x.onclick=async()=>{S.lang=x.dataset.melang;ls('lang',S.lang); if(S.token) sb.rpc('family_update',{p_token:S.token,p_name:null,p_lang:S.lang,p_sms_optin:null,p_invited_xmas:null}); const i=P.i; render(); P.i=i; const ps=pages(); if(ps[i])$('#app').scrollTop=ps[i].offsetTop;});
+}
+function rerenderMe(){ const el=$('#ev-me'); if(!el)return; const tmp=document.createElement('div'); tmp.innerHTML=renderMe(); const n=tmp.firstElementChild; el.replaceWith(n); n.addEventListener('scroll',onInnerScroll,{passive:true}); bindMe(); }
 
 /* ---------- render ---------- */
 function render(){
@@ -312,7 +349,8 @@ function render(){
    </section>`;
  for(const e of evs) h+=renderEvent(e);
  if(owed()>0) h+=renderLock();
- app.innerHTML=h;
+ h+=renderMe();
+ app.innerHTML=h; bindMe();
  bindEvents();
  pages().forEach(p=>p.addEventListener('scroll',onInnerScroll,{passive:true}));
  const ps=pages(); if(ps[P.i]) app.scrollTop=ps[P.i].offsetTop;
@@ -328,7 +366,7 @@ const CHIP_ICON={
  christmas:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l5 7h-3l4 5h-4l3 5H7l3-5H6l4-5H7z"/><path d="M12 19v3"/></svg>',
  lillie:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>'
 };
-function nextLabel(id){const evs=visibleEvents();const k=evs.findIndex(e=>e.id===id);const n=evs[k+1];return n?chipLabel(n.id):(t().lock.toUpperCase())}
+function nextLabel(id){const evs=visibleEvents();const k=evs.findIndex(e=>e.id===id);const n=evs[k+1];return n?chipLabel(n.id):(owed()>0?t().lock.toUpperCase():t().me_h)}
 function chipLabel(id){return {thanksgiving:'11/26 THANKS',laras:"12/24 LARA'S",bowling:'12/8 BOWL',topgolf:'12/15 GOLF',movie:'12/22 MOVIE',crossway:'12/24 CROSSWAY',christmas:'12/25 XMAS',lillie:'12/29 LILLIE'}[id]}
 
 function rsvpButtons(id,th,labels,inLabel){
@@ -376,10 +414,24 @@ function hostPanel(id,th){
   <div style="display:flex;justify-content:space-between;align-items:center"><div class="kicker" style="font-size:10px;color:${th.ac}">${L.host_h}</div><div style="font-size:12px;font-weight:700">${inN} ${L.host_in} · ${inF} fam · ${mb} ${L.host_maybe} · ${none} ${L.host_none}</div></div>
   <div style="max-height:260px;overflow:auto">${rows}</div>
   <div style="display:flex;gap:6px"><button data-hadd="${id}" class="btn o" style="font-size:12px;padding:8px 12px">${L.host_add}</button><button data-hcopy="${id}" class="btn o" style="font-size:12px;padding:8px 12px">${L.host_copy}</button></div>
+  ${linkPanel(id,th)}
   ${S.events.find(x=>x.id===id)?.bring_enabled?`<div class="kicker" style="font-size:10px;opacity:.8;margin-top:4px">${L.host_req}</div><div style="display:flex;flex-wrap:wrap;gap:6px">${reqs}<button data-hbadd="${id}" style="font-size:11px;border:1px dashed currentColor;border-radius:999px;padding:4px 8px;background:transparent;color:inherit;font-family:inherit;cursor:pointer">${L.host_req_add}</button></div>`:''}
  </div>`;
 }
-async function loadHost(id){ if(!isHost(id)||!S.token)return; const {data}=await sb.rpc('host_get',{p_token:S.token,p_event:id}); if(data){S.host[id]=data;} }
+async function loadHost(id){ if(!isHost(id)||!S.token)return; const {data}=await sb.rpc('host_get',{p_token:S.token,p_event:id}); if(data){S.host[id]=data;} const r=await sb.rpc('host_links',{p_token:S.token,p_event:id}); if(r.data){S.links[id]=r.data} }
+function siteUrl(){return location.origin+location.pathname.replace(/index\.html$/,'')}
+function linkPanel(id,th){
+ const L=t(); const d=S.links[id]||{links:[],via:[]};
+ const links=d.links.map(l=>`<div style="display:flex;align-items:center;gap:6px;font-size:12px;padding:5px 0;border-top:1px solid rgba(0,0,0,.12)"><span style="flex:1"><b>${esc(l.label||l.circle||L.link_any)}</b> <span style="opacity:.6">· ${l.uses} ${L.link_uses}${l.cohost?' · co-host':''}${l.grant_host?' · host':''}</span></span><button data-lcopy="${id}|${l.code}" class="btn o" style="font-size:11px;padding:5px 10px">${L.link_copy}</button></div>`).join('');
+ const via=d.via.map(v=>`<div style="display:flex;align-items:center;gap:6px;font-size:12px;padding:5px 0;border-top:1px solid rgba(0,0,0,.12)"><span style="flex:1;font-weight:600">${esc(v.name||'?')}</span><span style="opacity:.7;white-space:nowrap">${v.status==='in'?`${v.headcount} ${L.host_in}`:v.status==='maybe'?L.host_maybe:v.status==='out'?L.out:L.host_none}</span><button data-lrm="${id}|${v.family_id}" style="border:1px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:3px 8px;font-size:11px;font-family:inherit;cursor:pointer">${L.link_remove}</button></div>`).join('');
+ return `<div class="kicker" style="font-size:10px;opacity:.8;margin-top:4px">${L.link_h}</div><div style="font-size:11px;opacity:.75;line-height:1.4">${L.link_sub}</div>${links}<button data-lnew="${id}" class="btn o" style="font-size:12px;padding:8px 12px;align-self:flex-start">${L.link_new}</button>${via.length?`<div class="kicker" style="font-size:10px;opacity:.8;margin-top:4px">${L.link_via} · ${d.via.length}</div>${via}`:''}`;
+}
+async function newLink(id){ const L=t(); const circle=(prompt(L.link_circle_q)||'').trim(); const cohost=confirm(L.link_cohost_q); const grant=confirm(L.link_grant_q);
+ const {data:code,error}=await sb.rpc('link_create',{p_token:S.token,p_events:[id],p_circle:circle||null,p_cohost:cohost,p_grant_host:grant,p_label:circle||null}); if(error){toast('Hmm, try again');return}
+ await loadHost(id); rerenderEvent(id); copyLink(id,code); }
+function copyLink(id,code){ const L=t(); const ev=S.events.find(e=>e.id===id); const url=`${siteUrl()}#${id}?via=${code}`; const who=S.name?famLabel(S.name):'FRamily';
+ const msg=S.lang==='es'?`¡Hola! ${who} te invita a ${ev.name_es||ev.name_en}. Di que vienes → ${url}`:`Hey! ${who} would love to have you at ${ev.name_en}. Say you're in → ${url}`;
+ if(navigator.share){navigator.share({text:msg}).catch(()=>{})} else {navigator.clipboard?.writeText(msg).then(()=>toast(L.link_copied)).catch(()=>prompt('',msg))} }
 
 function renderEvent(e){
  const id=e.id, th=EV_THEME[id], L=t(), d=L.ev[id], r=rs(id);
@@ -539,12 +591,12 @@ function renderLock(){
 }
 
 function onInnerScroll(e){const sec=e.target;const nav=$('#nav');updateBar();if(atBottom(sec)){nav.classList.remove('scrolling');return}nav.classList.add('scrolling');clearTimeout(P.st);P.st=setTimeout(()=>nav.classList.remove('scrolling'),650)}
-function updateNav(){const ps=pages();const i=curPage();const nav=$('#nav');if(!nav)return;const nxt=ps[i+1];nav.classList.toggle('hidden',S.admin||!nxt);if(!nxt)return;const id=(nxt.id||'').replace('ev-','');$('#navLbl').textContent=nxt.id==='lock'?t().lock.toUpperCase():chipLabel(id);if(P.navFor!==i){P.navFor=i;nav.classList.remove('wake');void nav.offsetWidth;nav.classList.add('wake')}}
+function updateNav(){const ps=pages();const i=curPage();const nav=$('#nav');if(!nav)return;const nxt=ps[i+1];nav.classList.toggle('hidden',S.admin||!nxt);if(!nxt)return;const id=(nxt.id||'').replace('ev-','');$('#navLbl').textContent=nxt.id==='lock'?t().lock.toUpperCase():nxt.id==='ev-me'?t().me_h:chipLabel(id);if(P.navFor!==i){P.navFor=i;nav.classList.remove('wake');void nav.offsetWidth;nav.classList.add('wake')}}
 function updateBar(){
  updateNav();
  const L=t(); const n=inCount(); const bar=$('#bar');
  if(S.admin||owed()===0){bar.classList.add('hidden');document.documentElement.style.setProperty('--barh','0px');return}
- const lockVisible=!!$('#lock')&&curPage()===pages().length-1;
+ const lockVisible=!!$('#lock')&&pages()[curPage()]?.id==='lock';
  bar.classList.toggle('hidden',lockVisible); document.documentElement.style.setProperty('--barh',lockVisible?'0px':'74px');
  $('#barTxt').textContent=`${L.total_cost} · ${money(owed())}`;
  $('#barSub').textContent=`${n} ${n===1?L.event_1:L.bar_n}${S.name?' · '+famLabel(S.name):''}`;
@@ -588,6 +640,9 @@ function bindEvents(){
  document.querySelectorAll('[data-bring-save]').forEach(b=>b.onclick=async()=>{const id=b.dataset.bringSave;const inp=document.getElementById('bring-'+id);const v=(inp.value||'').trim();if(!v)return;b.disabled=true;const {error}=await sb.rpc('bring_add',{p_token:S.token,p_event:id,p_label:v});if(error){toast('Hmm');b.disabled=false;return}const {data}=await sb.rpc('bring_get',{p_token:S.token,p_event:id});S.bring[id]=data||[];rerenderEvent(id)});
  document.querySelectorAll('[data-bring-add]').forEach(b=>b.onclick=async()=>{const id=b.dataset.bringAdd;const v=prompt(t().bring_what);if(!v)return;const {error}=await sb.rpc('bring_add',{p_token:S.token,p_event:id,p_label:v});if(error){toast('Hmm');return}const {data}=await sb.rpc('bring_get',{p_token:S.token,p_event:id});S.bring[id]=data||[];rerenderEvent(id)});
  document.querySelectorAll('[data-hrs]').forEach(b=>b.onclick=async()=>{const [id,fid,st,hc]=b.dataset.hrs.split('|');let n=+hc||1;if(st==='in'){const v=prompt(t().howmany,String(n));if(v===null)return;n=Math.max(0,parseInt(v)||0)}await sb.rpc('host_set_rsvp',{p_token:S.token,p_event:id,p_family:fid,p_status:st,p_headcount:n});await loadHost(id);rerenderEvent(id)});
+ document.querySelectorAll('[data-lnew]').forEach(b=>b.onclick=()=>newLink(b.dataset.lnew));
+ document.querySelectorAll('[data-lcopy]').forEach(b=>b.onclick=()=>{const [id,code]=b.dataset.lcopy.split('|');copyLink(id,code)});
+ document.querySelectorAll('[data-lrm]').forEach(b=>b.onclick=async()=>{const [id,fam]=b.dataset.lrm.split('|');if(!confirm(t().link_remove_q))return;await sb.rpc('host_via_remove',{p_token:S.token,p_event:id,p_family:fam});await loadHost(id);rerenderEvent(id)});
  document.querySelectorAll('[data-hadd]').forEach(b=>b.onclick=async()=>{const id=b.dataset.hadd;const n=prompt(t().fam);if(!n)return;const ph=prompt(t().cell);if(!ph)return;const {error}=await sb.rpc('host_add_guest',{p_token:S.token,p_event:id,p_name:n,p_phone:ph});if(error){toast(t().bad_phone);return}await loadHost(id);rerenderEvent(id)});
  document.querySelectorAll('[data-hcopy]').forEach(b=>b.onclick=()=>{const h=S.host[b.dataset.hcopy];if(!h)return;const list=h.guests.filter(g=>g.status==='in').map(g=>fmtPhone(g.phone)).join(', ');navigator.clipboard?.writeText(list).then(()=>toast(t().copied))});
  document.querySelectorAll('[data-hbadd]').forEach(b=>b.onclick=async()=>{const id=b.dataset.hbadd;const v=prompt(t().host_req);if(!v)return;const n=prompt(t().host_need+'?','1');await sb.rpc('host_bring_set',{p_token:S.token,p_event:id,p_label:v,p_needed:parseInt(n)||1});await loadHost(id);const {data}=await sb.rpc('bring_get',{p_token:S.token,p_event:id});S.bring[id]=data||[];rerenderEvent(id)});
@@ -633,7 +688,8 @@ async function submitRsvp(){
 }
 async function loadFamily(){
  if(!S.token)return;
- const {data:f}=await sb.rpc('family_get',{p_token:S.token}); if(!f){ls('token','');S.token=null;S.invites=null;return}
+ let {data:f}=await sb.rpc('family_get',{p_token:S.token}); if(!f){ls('token','');S.token=null;S.invites=null;return}
+ if(S.via){ try{ const r=await sb.rpc('family_start',{p_name:f.name,p_phone:f.phone,p_lang:f.lang,p_tier:'open',p_sms:null,p_via:S.via}); if(r.data){f=r.data; const evs=(S.viaInfo?.events||[]); if(!S.deep&&evs[0])S.deep=evs[0].id} }catch(e){} ls('via','');S.via=null;S.viaInfo=null }
  applyFamily(f); persistLocal();
  await loadBring(); for(const id of (S.hosts||[])) await loadHost(id);
 }
@@ -824,7 +880,7 @@ async function boot(){
  document.querySelectorAll('#lang button').forEach(b=>b.onclick=()=>{S.lang=b.dataset.l;ls('lang',S.lang);render()});
  const {data:evs}=await sb.from('events').select('*').order('sort'); S.events=evs||[];
  const {data:counts}=await sb.rpc('event_counts'); S.counts=counts||{};
- loadLocal(); await loadFamily();
+ loadLocal(); await loadVia(); await loadFamily();
  render(); jumpDeep();
  initPager(); $('#app').addEventListener('scroll',updateNav,{passive:true});
  $('#barBtn').onclick=()=>{const lk=$('#lock');if(lk)goTo(pages().indexOf(lk))};
