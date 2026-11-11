@@ -101,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1205';
+const BUILD='1111.1210';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -227,6 +227,13 @@ const money=c=>'$'+(c/100).toFixed(0);
 function fmtPhone(p){p=(p||'').replace(/\D/g,'').slice(-10);return p.length===10?`(${p.slice(0,3)}) ${p.slice(3,6)}-${p.slice(6)}`:p}
 
 
+
+function famLabel(n){ n=(n||'').trim().replace(/\s+/g,' '); if(!n) return '';
+ const low=n.toLowerCase(); const hasFam=/\b(family|familia|fam)\b/.test(low)||/'s$/.test(low)||/\b(and|&|y)\b/.test(low);
+ if(S.lang==='es') return hasFam?n:`familia ${n}`;
+ return hasFam?n:`${n} family`; }
+function famGreet(n){ const l=famLabel(n); if(!l) return ''; return S.lang==='es'?`Hola, ${l} 👋`:`Hey, ${l.replace(/ family$/,' Family')} 👋`; }
+
 /* ---------- gate ---------- */
 function renderGate(){
  const L=t();
@@ -239,7 +246,7 @@ function renderGate(){
   </div>
   <div style="font-family:'Fraunces',serif;font-weight:700;font-size:26px;line-height:1.1;margin-top:18px;position:relative">${L.gate_h}</div>
   <div style="font-size:14px;line-height:1.5;opacity:.9;position:relative">${L.gate_sub}</div>
-  <label class="f" style="position:relative">${L.fam}<input class="t" id="gName" value="${esc(S.name)}" autocomplete="family-name" style="border-color:#D9B56C"></label>
+  <label class="f" style="position:relative">${L.fam}<input class="t" id="gName" value="${esc(S.name)}" autocomplete="family-name" placeholder="${L.fam_ph}" style="border-color:#D9B56C"></label>
   <label class="f" style="position:relative">${L.cell}<input class="t" id="gPhone" type="tel" value="${esc(fmtPhone(S.phone))}" autocomplete="tel" inputmode="tel" style="border-color:#D9B56C"></label>
   <label style="display:flex;align-items:flex-start;gap:10px;background:#F3E7D0;color:#16301F;border:2px solid #D9B56C;border-radius:10px;padding:12px;font-size:12px;line-height:1.4;position:relative"><input type="checkbox" id="gSms" ${S.sms?'checked':''} style="width:22px;height:22px;flex:0 0 auto;accent-color:#16301F"><span><b style="display:block;font-size:13px;margin-bottom:2px">${L.sms_h}</b>${L.sms}</span></label>
   <button class="mbtn" id="gBtn" style="background:#D9B56C;color:#16301F;padding:16px;font-size:16px;position:relative">${L.gate_btn}</button>
@@ -282,7 +289,8 @@ function render(){
   <svg aria-hidden="true" width="480" height="60" viewBox="0 0 430 60" style="position:absolute;left:0;top:-4px;width:100%" fill="none"><path d="M-10 6 Q110 60 215 18 T440 6" stroke="#2F5A3C" stroke-width="14" stroke-linecap="round"/><g><circle cx="50" cy="26" r="7" fill="#C8302E"/><circle cx="120" cy="40" r="7" fill="#D9B56C"/><circle cx="215" cy="22" r="7" fill="#F3E7D0"/><circle cx="300" cy="14" r="7" fill="#C8302E"/><circle cx="380" cy="18" r="7" fill="#D9B56C"/></g></svg>
   <div style="font-family:'Pinyon Script',cursive;font-size:clamp(44px,6.5vh,60px);line-height:.9;color:var(--gold);margin-top:10px;margin-bottom:-8px;position:relative">FRamily</div>
   <div style="font-family:'Fraunces',serif;font-weight:900;font-size:clamp(42px,6vh,56px);line-height:.95;position:relative">HOLIDAY FUN</div>
-  <div class="kicker" style="letter-spacing:4px;position:relative">${S.name?L.hey.replace('$NAME',esc(S.name).toUpperCase()):'DECEMBER 2026'}</div>
+  <div style="font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--gold);position:relative">${S.name?esc(famGreet(S.name)):''}</div>
+  <div class="kicker" style="letter-spacing:4px;position:relative">DECEMBER 2026</div>
   <div style="display:flex;gap:8px;margin-top:8px;position:relative">
    <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(-5deg);box-shadow:0 6px 14px rgba(0,0,0,.4)"><img src="img/bowling-2025.jpg" alt="Bowling 2025" style="width:clamp(96px,26vw,124px);aspect-ratio:100/72;object-fit:cover;object-position:50% 45%;display:block"></div>
    <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(2deg) translateY(-6px);box-shadow:0 8px 18px rgba(0,0,0,.45)"><img src="img/topgolf-2025.jpg" alt="Topgolf 2025" style="width:clamp(104px,29vw,136px);aspect-ratio:110/78;object-fit:cover;object-position:50% 60%;display:block"></div>
@@ -544,7 +552,7 @@ function updateBar(){
  const lockVisible=curPage()===pages().length-1;
  bar.classList.toggle('hidden',lockVisible); document.documentElement.style.setProperty('--barh',lockVisible?'0px':'74px');
  $('#barTxt').textContent=`${L.total_cost} · ${money(owed())}`;
- $('#barSub').textContent=`${n} ${n===1?L.event_1:L.bar_n}${S.name?' · '+S.name:''}`;
+ $('#barSub').textContent=`${n} ${n===1?L.event_1:L.bar_n}${S.name?' · '+famLabel(S.name):''}`;
  $('#barBtn').textContent=L.bar_fin;
 }
 
