@@ -101,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1130';
+const BUILD='1111.1135';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -125,7 +125,7 @@ en:{
  msg_hi:"Hey! The Dunsons are doing holiday nights again and you're invited 🎄",msg_link:"Details + RSVP:",
  paid:"paid",unpaid:"unpaid",pay_now:"Still need to pay",none_owed:"Nothing owed. You're set.",
  cal_note:"Calendar events include the address, time, cost and dress theme, with a reminder the morning of.",
- gate_h:"Who's this?",gate_sub:"One quick step so we show you <b>your</b> invites. Your cell is how we keep your RSVP, and it stays with us.",gate_btn:"Show me my invites →",gate_foot:"Expecting an event you don't see? Text Jared · 954.376.0188",hey:"HEY, $NAME 👋",your_invites:"YOUR INVITES",
+ gate_h:"Welcome to the FRamily.",gate_sub:"One place for the gatherings, all year. Tell us who you are once and we'll show you what you're invited to. Your cell is how we keep your RSVP, and it stays with us.",gate_btn:"Come on in →",gate_foot:"Expecting an invite you don't see? Text Jared · 954.376.0188",gate_tag:"Faith · Family · Friends · Fun",hey:"HEY, $NAME 👋",your_invites:"YOUR INVITES",
  coming:"We're coming ✓",bring_h:"BRINGING A DISH?",bring_ask:"asked for:",bring_add:"+ I'll bring…",bring_none:"Or just bring yourselves. Nobody's checking.",bring_taken:"Someone grabbed that one.",bring_what:"What are you bringing?",
  host_h:"YOU'RE HOSTING",host_in:"in",host_maybe:"maybe",host_none:"no answer",host_add:"+ Add a guest",host_copy:"Copy phones",host_req:"Requests",host_req_add:"+ Request a dish",host_need:"need",
  map:"Map",parking:"View parking map",parking_t:"Parking at our place",parking_b:["Park in the numbered spots, 1 to 30 first, then 31 to 38 on the street if those fill up.","Keep the yellow \"don't block\" lanes clear. Neighbors need to get out.","Carpool if you can. Pinch to zoom."],close:"Close",
@@ -165,7 +165,7 @@ es:{
  msg_hi:"¡Hola! Los Dunson hacen sus noches navideñas otra vez y estás invitado 🎄",msg_link:"Detalles + RSVP:",
  paid:"pagado",unpaid:"pendiente",pay_now:"Falta pagar",none_owed:"No debes nada. Todo listo.",
  cal_note:"Los eventos del calendario incluyen dirección, hora, costo y vestimenta, con recordatorio esa mañana.",
- gate_h:"¿Quién eres?",gate_sub:"Un paso rápido para mostrarte <b>tus</b> invitaciones. Tu celular es cómo guardamos tu RSVP, y se queda con nosotros.",gate_btn:"Ver mis invitaciones →",gate_foot:"¿Esperabas un evento que no ves? Escríbele a Jared · 954.376.0188",hey:"HOLA, $NAME 👋",your_invites:"TUS INVITACIONES",
+ gate_h:"Bienvenidos a la FRamily.",gate_sub:"Un solo lugar para las reuniones, todo el año. Dinos quién eres una vez y te mostramos a qué estás invitado. Tu celular es cómo guardamos tu RSVP, y se queda con nosotros.",gate_btn:"Adelante →",gate_foot:"¿Esperabas una invitación que no ves? Escríbele a Jared · 954.376.0188",gate_tag:"Fe · Familia · Amigos · Diversión",hey:"HOLA, $NAME 👋",your_invites:"TUS INVITACIONES",
  coming:"Ahí estaremos ✓",bring_h:"¿TRAES UN PLATO?",bring_ask:"pidieron:",bring_add:"+ Yo traigo…",bring_none:"O solo vengan ustedes. Nadie está revisando.",bring_taken:"Alguien ya tomó ese.",bring_what:"¿Qué vas a traer?",
  host_h:"TÚ ERES ANFITRIÓN",host_in:"vienen",host_maybe:"quizás",host_none:"sin respuesta",host_add:"+ Agregar invitado",host_copy:"Copiar celulares",host_req:"Pedidos",host_req_add:"+ Pedir un plato",host_need:"faltan",
  map:"Mapa",parking:"Ver mapa de estacionamiento",parking_t:"Estacionamiento en casa",parking_b:["Usa los espacios numerados, primero del 1 al 30, y del 31 al 38 en la calle si se llenan.","Deja libres las zonas amarillas de \"no bloquear\". Los vecinos necesitan salir.","Compartan carro si pueden. Haz zoom con dos dedos."],close:"Cerrar",
@@ -232,17 +232,22 @@ function fmtPhone(p){p=(p||'').replace(/\D/g,'').slice(-10);return p.length===10
 /* ---------- gate ---------- */
 function renderGate(){
  const L=t();
- return `<section id="gate" style="background:#16301F;padding:70px 26px 28px;display:flex;flex-direction:column;gap:14px;position:relative;min-height:100svh">
-  <svg aria-hidden="true" width="480" height="60" viewBox="0 0 430 60" style="position:absolute;left:0;top:-4px;width:100%" fill="none"><path d="M-10 6 Q110 60 215 18 T440 6" stroke="#2F5A3C" stroke-width="14" stroke-linecap="round"/><g><circle cx="50" cy="26" r="7" fill="#C8302E"/><circle cx="120" cy="40" r="7" fill="#D9B56C"/><circle cx="215" cy="22" r="7" fill="#F3E7D0"/><circle cx="300" cy="14" r="7" fill="#C8302E"/><circle cx="380" cy="18" r="7" fill="#D9B56C"/></g></svg>
-  <div style="text-align:center;margin-top:10px;position:relative"><div style="font-family:'Pinyon Script',cursive;font-size:46px;line-height:.9;color:var(--gold);margin-bottom:-8px">FRamily</div><div style="font-family:'Fraunces',serif;font-weight:900;font-size:40px;line-height:.95">HOLIDAY FUN</div><div class="kicker" style="letter-spacing:4px;margin-top:6px">DECEMBER 2026</div></div>
-  <div style="font-family:'Fraunces',serif;font-weight:700;font-size:24px;line-height:1.1;margin-top:14px">${L.gate_h}</div>
-  <div style="font-size:14px;line-height:1.45;opacity:.9">${L.gate_sub}</div>
-  <label class="f">${L.fam}<input class="t" id="gName" value="${esc(S.name)}" autocomplete="family-name" style="border-color:var(--gold)"></label>
-  <label class="f">${L.cell}<input class="t" id="gPhone" type="tel" value="${esc(fmtPhone(S.phone))}" autocomplete="tel" inputmode="tel" style="border-color:var(--gold)"></label>
-  <label style="display:flex;align-items:flex-start;gap:10px;background:#F3E7D0;color:#16301F;border:2px solid var(--gold);border-radius:10px;padding:12px;font-size:12px;line-height:1.4"><input type="checkbox" id="gSms" ${S.sms?'checked':''} style="width:22px;height:22px;flex:0 0 auto;accent-color:#16301F"><span><b style="display:block;font-size:13px;margin-bottom:2px">${L.sms_h}</b>${L.sms}</span></label>
-  <button class="mbtn" id="gBtn" style="background:var(--gold);color:#16301F;padding:16px;font-size:16px">${L.gate_btn}</button>
-  <div style="font-size:11px;text-align:center;opacity:.7;margin-top:auto">${L.gate_foot}</div>
-  <div style="font-size:10px;text-align:center;opacity:.5"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · v${BUILD}</div>
+ return `<section id="gate" style="background:#0F1A14;color:#F3E7D0;padding:72px 26px 28px;display:flex;flex-direction:column;gap:14px;position:relative;min-height:100svh;overflow:hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(circle at 20% 0%,rgba(29,158,117,.28) 0,transparent 45%),radial-gradient(circle at 90% 100%,rgba(217,181,108,.22) 0,transparent 50%);pointer-events:none"></div>
+  <div style="position:absolute;inset:14px;border:1px solid rgba(217,181,108,.35);border-radius:18px;pointer-events:none"></div>
+  <div style="text-align:center;position:relative">
+   <svg aria-hidden="true" width="64" height="64" viewBox="0 0 64 64" fill="none" style="margin:0 auto 8px;display:block"><circle cx="32" cy="32" r="30" stroke="#D9B56C" stroke-width="1.5"/><path d="M32 46 C22 38 16 33 16 26 a8 8 0 0 1 16 -3 a8 8 0 0 1 16 3 c0 7 -6 12 -16 20z" fill="#1D9E75"/><path d="M32 12v8M28 16h8" stroke="#D9B56C" stroke-width="2" stroke-linecap="round"/></svg>
+   <div style="font-family:'Pinyon Script',cursive;font-size:52px;line-height:.9;color:#D9B56C">FRamily</div>
+   <div class="kicker" style="letter-spacing:4px;margin-top:8px;color:#9FE1CB">${L.gate_tag}</div>
+  </div>
+  <div style="font-family:'Fraunces',serif;font-weight:700;font-size:26px;line-height:1.1;margin-top:18px;position:relative">${L.gate_h}</div>
+  <div style="font-size:14px;line-height:1.5;opacity:.9;position:relative">${L.gate_sub}</div>
+  <label class="f" style="position:relative">${L.fam}<input class="t" id="gName" value="${esc(S.name)}" autocomplete="family-name" style="border-color:#D9B56C"></label>
+  <label class="f" style="position:relative">${L.cell}<input class="t" id="gPhone" type="tel" value="${esc(fmtPhone(S.phone))}" autocomplete="tel" inputmode="tel" style="border-color:#D9B56C"></label>
+  <label style="display:flex;align-items:flex-start;gap:10px;background:#F3E7D0;color:#16301F;border:2px solid #D9B56C;border-radius:10px;padding:12px;font-size:12px;line-height:1.4;position:relative"><input type="checkbox" id="gSms" ${S.sms?'checked':''} style="width:22px;height:22px;flex:0 0 auto;accent-color:#16301F"><span><b style="display:block;font-size:13px;margin-bottom:2px">${L.sms_h}</b>${L.sms}</span></label>
+  <button class="mbtn" id="gBtn" style="background:#D9B56C;color:#16301F;padding:16px;font-size:16px;position:relative">${L.gate_btn}</button>
+  <div style="font-size:11px;text-align:center;opacity:.7;margin-top:auto;position:relative">${L.gate_foot}</div>
+  <div style="font-size:10px;text-align:center;opacity:.5;position:relative"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · v${BUILD}</div>
  </section>`;
 }
 function bindGate(){
