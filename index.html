@@ -101,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1240';
+const BUILD='1111.1242';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -325,7 +325,7 @@ const CHIP_ICON={
  lillie:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>'
 };
 function nextLabel(id){const evs=visibleEvents();const k=evs.findIndex(e=>e.id===id);const n=evs[k+1];return n?chipLabel(n.id):(t().lock.toUpperCase())}
-function chipLabel(id){return {thanksgiving:'11/26 THANKS',laras:"12/24 LARA'S",bowling:'12/8 BOWL',topgolf:'12/15 GOLF',movie:'12/22 MOVIE',crossway:'12/24 EVE',christmas:'12/25 XMAS',lillie:'12/29 LILLIE'}[id]}
+function chipLabel(id){return {thanksgiving:'11/26 THANKS',laras:"12/24 LARA'S",bowling:'12/8 BOWL',topgolf:'12/15 GOLF',movie:'12/22 MOVIE',crossway:'12/24 CROSSWAY',christmas:'12/25 XMAS',lillie:'12/29 LILLIE'}[id]}
 
 function rsvpButtons(id,th,labels,inLabel){
  const r=rs(id); const L=t();
