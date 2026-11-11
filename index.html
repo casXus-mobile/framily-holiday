@@ -101,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1200';
+const BUILD='1111.1205';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -230,8 +230,7 @@ function fmtPhone(p){p=(p||'').replace(/\D/g,'').slice(-10);return p.length===10
 /* ---------- gate ---------- */
 function renderGate(){
  const L=t();
- return `<section id="gate" style="background:#0F1A14;color:#F3E7D0;padding:72px 26px 28px;display:flex;flex-direction:column;gap:14px;position:relative"><div style="min-height:calc(100svh - 100px);display:flex;flex-direction:column;gap:14px">
-  <div style="position:absolute;inset:0;background:radial-gradient(circle at 20% 0%,rgba(29,158,117,.28) 0,transparent 45%),radial-gradient(circle at 90% 100%,rgba(217,181,108,.22) 0,transparent 50%);pointer-events:none"></div>
+ return `<section id="gate" style="background:#0F1A14;color:#F3E7D0;padding:0;display:block;position:relative"><div style="position:relative;min-height:100svh;padding:72px 26px 28px;display:flex;flex-direction:column;gap:14px;background:radial-gradient(circle at 20% 0%,rgba(29,158,117,.28) 0,transparent 45%),radial-gradient(circle at 90% 100%,rgba(217,181,108,.22) 0,transparent 50%)">
   <div style="position:absolute;left:14px;right:14px;top:14px;bottom:14px;border:1px solid rgba(217,181,108,.35);border-radius:18px;pointer-events:none"></div>
   <div style="text-align:center;position:relative">
    <div style="width:58px;height:58px;border-radius:50%;border:1.5px solid #D9B56C;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:900;font-size:20px;color:#D9B56C;letter-spacing:1px">FR</div>
