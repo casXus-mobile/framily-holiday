@@ -101,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1222';
+const BUILD='1111.1225';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -128,7 +128,7 @@ en:{
  gate_h:"Welcome to the FRamily.",gate_sub:"One place for the gatherings, all year. Tell us who you are once and we'll show you what you're invited to. Your cell is how we keep your RSVP, and it stays with us.",gate_btn:"Come on in →",gate_foot:"Expecting an invite you don't see? Text Jared · 954.376.0188",gate_tag:"Faith · Family · Friends · Fun",hey:"HEY, $NAME 👋",your_invites:"YOUR INVITES",
  coming:"We're coming ✓",bring_h:"BRINGING A DISH?",bring_ask:"would love:",bring_add:"+ I'll bring…",bring_save:"Add",bring_others:"ALSO COMING TO THE TABLE",bring_none:"Or just bring yourselves. Nobody's checking.",bring_taken:"Someone grabbed that one.",bring_what:"What are you bringing?",
  host_h:"YOU'RE HOSTING",host_in:"in",host_maybe:"maybe",host_none:"no answer",host_add:"+ Add a guest",host_copy:"Copy phones",host_req:"Requests",host_req_add:"+ Request a dish",host_need:"need",
- map:"Map",parking:"View parking map",parking_t:"Parking at our place",parking_b:["Park in the numbered spots, 1 to 30 first, then 31 to 38 on the street if those fill up.","Keep the yellow \"don't block\" lanes clear. Neighbors need to get out.","Carpool if you can. Pinch to zoom."],close:"Close",
+ map:"Map",tap_dir:"Tap the address for directions",parking:"View parking map",parking_t:"Parking at our place",parking_b:["Park in the numbered spots, 1 to 30 first, then 31 to 38 on the street if those fill up.","Keep the yellow \"don't block\" lanes clear. Neighbors need to get out.","Carpool if you can. Pinch to zoom."],close:"Close",
  ev:{
   thanksgiving:{k:"THURSDAY 11/26 · 7:00 PM",sup:"YOU'RE INVITED TO OUR",sub:"CELEBRATION",lead:"Good food, great company and so much to be thankful for. We would love for you to join us!",day:"THURSDAY",date:"November 26",close:"We look forward to celebrating with you!",hosted:"HOSTED BY THE ESPINAL FAMILY",det:[]},
   laras:{k:"THURSDAY 12/24 · 6:00 PM",sup:"JOIN US FOR A '90s",lead:"Let's celebrate together!",host:"Hosted by <b>The Lara Family</b>",dress_h:"DRESS CODE: 1996",dress:"Home Alone on VHS, Mariah on the boombox, and the sweater your mom made you wear.",
@@ -167,7 +167,7 @@ es:{
  gate_h:"Bienvenidos a la FRamily.",gate_sub:"Un solo lugar para las reuniones, todo el año. Dinos quién eres una vez y te mostramos a qué estás invitado. Tu celular es cómo guardamos tu RSVP, y se queda con nosotros.",gate_btn:"Adelante →",gate_foot:"¿Esperabas una invitación que no ves? Escríbele a Jared · 954.376.0188",gate_tag:"Fe · Familia · Amigos · Diversión",hey:"HOLA, $NAME 👋",your_invites:"TUS INVITACIONES",
  coming:"Ahí estaremos ✓",bring_h:"¿TRAES UN PLATO?",bring_ask:"agradecerían:",bring_add:"+ Yo traigo…",bring_save:"Agregar",bring_others:"TAMBIÉN LLEGA A LA MESA",bring_none:"O solo vengan ustedes. Nadie está revisando.",bring_taken:"Alguien ya tomó ese.",bring_what:"¿Qué vas a traer?",
  host_h:"TÚ ERES ANFITRIÓN",host_in:"vienen",host_maybe:"quizás",host_none:"sin respuesta",host_add:"+ Agregar invitado",host_copy:"Copiar celulares",host_req:"Pedidos",host_req_add:"+ Pedir un plato",host_need:"faltan",
- map:"Mapa",parking:"Ver mapa de estacionamiento",parking_t:"Estacionamiento en casa",parking_b:["Usa los espacios numerados, primero del 1 al 30, y del 31 al 38 en la calle si se llenan.","Deja libres las zonas amarillas de \"no bloquear\". Los vecinos necesitan salir.","Compartan carro si pueden. Haz zoom con dos dedos."],close:"Cerrar",
+ map:"Mapa",tap_dir:"Toca la dirección para llegar",parking:"Ver mapa de estacionamiento",parking_t:"Estacionamiento en casa",parking_b:["Usa los espacios numerados, primero del 1 al 30, y del 31 al 38 en la calle si se llenan.","Deja libres las zonas amarillas de \"no bloquear\". Los vecinos necesitan salir.","Compartan carro si pueden. Haz zoom con dos dedos."],close:"Cerrar",
  ev:{
   thanksgiving:{k:"JUEVES 11/26 · 7:00 PM",sup:"ESTÁN INVITADOS A NUESTRA",sub:"CELEBRACIÓN",lead:"Buena comida, buena compañía y mucho que agradecer. ¡Nos encantaría que nos acompañen!",day:"JUEVES",date:"26 de noviembre",close:"¡Esperamos celebrar con ustedes!",hosted:"ANFITRIONES: LA FAMILIA ESPINAL",det:[]},
   laras:{k:"JUEVES 12/24 · 6:00 PM",sup:"ACOMPÁÑANOS A UNA NAVIDAD DE LOS '90",lead:"¡Celebremos juntos!",host:"Anfitriones: <b>La familia Lara</b>",dress_h:"CÓDIGO DE VESTIMENTA: 1996",dress:"Home Alone en VHS, Mariah en la grabadora y el suéter que tu mamá te obligó a usar.",
@@ -392,8 +392,8 @@ function renderEvent(e){
    <div style="font-size:17px;line-height:1.35;margin-top:10px">${d.lead}</div>
    <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px"><div style="font-size:13px;letter-spacing:3px;font-weight:600">${d.day}</div><div style="width:1px;height:34px;background:#7A5A3A"></div><div style="font-family:${th.font};font-size:30px;line-height:1;white-space:nowrap">${d.date}</div><div style="width:1px;height:34px;background:#7A5A3A"></div><div style="font-size:13px;letter-spacing:3px;font-weight:600">7:00 PM</div></div>
    <svg width="18" height="22" viewBox="0 0 24 30" style="margin-top:12px" fill="#5A3A1E"><path d="M12 0C5.4 0 0 5.3 0 11.8 0 20.6 12 30 12 30s12-9.4 12-18.2C24 5.3 18.6 0 12 0zm0 16.5a4.7 4.7 0 1 1 0-9.4 4.7 4.7 0 0 1 0 9.4z"/></svg>
-   <div style="font-size:15px;letter-spacing:3px;font-weight:600;line-height:1.45;margin-top:4px">311 SW 96TH TERRACE<br>PEMBROKE PINES, FL 33025</div>
-   <a class="link" href="${esc(e.map_url||'#')}" target="_blank" rel="noopener" style="color:${th.ac2};font-family:'DM Sans',sans-serif;display:inline-block;margin-top:6px">${L.map} ↗</a>
+   <a href="${esc(e.map_url||'#')}" target="_blank" rel="noopener" style="display:block;font-size:15px;letter-spacing:3px;font-weight:600;line-height:1.45;margin-top:4px;color:inherit;text-decoration:underline;text-decoration-color:#7A5A3A;text-underline-offset:4px">311 SW 96TH TERRACE<br>PEMBROKE PINES, FL 33025</a>
+   <div style="font-size:11px;font-family:'DM Sans',sans-serif;opacity:.7;margin-top:4px">${L.tap_dir}</div>
    <div style="font-family:${th.font};font-size:30px;line-height:1.05;margin-top:14px">${d.close}</div>
    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:6px;color:#7A5A3A"><div style="width:50px;height:1px;background:#7A5A3A"></div><div style="font-size:12px">♥</div><div style="width:50px;height:1px;background:#7A5A3A"></div></div>
    <div style="font-size:11px;letter-spacing:3px;font-weight:600;margin-top:10px;color:${th.ac}">${d.hosted}</div>
