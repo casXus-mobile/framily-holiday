@@ -101,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1225';
+const BUILD='1111.1230';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -490,8 +490,7 @@ function renderEvent(e){
    <div style="width:100%;text-align:left">${detailsBlock(id,th,d.t,`<button class="cal" data-parking="1" style="margin-top:10px;border-color:${th.ac}">${L.parking}</button>`)}</div>
    <div style="width:100%">${rsvpButtons(id,th,[d.btn,L.not_time])}</div>
    <div class="${hidden}" data-when="${id}" style="width:100%">${stepper(id,'headcount',L.howmany,th)}</div>
-  </div></div>
-  <div style="margin-top:40px">${hostPanel(id,th)}</div>`;
+  </div></div>`;
  } else if(id==='lillie'){
   const c=S.counts[id]||{}; const full=c.cap&&c.in>=c.cap&&r.status!=='in';
   inner=`<svg aria-hidden="true" viewBox="0 0 430 520" preserveAspectRatio="xMidYMin slice" style="position:absolute;left:0;top:0;width:100%;height:100%;max-height:100%;pointer-events:none" fill="none"><defs><linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3E2A8" stop-opacity=".5"/><stop offset="1" stop-color="#D4AF37" stop-opacity=".02"/></linearGradient></defs><path d="M60 -10 L40 -10 L300 520 L430 520 L430 470 Z" fill="url(#gb)"/><path d="M370 -10 L390 -10 L130 520 L0 520 L0 470 Z" fill="url(#gb)"/></svg>
