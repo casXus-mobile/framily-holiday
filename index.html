@@ -6,7 +6,7 @@
 <title>FRamily Holiday Fun</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500&family=Pinyon+Script&family=Bungee&family=Shrikhand&family=Anton&family=Luckiest+Guy&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500&family=Pinyon+Script&family=Bungee&family=Shrikhand&family=Anton&family=Luckiest+Guy&family=Great+Vibes&family=Cormorant+Garamond:wght@500;600&family=Playfair+Display:wght@700&family=Amatic+SC:wght@700&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--cream:#F3E7D0;--ink:#16301F;--gold:#D9B56C;--navh:46px}
 *{box-sizing:border-box}
@@ -101,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1109.1422';
+const BUILD='1111.1130';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -125,8 +125,15 @@ en:{
  msg_hi:"Hey! The Dunsons are doing holiday nights again and you're invited 🎄",msg_link:"Details + RSVP:",
  paid:"paid",unpaid:"unpaid",pay_now:"Still need to pay",none_owed:"Nothing owed. You're set.",
  cal_note:"Calendar events include the address, time, cost and dress theme, with a reminder the morning of.",
+ gate_h:"Who's this?",gate_sub:"One quick step so we show you <b>your</b> invites. Your cell is how we keep your RSVP, and it stays with us.",gate_btn:"Show me my invites →",gate_foot:"Expecting an event you don't see? Text Jared · 954.376.0188",hey:"HEY, $NAME 👋",your_invites:"YOUR INVITES",
+ coming:"We're coming ✓",bring_h:"BRINGING A DISH?",bring_ask:"asked for:",bring_add:"+ I'll bring…",bring_none:"Or just bring yourselves. Nobody's checking.",bring_taken:"Someone grabbed that one.",bring_what:"What are you bringing?",
+ host_h:"YOU'RE HOSTING",host_in:"in",host_maybe:"maybe",host_none:"no answer",host_add:"+ Add a guest",host_copy:"Copy phones",host_req:"Requests",host_req_add:"+ Request a dish",host_need:"need",
  map:"Map",parking:"View parking map",parking_t:"Parking at our place",parking_b:["Park in the numbered spots, 1 to 30 first, then 31 to 38 on the street if those fill up.","Keep the yellow \"don't block\" lanes clear. Neighbors need to get out.","Carpool if you can. Pinch to zoom."],close:"Close",
  ev:{
+  thanksgiving:{k:"THURSDAY 11/26 · 7:00 PM",sup:"YOU'RE INVITED TO OUR",sub:"CELEBRATION",lead:"Good food, great company and so much to be thankful for. We would love for you to join us!",host:"The Espinals' · Pembroke Pines",
+   det:["Doors 7:00, we eat around 7:30. Come hungry, stay late.","Kids, grandparents, everybody. Street parking, carpool if you can.","Dress: classic Thanksgiving. Earth tones and stretchy pants.","Hosted by the Espinal family. Questions? Text Jared."]},
+  laras:{k:"THURSDAY 12/24 · 6:00 PM",sup:"JOIN US FOR A '90s",lead:"Let's celebrate together!",host:"Hosted by <b>The Lara Family</b>",dress_h:"DRESS CODE: 1996",dress:"Home Alone on VHS, Mariah on the boombox, and the sweater your mom made you wear.",
+   det:["Doors 6:00. Dinner, cocoa, and a '90s playlist you'll know every word to.","Kids, grandparents, everybody. Street parking, carpool if you can.","Hosted by the Lara family. Questions? Text Jared."]},
   bowling:{k:"TUESDAY 12/8 · 7:30 PM",h:"STRIKE|UP THE|HOLIDAYS",lead:"",t1:"NIGHT STRIKE",t1b:"per bowler · unlimited games, shoes included",t2:"LANES RESERVED",t2b:"6 per lane, side by side. Be on time.",dress:"ugly sweaters",
    det:["Night Strike runs 8 PM to close. We arrive 7:30 to settle in before lanes start.","Shoes included. Bring socks!","Park free in the Way Pointe Garage, walk to the Lucky Strike entrance on the plaza level.","Food and drinks available at the lanes. Kids welcome."],site:"Lucky Strike Dania Beach",url:"https://www.luckystrikeent.com/"},
   topgolf:{k:"TUESDAY 12/15 · 6:30 PM",h:"Tee'd Up|for the|Holidays",t1:"2 hrs",t1b:"6 per bay, side by side",t2:"$12",t2b:"per player",t3:"Free",t3b:"non-players",dress:"Santa hats · full menu at the bay",
@@ -158,8 +165,15 @@ es:{
  msg_hi:"¡Hola! Los Dunson hacen sus noches navideñas otra vez y estás invitado 🎄",msg_link:"Detalles + RSVP:",
  paid:"pagado",unpaid:"pendiente",pay_now:"Falta pagar",none_owed:"No debes nada. Todo listo.",
  cal_note:"Los eventos del calendario incluyen dirección, hora, costo y vestimenta, con recordatorio esa mañana.",
+ gate_h:"¿Quién eres?",gate_sub:"Un paso rápido para mostrarte <b>tus</b> invitaciones. Tu celular es cómo guardamos tu RSVP, y se queda con nosotros.",gate_btn:"Ver mis invitaciones →",gate_foot:"¿Esperabas un evento que no ves? Escríbele a Jared · 954.376.0188",hey:"HOLA, $NAME 👋",your_invites:"TUS INVITACIONES",
+ coming:"Ahí estaremos ✓",bring_h:"¿TRAES UN PLATO?",bring_ask:"pidieron:",bring_add:"+ Yo traigo…",bring_none:"O solo vengan ustedes. Nadie está revisando.",bring_taken:"Alguien ya tomó ese.",bring_what:"¿Qué vas a traer?",
+ host_h:"TÚ ERES ANFITRIÓN",host_in:"vienen",host_maybe:"quizás",host_none:"sin respuesta",host_add:"+ Agregar invitado",host_copy:"Copiar celulares",host_req:"Pedidos",host_req_add:"+ Pedir un plato",host_need:"faltan",
  map:"Mapa",parking:"Ver mapa de estacionamiento",parking_t:"Estacionamiento en casa",parking_b:["Usa los espacios numerados, primero del 1 al 30, y del 31 al 38 en la calle si se llenan.","Deja libres las zonas amarillas de \"no bloquear\". Los vecinos necesitan salir.","Compartan carro si pueden. Haz zoom con dos dedos."],close:"Cerrar",
  ev:{
+  thanksgiving:{k:"JUEVES 11/26 · 7:00 PM",sup:"ESTÁN INVITADOS A NUESTRA",sub:"CELEBRACIÓN",lead:"Buena comida, buena compañía y mucho que agradecer. ¡Nos encantaría que nos acompañen!",host:"Casa de los Espinal · Pembroke Pines",
+   det:["Puertas 7:00, comemos como a las 7:30. Vengan con hambre.","Niños, abuelos, todos. Estacionamiento en la calle, compartan carro.","Vestimenta: Thanksgiving clásico. Tonos tierra y pantalones cómodos.","Anfitriones: la familia Espinal. ¿Preguntas? Escríbele a Jared."]},
+  laras:{k:"JUEVES 12/24 · 6:00 PM",sup:"ACOMPÁÑANOS A UNA NAVIDAD DE LOS '90",lead:"¡Celebremos juntos!",host:"Anfitriones: <b>La familia Lara</b>",dress_h:"CÓDIGO DE VESTIMENTA: 1996",dress:"Home Alone en VHS, Mariah en la grabadora y el suéter que tu mamá te obligó a usar.",
+   det:["Puertas 6:00. Cena, chocolate caliente y una playlist de los 90 que te sabes completa.","Niños, abuelos, todos. Estacionamiento en la calle, compartan carro.","Anfitriones: la familia Lara. ¿Preguntas? Escríbele a Jared."]},
   bowling:{k:"MARTES 12/8 · 7:30 PM",h:"STRIKE|UP THE|HOLIDAYS",t1:"NIGHT STRIKE",t1b:"por jugador · juegos ilimitados, zapatos incluidos",t2:"CARRILES RESERVADOS",t2b:"6 por carril, uno al lado del otro. Llega a tiempo.",dress:"suéteres feos",
    det:["Night Strike va de 8 PM al cierre. Llegamos 7:30 para acomodarnos antes de empezar.","Zapatos incluidos. ¡Trae calcetines!","Estaciona gratis en el Way Pointe Garage y camina a la entrada de Lucky Strike en la plaza.","Comida y bebidas en los carriles. Niños bienvenidos."],site:"Lucky Strike Dania Beach",url:"https://www.luckystrikeent.com/"},
   topgolf:{k:"MARTES 12/15 · 6:30 PM",h:"Tee'd Up|for the|Holidays",t1:"2 hrs",t1b:"6 por bay, uno al lado del otro",t2:"$12",t2b:"por jugador",t3:"Gratis",t3b:"acompañantes",dress:"gorros de Santa · menú completo en el bay",
@@ -175,8 +189,10 @@ es:{
 }};
 
 /* ---------- state ---------- */
-const S={lang:'en',tier:'open',lillie:false,token:null,name:'',phone:'',sms:false,events:[],counts:{},rs:{},sentClaim:false,done:false};
+const S={lang:'en',token:null,name:'',phone:'',sms:false,events:[],counts:{},rs:{},sentClaim:false,done:false,invites:null,hosts:[],bring:{},host:{}};
 const EV_THEME={
+ thanksgiving:{bg:'#E6D7C0',fg:'#5A3A1E',ac:'#8A5A2B',ac2:'#8A5A2B',card:'rgba(255,250,242,.85)',font:"'Great Vibes',cursive"},
+ laras:{bg:'#F4ECDC',fg:'#2B1A12',ac:'#8E1B1B',ac2:'#1E6B3A',card:'#fff',font:"'Playfair Display',serif"},
  bowling:{bg:'#15122B',fg:'#F6EBD9',ac:'#FF5A5F',ac2:'#5EE6C3',card:'#2A2350',font:"'Bungee',sans-serif"},
  topgolf:{bg:'#123D2C',fg:'#F4EFE3',ac:'#F07167',ac2:'#E9B949',card:'#0A2A1E',font:"'Shrikhand',serif"},
  movie:{bg:'#0D0C12',fg:'#F5EEDC',ac:'#F2C14E',ac2:'#F2C14E',card:'#1E1A2A',font:"'Anton',sans-serif"},
@@ -194,11 +210,9 @@ function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorag
 (function(){
  const u=new URL(location.href);
  const v=u.searchParams.get('v'); const l=u.searchParams.get('lang'); const a=u.searchParams.get('admin');
- if(v==='xmas'){ls('tier','xmas')}
  if(l==='es'||l==='en'){ls('lang',l)}
  if(a!==null){S.admin=true}
  if(v||l){u.searchParams.delete('v');u.searchParams.delete('lang');history.replaceState({},'',u.pathname+(u.search||''))}
- S.tier=ls('tier')==='xmas'?'xmas':'open';
  S.lang=ls('lang')||((navigator.language||'').toLowerCase().startsWith('es')?'es':'en');
  S.token=ls('token');
 })();
@@ -206,17 +220,57 @@ function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorag
 /* ---------- helpers ---------- */
 const price=id=>(S.events.find(e=>e.id===id)||{}).price_cents||0;
 const rs=id=>S.rs[id]||(S.rs[id]={status:null,headcount:0,players:0,watchers:0,paid_claimed:false,paid_confirmed:false});
-const visibleEvents=()=>S.events.filter(e=>e.tier==='open'||(e.tier==='xmas'&&S.tier==='xmas')||(e.tier==='lillie'&&S.lillie));
+const visibleEvents=()=>S.invites?S.events.filter(e=>S.invites.includes(e.id)):[];
+const isHost=id=>(S.hosts||[]).includes(id);
 function evTotal(id){const r=rs(id);if(r.status!=='in')return 0;const n=id==='topgolf'?r.players:r.headcount;return n*price(id)}
 function owed(){return visibleEvents().filter(e=>!rs(e.id).paid_confirmed).reduce((a,e)=>a+evTotal(e.id),0)}
 function inCount(){return visibleEvents().filter(e=>rs(e.id).status==='in').length}
 const money=c=>'$'+(c/100).toFixed(0);
 function fmtPhone(p){p=(p||'').replace(/\D/g,'').slice(-10);return p.length===10?`(${p.slice(0,3)}) ${p.slice(3,6)}-${p.slice(6)}`:p}
 
+
+/* ---------- gate ---------- */
+function renderGate(){
+ const L=t();
+ return `<section id="gate" style="background:#16301F;padding:70px 26px 28px;display:flex;flex-direction:column;gap:14px;position:relative;min-height:100svh">
+  <svg aria-hidden="true" width="480" height="60" viewBox="0 0 430 60" style="position:absolute;left:0;top:-4px;width:100%" fill="none"><path d="M-10 6 Q110 60 215 18 T440 6" stroke="#2F5A3C" stroke-width="14" stroke-linecap="round"/><g><circle cx="50" cy="26" r="7" fill="#C8302E"/><circle cx="120" cy="40" r="7" fill="#D9B56C"/><circle cx="215" cy="22" r="7" fill="#F3E7D0"/><circle cx="300" cy="14" r="7" fill="#C8302E"/><circle cx="380" cy="18" r="7" fill="#D9B56C"/></g></svg>
+  <div style="text-align:center;margin-top:10px;position:relative"><div style="font-family:'Pinyon Script',cursive;font-size:46px;line-height:.9;color:var(--gold);margin-bottom:-8px">FRamily</div><div style="font-family:'Fraunces',serif;font-weight:900;font-size:40px;line-height:.95">HOLIDAY FUN</div><div class="kicker" style="letter-spacing:4px;margin-top:6px">DECEMBER 2026</div></div>
+  <div style="font-family:'Fraunces',serif;font-weight:700;font-size:24px;line-height:1.1;margin-top:14px">${L.gate_h}</div>
+  <div style="font-size:14px;line-height:1.45;opacity:.9">${L.gate_sub}</div>
+  <label class="f">${L.fam}<input class="t" id="gName" value="${esc(S.name)}" autocomplete="family-name" style="border-color:var(--gold)"></label>
+  <label class="f">${L.cell}<input class="t" id="gPhone" type="tel" value="${esc(fmtPhone(S.phone))}" autocomplete="tel" inputmode="tel" style="border-color:var(--gold)"></label>
+  <label style="display:flex;align-items:flex-start;gap:10px;background:#F3E7D0;color:#16301F;border:2px solid var(--gold);border-radius:10px;padding:12px;font-size:12px;line-height:1.4"><input type="checkbox" id="gSms" ${S.sms?'checked':''} style="width:22px;height:22px;flex:0 0 auto;accent-color:#16301F"><span><b style="display:block;font-size:13px;margin-bottom:2px">${L.sms_h}</b>${L.sms}</span></label>
+  <button class="mbtn" id="gBtn" style="background:var(--gold);color:#16301F;padding:16px;font-size:16px">${L.gate_btn}</button>
+  <div style="font-size:11px;text-align:center;opacity:.7;margin-top:auto">${L.gate_foot}</div>
+  <div style="font-size:10px;text-align:center;opacity:.5"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · v${BUILD}</div>
+ </section>`;
+}
+function bindGate(){
+ $('#gBtn').onclick=async()=>{
+  const L=t(); const name=($('#gName').value||'').trim(); const digits=($('#gPhone').value||'').replace(/\D/g,'').slice(-10); const sms=$('#gSms').checked;
+  if(!name||digits.length!==10){toast(!name?L.need_name:L.bad_phone);return}
+  const b=$('#gBtn'); b.disabled=true; b.textContent='…';
+  try{
+   const {data:f,error}=await sb.rpc('family_start',{p_name:name,p_phone:digits,p_lang:S.lang,p_tier:'open',p_sms:sms});
+   if(error)throw error;
+   applyFamily(f); ls('token',S.token); persistLocal(); await loadBring(); for(const id of (S.hosts||[])) await loadHost(id); render(); P.i=0; $('#app').scrollTop=0;
+  }catch(e){console.error(e);toast("Hmm, that didn't work. Try again or text Jared.");b.disabled=false;b.textContent=L.gate_btn}
+ };
+ $('#gPhone').onkeydown=e=>{if(e.key==='Enter')$('#gBtn').click()};
+}
+function applyFamily(f){
+ S.token=f.token; S.name=f.name||S.name; S.phone=f.phone; S.sms=!!f.sms_optin; S.lang=f.lang||S.lang; S.invites=f.invites||[]; S.hosts=f.hosts||[];
+ const srv={}; for(const r of (f.rsvps||[])) srv[r.event_id]={status:r.status,headcount:r.headcount,players:r.players,watchers:r.watchers,paid_claimed:r.paid_claimed,paid_confirmed:r.paid_confirmed};
+ S.rs=Object.assign({},S.rs,srv); S.done=(f.rsvps||[]).length>0;
+}
+
 /* ---------- render ---------- */
 function render(){
  if(S.admin){renderAdmin();return}
  const L=t(); const app=$('#app');
+ document.documentElement.lang=S.lang;
+ document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===S.lang));
+ if(!S.invites){ app.innerHTML=renderGate(); bindGate(); $('#nav').classList.add('hidden'); $('#bar').classList.add('hidden'); return }
  document.documentElement.lang=S.lang;
  document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===S.lang));
  const evs=visibleEvents();
@@ -226,23 +280,27 @@ function render(){
   <svg aria-hidden="true" width="480" height="60" viewBox="0 0 430 60" style="position:absolute;left:0;top:-4px;width:100%" fill="none"><path d="M-10 6 Q110 60 215 18 T440 6" stroke="#2F5A3C" stroke-width="14" stroke-linecap="round"/><g><circle cx="50" cy="26" r="7" fill="#C8302E"/><circle cx="120" cy="40" r="7" fill="#D9B56C"/><circle cx="215" cy="22" r="7" fill="#F3E7D0"/><circle cx="300" cy="14" r="7" fill="#C8302E"/><circle cx="380" cy="18" r="7" fill="#D9B56C"/></g></svg>
   <div style="font-family:'Pinyon Script',cursive;font-size:clamp(44px,6.5vh,60px);line-height:.9;color:var(--gold);margin-top:10px;margin-bottom:-8px;position:relative">FRamily</div>
   <div style="font-family:'Fraunces',serif;font-weight:900;font-size:clamp(42px,6vh,56px);line-height:.95;position:relative">HOLIDAY FUN</div>
-  <div class="kicker" style="letter-spacing:4px;position:relative">DECEMBER 2026</div>
+  <div class="kicker" style="letter-spacing:4px;position:relative">${S.name?L.hey.replace('$NAME',esc(S.name).toUpperCase()):'DECEMBER 2026'}</div>
   <div style="display:flex;gap:8px;margin-top:8px;position:relative">
    <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(-5deg);box-shadow:0 6px 14px rgba(0,0,0,.4)"><img src="img/bowling-2025.jpg" alt="Bowling 2025" style="width:clamp(96px,26vw,124px);aspect-ratio:100/72;object-fit:cover;object-position:50% 45%;display:block"></div>
    <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(2deg) translateY(-6px);box-shadow:0 8px 18px rgba(0,0,0,.45)"><img src="img/topgolf-2025.jpg" alt="Topgolf 2025" style="width:clamp(104px,29vw,136px);aspect-ratio:110/78;object-fit:cover;object-position:50% 60%;display:block"></div>
    <div style="background:#F3E7D0;padding:6px;border-radius:3px;transform:rotate(5deg);box-shadow:0 6px 14px rgba(0,0,0,.4)"><img src="img/movie-2025.jpg" alt="Movie 2025" style="width:clamp(96px,26vw,124px);aspect-ratio:100/72;object-fit:cover;object-position:50% 55%;display:block"></div>
   </div>
   <div class="lead" style="margin-top:10px;max-width:340px;position:relative">${L.hero_sub}</div>
-  <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;justify-content:center;position:relative">${chips}</div>
+  <div class="kicker" style="font-size:10px;opacity:.7;position:relative">${L.your_invites}</div>
+  <div style="display:flex;gap:6px;margin-top:2px;flex-wrap:wrap;justify-content:center;position:relative">${chips}</div>
    </section>`;
  for(const e of evs) h+=renderEvent(e);
  h+=renderLock();
  app.innerHTML=h;
  bindEvents();
+ pages().forEach(p=>p.addEventListener('scroll',onInnerScroll,{passive:true}));
  const ps=pages(); if(ps[P.i]) app.scrollTop=ps[P.i].offsetTop;
  updateBar();
 }
 const CHIP_ICON={
+ thanksgiving:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14c0-4 4-7 8-7s8 3 8 7-4 6-8 6-8-2-8-6z"/><path d="M12 7V3M9 5l3-2 3 2"/></svg>',
+ laras:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6v3H9z"/><path d="M12 6c-4 0-6 4-6 8a6 6 0 0 0 12 0c0-4-2-8-6-8z"/></svg>',
  bowling:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="14" cy="8" r="1" fill="currentColor"/><circle cx="13" cy="13" r="1" fill="currentColor"/></svg>',
  topgolf:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v18M8 3l10 4-10 4"/><path d="M4 21h8"/></svg>',
  movie:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l1.5 13h11L19 8z"/><circle cx="9" cy="6" r="2.2"/><circle cx="15" cy="6" r="2.2"/><circle cx="12" cy="4" r="2.2"/><path d="M9.5 8l.8 13M14.5 8l-.8 13"/></svg>',
@@ -251,13 +309,13 @@ const CHIP_ICON={
  lillie:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>'
 };
 function nextLabel(id){const evs=visibleEvents();const k=evs.findIndex(e=>e.id===id);const n=evs[k+1];return n?chipLabel(n.id):(t().lock.toUpperCase())}
-function chipLabel(id){return {bowling:'12/8 BOWL',topgolf:'12/15 GOLF',movie:'12/22 MOVIE',crossway:'12/24 EVE',christmas:'12/25 XMAS',lillie:'12/29 LILLIE'}[id]}
+function chipLabel(id){return {thanksgiving:'11/26 THANKS',laras:"12/24 LARA'S",bowling:'12/8 BOWL',topgolf:'12/15 GOLF',movie:'12/22 MOVIE',crossway:'12/24 EVE',christmas:'12/25 XMAS',lillie:'12/29 LILLIE'}[id]}
 
-function rsvpButtons(id,th,labels){
+function rsvpButtons(id,th,labels,inLabel){
  const r=rs(id); const L=t();
  const b=(st,txt,cls)=>`<button class="btn ${cls} ${r.status===st?'sel':''}" data-rsvp="${id}" data-st="${st}" style="${cls?'':`background:${th.ac};color:${th.bg}`}">${txt}</button>`;
  if(labels) return `<div class="btns">${b('in',labels[0],'')}${b('out',labels[1],'o')}</div>`;
- return `<div class="btns">${b('in',L.in,'')}${b('maybe',L.maybe,'o')}${b('out',L.out,'o dim')}</div>`;
+ return `<div class="btns">${b('in',inLabel||L.in,'')}${b('maybe',L.maybe,'o')}${b('out',L.out,'o dim')}</div>`;
 }
 function stepper(id,field,label,th,small){
  const r=rs(id); const v=r[field]||0;
@@ -273,12 +331,76 @@ function detailsBlock(ev,th,title,extra){
 }
 function calBtn(id){const L=t();return `<button class="cal" data-cal="${id}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>${L.cal}</button>`}
 
+
+function bringBoard(id,th){
+ const L=t(); const e=S.events.find(x=>x.id===id); if(!e||!e.bring_enabled)return '';
+ const items=S.bring[id]||[]; const hostName=e.host_label||'';
+ const chips=items.map(b=>{
+  if(b.claimed_by&&!b.mine) return `<span style="font-size:12px;font-weight:700;border:1px solid ${th.ac2};border-radius:999px;padding:6px 10px;opacity:.5;text-decoration:line-through">${esc(b.label)} · ${esc(b.claimer||'')}</span>`;
+  if(b.mine) return `<button data-bring="${b.id}" data-on="0" style="font-size:12px;font-weight:700;border:1px solid ${th.ac2};border-radius:999px;padding:6px 10px;background:${th.ac2};color:#fff;font-family:inherit;cursor:pointer">✓ ${esc(b.label)} · ${S.lang==='es'?'Tú':'You'} ✕</button>`;
+  return `<button data-bring="${b.id}" data-on="1" style="font-size:12px;font-weight:700;border:1px solid ${th.ac2};border-radius:999px;padding:6px 10px;background:transparent;color:inherit;font-family:inherit;cursor:pointer">${esc(b.label)}${b.needed>1?` (${L.host_need} ${b.needed})`:''}</button>`;
+ }).join('');
+ return `<div style="background:${th.ac2};color:#fff;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+  <div style="display:flex;justify-content:space-between;align-items:center"><div class="kicker" style="font-size:10px;color:#F2C02B">${L.bring_h}</div><div style="font-size:11px;opacity:.85">${esc(hostName)} ${L.bring_ask}</div></div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px">${chips}<button data-bring-add="${id}" style="font-size:12px;font-weight:700;border:1px dashed #F2C02B;border-radius:999px;padding:6px 10px;background:transparent;color:#fff;font-family:inherit;cursor:pointer">${L.bring_add}</button></div>
+  <div style="font-size:11px;opacity:.75">${L.bring_none}</div></div>`;
+}
+function hostPanel(id,th){
+ if(!isHost(id))return ''; const L=t(); const h=S.host[id];
+ if(!h) return `<div style="background:${th.card};border:2px dashed ${th.ac};border-radius:10px;padding:12px 14px"><div class="kicker" style="font-size:10px;color:${th.ac}">${L.host_h}</div><div style="font-size:12px;opacity:.7;margin-top:4px">…</div></div>`;
+ const inN=h.guests.filter(g=>g.status==='in').reduce((a,g)=>a+g.headcount,0); const inF=h.guests.filter(g=>g.status==='in').length; const mb=h.guests.filter(g=>g.status==='maybe').length; const none=h.guests.filter(g=>!g.status).length;
+ const rows=h.guests.map(g=>`<div style="display:flex;align-items:center;gap:6px;font-size:12px;padding:5px 0;border-top:1px solid rgba(0,0,0,.12)"><span style="flex:1;font-weight:600">${esc(g.name||fmtPhone(g.phone))}</span><span style="opacity:.7;white-space:nowrap">${g.status==='in'?`${g.headcount} ${L.host_in}`:g.status==='maybe'?L.host_maybe:g.status==='out'?L.out:L.host_none}</span><button data-hrs="${id}|${g.family_id}|in|${g.headcount||1}" style="border:1px solid currentColor;background:${g.status==='in'?th.ac:'transparent'};color:${g.status==='in'?'#fff':'inherit'};border-radius:999px;padding:3px 8px;font-size:11px;font-family:inherit;cursor:pointer">✓</button><button data-hrs="${id}|${g.family_id}|out|0" style="border:1px solid currentColor;background:${g.status==='out'?'#555':'transparent'};color:${g.status==='out'?'#fff':'inherit'};border-radius:999px;padding:3px 8px;font-size:11px;font-family:inherit;cursor:pointer">✕</button></div>`).join('');
+ const reqs=(h.bring||[]).map(b=>`<span style="font-size:11px;border:1px solid currentColor;border-radius:999px;padding:4px 8px;display:inline-flex;gap:6px;align-items:center">${esc(b.label)}${b.needed>1?' ×'+b.needed:''}${b.claimer?` · <b>${esc(b.claimer)}</b>`:''}${b.custom?'':`<button data-hbrm="${id}|${b.id}" style="border:0;background:none;color:#C8302E;font-weight:700;cursor:pointer;padding:0">×</button>`}</span>`).join(' ');
+ return `<div style="background:${th.card};border:2px dashed ${th.ac};border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+  <div style="display:flex;justify-content:space-between;align-items:center"><div class="kicker" style="font-size:10px;color:${th.ac}">${L.host_h}</div><div style="font-size:12px;font-weight:700">${inN} ${L.host_in} · ${inF} fam · ${mb} ${L.host_maybe} · ${none} ${L.host_none}</div></div>
+  <div style="max-height:260px;overflow:auto">${rows}</div>
+  <div style="display:flex;gap:6px"><button data-hadd="${id}" class="btn o" style="font-size:12px;padding:8px 12px">${L.host_add}</button><button data-hcopy="${id}" class="btn o" style="font-size:12px;padding:8px 12px">${L.host_copy}</button></div>
+  ${S.events.find(x=>x.id===id)?.bring_enabled?`<div class="kicker" style="font-size:10px;opacity:.8;margin-top:4px">${L.host_req}</div><div style="display:flex;flex-wrap:wrap;gap:6px">${reqs}<button data-hbadd="${id}" style="font-size:11px;border:1px dashed currentColor;border-radius:999px;padding:4px 8px;background:transparent;color:inherit;font-family:inherit;cursor:pointer">${L.host_req_add}</button></div>`:''}
+ </div>`;
+}
+async function loadHost(id){ if(!isHost(id)||!S.token)return; const {data}=await sb.rpc('host_get',{p_token:S.token,p_event:id}); if(data){S.host[id]=data;} }
+
 function renderEvent(e){
  const id=e.id, th=EV_THEME[id], L=t(), d=L.ev[id], r=rs(id);
  const hidden=r.status==='in'?'':'hidden';
  const mapA=`<a class="link" href="${esc(e.map_url||'#')}" target="_blank" rel="noopener" style="color:${th.ac2}">${esc(e.address.replace(/, FL \d+$/,''))} · ${L.map}</a>`;
  let inner='';
- if(id==='bowling'){
+
+ if(id==='thanksgiving'){
+  inner=`<img src="img/tg_leaves.png" alt="" style="position:absolute;right:-10px;top:-8px;width:150px;height:auto;pointer-events:none"><img src="img/tg_pumpkins.png" alt="" style="position:absolute;left:-20px;bottom:0;width:330px;height:auto;opacity:.95;pointer-events:none">
+  <div style="position:absolute;inset:12px;border:1px solid #7A5A3A;opacity:.6;pointer-events:none"></div>
+  <div class="kicker" style="color:${th.ac}">${d.k}</div>
+  <div style="text-align:center;margin-top:4px;font-family:'Cormorant Garamond',serif"><div style="font-size:12px;letter-spacing:5px;font-weight:600">${d.sup}</div><div style="font-family:${th.font};font-size:clamp(52px,17vw,74px);line-height:.9;margin-top:12px">Thanksgiving</div><div style="font-size:24px;letter-spacing:8px;font-weight:600">${d.sub}</div>
+   <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;color:#7A5A3A"><div style="width:70px;height:1px;background:#7A5A3A"></div><div style="font-size:14px">♥</div><div style="width:70px;height:1px;background:#7A5A3A"></div></div>
+   <div style="font-size:17px;line-height:1.35;margin-top:10px">${d.lead}</div></div>
+  <div style="font-size:15px;font-weight:600">${d.host}</div>${mapA}
+  ${detailsBlock(id,th)}
+  ${hostPanel(id,th)}
+  ${rsvpButtons(id,th,null,L.coming)}
+  <div class="${hidden}" data-when="${id}">${stepper(id,'headcount',L.howmany,th)}</div>
+  ${bringBoard(id,th)}`;
+ } else if(id==='laras'){
+  inner=`<div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg, rgba(20,60,40,.85) 0 18px, transparent 18px 37px, rgba(20,60,40,.85) 37px 55px, transparent 55px 74px), repeating-linear-gradient(90deg, rgba(20,60,40,.85) 0 18px, transparent 18px 37px, rgba(20,60,40,.85) 37px 55px, transparent 55px 74px), repeating-linear-gradient(0deg, rgba(240,200,60,.55) 0 2px, transparent 2px 37px), repeating-linear-gradient(90deg, rgba(240,200,60,.55) 0 2px, transparent 2px 37px), repeating-linear-gradient(0deg, rgba(255,255,255,.35) 19px 20px, transparent 20px 55px), repeating-linear-gradient(90deg, rgba(255,255,255,.35) 19px 20px, transparent 20px 55px);pointer-events:none"></div>
+  <div class="kicker" style="color:#F4ECDC;text-shadow:0 1px 4px rgba(0,0,0,.6);text-align:center">${d.k}</div>
+  <div style="background:#F4ECDC;border-radius:190px 190px 22px 22px;padding:26px 16px 16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 12px 30px rgba(0,0,0,.35);position:relative">
+   <div style="position:absolute;inset:8px;border:2px solid #8E1B1B;border-radius:182px 182px 16px 16px;pointer-events:none"></div>
+   <svg aria-hidden="true" width="120" height="60" viewBox="-130 -46 260 120" style="margin:0 auto;position:relative" fill="none"><path d="M-120 -10 C-100 -40 -40 -36 -20 -8 C-40 10 -100 20 -120 -10z" fill="#B01E1E"/><path d="M120 -10 C100 -40 40 -36 20 -8 C40 10 100 20 120 -10z" fill="#B01E1E"/><path d="M-30 4 C-40 40 -36 70 -20 96 L-4 70 L-12 4z" fill="#A51A1A"/><path d="M30 4 C40 40 36 70 20 96 L4 70 L12 4z" fill="#A51A1A"/><circle cx="0" cy="-6" r="18" fill="#C92A2A"/><g transform="translate(0 60)"><ellipse cx="0" cy="0" rx="18" ry="26" fill="#9B6B3B"/></g></svg>
+   <div style="text-align:center;position:relative"><div class="kicker" style="font-size:10px;letter-spacing:4px">${d.sup}</div><div style="font-family:${th.font};font-weight:700;font-size:46px;line-height:.95;color:#8E1B1B;margin-top:4px">CHRISTMAS</div><div style="font-family:'Great Vibes',cursive;font-size:62px;line-height:.8;color:#1E6B3A;margin-top:-4px">Eve</div></div>
+   <div style="display:flex;align-items:center;gap:10px;margin-top:6px;position:relative"><div style="flex:1;border-top:1.5px dotted #8E1B1B;border-bottom:1.5px dotted #8E1B1B;padding:5px 0;font-size:14px;font-weight:600;text-align:center">${S.lang==='es'?'Diciembre':'December'}</div><div style="width:54px;height:54px;border-radius:50%;border:3px double #8E1B1B;display:flex;align-items:center;justify-content:center;font-family:${th.font};font-weight:700;color:#8E1B1B;flex:0 0 auto;line-height:1"><span style="font-size:26px">24</span></div><div style="flex:1;border-top:1.5px dotted #8E1B1B;border-bottom:1.5px dotted #8E1B1B;padding:5px 0;font-size:14px;font-weight:600;text-align:center">6:00 pm</div></div>
+   <div style="text-align:center;font-size:13px;position:relative">${d.host}</div>
+   <div style="font-family:'Great Vibes',cursive;font-size:30px;color:#8E1B1B;text-align:center;line-height:1;position:relative">${d.lead}</div>
+   <div style="text-align:center;position:relative">${mapA}</div>
+   <div style="font-family:'Amatic SC',cursive;font-weight:700;font-size:26px;letter-spacing:2px;color:#8E1B1B;text-align:center;line-height:1;margin-top:4px;position:relative">${d.dress_h}</div>
+   <div style="font-size:12px;text-align:center;line-height:1.4;opacity:.85;position:relative">${d.dress}</div>
+   <div style="position:relative">${detailsBlock(id,th)}</div>
+   <div style="position:relative">${hostPanel(id,th)}</div>
+   <div style="position:relative">${rsvpButtons(id,th,null,L.coming)}</div>
+   <div class="${hidden}" data-when="${id}" style="position:relative">${stepper(id,'headcount',L.howmany,th)}</div>
+   <div style="position:relative">${bringBoard(id,th)}</div>
+   <div style="position:relative">${calBtn(id)}</div>
+  </div>`;
+  return `<section class="ev" id="ev-${id}" style="background:#8E1B1B;color:${th.fg}">${inner}</section>`;
+ } else if(id==='bowling'){
   inner=`<svg aria-hidden="true" width="100%" height="240" viewBox="0 0 430 240" preserveAspectRatio="none" style="position:absolute;left:0;top:0" fill="none"><path d="M0 240 L183 0 L247 0 L430 240 Z" fill="#1F1A3D"/><path d="M56 240 L198 0 M127 240 L206 0 M215 240 L215 0 M303 240 L224 0 M374 240 L232 0" stroke="#2A2350" stroke-width="1.5"/><path d="M183 0 L0 240 M247 0 L430 240" stroke="${th.ac}" stroke-width="1.5"/></svg>
   <div class="kicker" style="color:${th.ac}">${d.k}</div>
   <div style="display:flex;gap:12px;align-items:flex-end;justify-content:space-between"><div style="font-family:${th.font};font-size:44px;line-height:.95">STRIKE<br><span style="color:${th.ac}">UP THE</span><br>HOLIDAYS</div>
@@ -344,6 +466,7 @@ function renderEvent(e){
    <div style="background:#F3E7D0;padding:8px;border-radius:4px;transform:rotate(-1.5deg);box-shadow:0 8px 20px rgba(0,0,0,.35)"><div style="width:280px;max-width:72vw;aspect-ratio:300/190;overflow:hidden;border-radius:2px"><img src="img/nutcracker-2025.jpg" alt="${esc(d.cap)}" style="width:173%;height:auto;display:block;margin-top:-33%;margin-left:-30%"></div><div style="font-family:'Pinyon Script',cursive;font-size:16px;color:#5A1521;margin-top:4px">${d.cap}</div></div>
    <div style="font-size:13px;font-weight:700">${d.host}</div>
    <div style="width:100%;text-align:left">${detailsBlock(id,th,d.t,`<button class="cal" data-parking="1" style="margin-top:10px;border-color:${th.ac}">${L.parking}</button>`)}</div>
+   <div style="width:100%;text-align:left">${hostPanel(id,th)}</div>
    <div style="width:100%">${rsvpButtons(id,th,[d.btn,L.not_time])}</div>
    <div class="${hidden}" data-when="${id}" style="width:100%">${stepper(id,'headcount',L.howmany,th)}</div>
   </div></div>`;
@@ -428,6 +551,14 @@ function bindEvents(){
   const c=S.counts[id]; if(c&&c.cap&&f==='headcount'&&r[f]>c.cap){r[f]=c.cap}
   rerenderEvent(id); persistLocal(); updateBar();
  });
+
+ document.querySelectorAll('[data-bring]').forEach(b=>b.onclick=async()=>{const on=b.dataset.on==='1';const {error}=await sb.rpc('bring_claim',{p_token:S.token,p_item:b.dataset.bring,p_on:on});if(error){toast(t().bring_taken)}const id=b.closest('section').id.replace('ev-','');const {data}=await sb.rpc('bring_get',{p_token:S.token,p_event:id});S.bring[id]=data||[];rerenderEvent(id)});
+ document.querySelectorAll('[data-bring-add]').forEach(b=>b.onclick=async()=>{const id=b.dataset.bringAdd;const v=prompt(t().bring_what);if(!v)return;const {error}=await sb.rpc('bring_add',{p_token:S.token,p_event:id,p_label:v});if(error){toast('Hmm');return}const {data}=await sb.rpc('bring_get',{p_token:S.token,p_event:id});S.bring[id]=data||[];rerenderEvent(id)});
+ document.querySelectorAll('[data-hrs]').forEach(b=>b.onclick=async()=>{const [id,fid,st,hc]=b.dataset.hrs.split('|');let n=+hc||1;if(st==='in'){const v=prompt(t().howmany,String(n));if(v===null)return;n=Math.max(0,parseInt(v)||0)}await sb.rpc('host_set_rsvp',{p_token:S.token,p_event:id,p_family:fid,p_status:st,p_headcount:n});await loadHost(id);rerenderEvent(id)});
+ document.querySelectorAll('[data-hadd]').forEach(b=>b.onclick=async()=>{const id=b.dataset.hadd;const n=prompt(t().fam);if(!n)return;const ph=prompt(t().cell);if(!ph)return;const {error}=await sb.rpc('host_add_guest',{p_token:S.token,p_event:id,p_name:n,p_phone:ph});if(error){toast(t().bad_phone);return}await loadHost(id);rerenderEvent(id)});
+ document.querySelectorAll('[data-hcopy]').forEach(b=>b.onclick=()=>{const h=S.host[b.dataset.hcopy];if(!h)return;const list=h.guests.filter(g=>g.status==='in').map(g=>fmtPhone(g.phone)).join(', ');navigator.clipboard?.writeText(list).then(()=>toast(t().copied))});
+ document.querySelectorAll('[data-hbadd]').forEach(b=>b.onclick=async()=>{const id=b.dataset.hbadd;const v=prompt(t().host_req);if(!v)return;const n=prompt(t().host_need+'?','1');await sb.rpc('host_bring_set',{p_token:S.token,p_event:id,p_label:v,p_needed:parseInt(n)||1});await loadHost(id);const {data}=await sb.rpc('bring_get',{p_token:S.token,p_event:id});S.bring[id]=data||[];rerenderEvent(id)});
+ document.querySelectorAll('[data-hbrm]').forEach(b=>b.onclick=async()=>{const [id,item]=b.dataset.hbrm.split('|');await sb.rpc('host_bring_set',{p_token:S.token,p_event:id,p_label:'',p_item:item,p_remove:true});await loadHost(id);const {data}=await sb.rpc('bring_get',{p_token:S.token,p_event:id});S.bring[id]=data||[];rerenderEvent(id)});
  document.querySelectorAll('[data-cal]').forEach(b=>b.onclick=()=>downloadIcs(b.dataset.cal));
  document.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>{const el=$('#ev-'+b.dataset.jump);if(el)goTo(pages().indexOf(el))});
  $('#nav button').onclick=()=>goTo(curPage()+1);
@@ -458,10 +589,9 @@ async function submitRsvp(){
  if(!Object.values(S.rs).some(r=>r.status)){toast(L.nothing);return}
  const btn=$('#sendBtn'); btn.disabled=true; btn.textContent='…';
  try{
-  const {data:fam,error}=await sb.rpc('family_start',{p_name:S.name,p_phone:digits,p_lang:S.lang,p_tier:S.tier});
+  const {data:fam,error}=await sb.rpc('family_start',{p_name:S.name,p_phone:digits,p_lang:S.lang,p_tier:'open',p_sms:S.sms});
   if(error)throw error;
-  S.token=fam.token; ls('token',S.token); S.lillie=!!fam.lillie; if(fam.tier==='xmas'){S.tier='xmas';ls('tier','xmas')}
-  await sb.rpc('family_update',{p_token:S.token,p_name:S.name,p_lang:S.lang,p_sms_optin:S.sms});
+  applyFamily(fam); ls('token',S.token);
   const sent=$('#fSent')?.checked||false;
   for(const e of visibleEvents()){const r=rs(e.id); if(!r.status)continue;
    const {error:er}=await sb.rpc('rsvp_set',{p_token:S.token,p_event:e.id,p_status:r.status,p_headcount:r.headcount|0,p_players:r.players|0,p_watchers:r.watchers|0,p_paid_claimed:(sent&&evTotal(e.id)>0)?true:null});
@@ -473,11 +603,12 @@ async function submitRsvp(){
 }
 async function loadFamily(){
  if(!S.token)return;
- const {data:f}=await sb.rpc('family_get',{p_token:S.token}); if(!f){ls('token','');S.token=null;return}
- S.name=f.name;S.phone=f.phone;S.sms=!!f.sms_optin;S.lillie=!!f.lillie;if(f.tier==='xmas'){S.tier='xmas';ls('tier','xmas')}
- S.lang=f.lang||S.lang; S.done=true;
- const srv={}; for(const r of (f.rsvps||[])) srv[r.event_id]={status:r.status,headcount:r.headcount,players:r.players,watchers:r.watchers,paid_claimed:r.paid_claimed,paid_confirmed:r.paid_confirmed};
- S.rs=Object.assign({},S.rs,srv); persistLocal();
+ const {data:f}=await sb.rpc('family_get',{p_token:S.token}); if(!f){ls('token','');S.token=null;S.invites=null;return}
+ applyFamily(f); persistLocal();
+ await loadBring(); for(const id of (S.hosts||[])) await loadHost(id);
+}
+async function loadBring(){
+ for(const e of visibleEvents()){ if(!e.bring_enabled)continue; const {data}=await sb.rpc('bring_get',{p_token:S.token,p_event:e.id}); S.bring[e.id]=data||[]; }
 }
 
 /* ---------- calendar ---------- */
@@ -503,7 +634,7 @@ function showParking(){
 function showShare(){
  const L=t(); const m=document.createElement('div'); m.className='modal';
  const opts=[['bowling',true],['topgolf',true],['movie',true],['crossway',true]];
- const xm=S.tier==='xmas';
+ const xm=(S.invites||[]).includes('christmas');
  let rows=opts.map(([id,ck])=>{const e=S.events.find(x=>x.id===id);const nm=S.lang==='es'?e.name_es:e.name_en;return `<label class="c"><input type="checkbox" data-sh="${id}" ${ck?'checked':''}><span style="flex:1"><b>${chipLabel(id).split(' ')[0]}</b> ${esc(nm)}</span></label>`}).join('');
  if(xm) rows+=`<label class="c" style="flex-direction:column;align-items:stretch;border:1px dashed #5A1521"><span style="display:flex;gap:10px;align-items:center"><input type="checkbox" data-sh="christmas"><span style="flex:1"><b>12/25</b> FRamily Christmas</span></span><span style="font-size:11px;opacity:.8;padding-left:28px">${L.share_x}</span></label>`;
  m.innerHTML=`<div><div class="handle"></div><h3>${L.share_t}</h3><div style="font-size:12px;opacity:.8">${L.share_sub}</div>${rows}<button class="mbtn" id="shWrite">${L.write}</button><button class="mbtn alt" id="shCopy">${L.copy_msg}</button></div>`;
@@ -525,6 +656,7 @@ async function renderAdmin(){
  let pass=ls('adminpass');
  if(!pass){A.innerHTML=`<div style="max-width:360px;margin:80px auto;display:flex;flex-direction:column;gap:10px"><h2 style="font-family:'Fraunces',serif;margin:0">Admin</h2><input id="ap" type="password" placeholder="Passphrase" style="padding:12px;font-size:16px"><button class="mbtn" id="apb">Open</button></div>`;
   $('#apb').onclick=async()=>{const p=$('#ap').value;const {data}=await sb.rpc('admin_ok',{p_pass:p});if(data){ls('adminpass',p);renderAdmin()}else toast('Nope.')}; $('#ap').onkeydown=e=>{if(e.key==='Enter')$('#apb').click()}; return}
+ if(S.adminTab==='guests'){return renderGuestList(pass)}
  const {data,error}=await sb.rpc('admin_overview',{p_pass:pass}); if(error){ls('adminpass','');renderAdmin();return}
  const evs=S.events; const fams=data.families||[]; const filt=S.adminFilter||'all';
  const stat={}; for(const e of evs){stat[e.id]={in:0,maybe:0,players:0,watchers:0,owed:0,paid:0,fams:0}}
@@ -534,33 +666,80 @@ async function renderAdmin(){
   return `<div style="background:${col[e.id]}"><div style="font-size:10px;letter-spacing:2px;font-weight:700;opacity:.85">${esc(chipLabel(e.id))}</div><b>${n}${cap}</b><div style="font-size:11px;opacity:.85">${s.fams} families${lanes}${price(e.id)?` · $${s.paid/100} / $${(s.paid+s.owed)/100}`:''}${s.maybe?` · ${s.maybe} maybe`:''}</div></div>`}).join('');
  const unpaidTotal=Object.values(stat).reduce((a,s)=>a+s.owed,0);
  const rows=fams.filter(f=>filt==='all'||f.rsvps.some(r=>r.event_id===filt&&r.status!=='out')).map(f=>{
-  const cells=evs.map(e=>{const r=f.rsvps.find(x=>x.event_id===e.id);const inv=e.tier==='open'||(e.tier==='xmas'&&f.tier==='xmas')||(e.tier==='lillie'&&f.lillie);
+  const cells=evs.map(e=>{const r=f.rsvps.find(x=>x.event_id===e.id);const inv=(f.invites||[]).includes(e.id);
    if(!inv)return `<td style="opacity:.35">—</td>`; if(!r)return `<td style="opacity:.5">?</td>`;
    if(r.status==='out')return `<td style="opacity:.5">out</td>`; if(r.status==='maybe')return `<td style="color:#9A6B00">maybe ${r.headcount}</td>`;
    const amt=(e.id==='topgolf'?r.players:r.headcount)*price(e.id); const cnt=e.id==='topgolf'?`${r.players}+${r.watchers}`:r.headcount;
    let pay=''; if(amt){pay=r.paid_confirmed?`<span class="chip" style="background:#DFF2E4;color:#2F7A48">paid</span>`:`<button class="chip" data-pay="${f.id}|${e.id}" style="background:${r.paid_claimed?'#FFF1D6':'#FBE3E1'};color:${r.paid_claimed?'#9A6B00':'#C8302E'};border:0">${r.paid_claimed?'says sent':'due'} $${amt/100} ✓?</button>`}
    return `<td><b>${cnt}</b> ${pay}</td>`}).join('');
-  return `<tr><td><b>${esc(f.name)}</b><br><span style="font-size:11px;opacity:.7">${f.tier==='xmas'?'family':'open'}${f.lillie?' · lillie':''}${f.invited_friend_to_xmas?' · invited friend to xmas':''}${f.sms_optin?' · 📱':''} · ${f.lang}</span></td><td>${fmtPhone(f.phone)}</td>${cells}</tr>`}).join('');
- const lil=(data.lillie_list||[]).map(l=>`<span class="chip" style="background:#fff;border:1px solid #D4AF37;margin:2px">${esc(l.name||'')} ${fmtPhone(l.phone)} <button data-lrm="${l.phone}" style="border:0;background:none;color:#C8302E;font-weight:700">×</button></span>`).join('');
+  return `<tr><td><b>${esc(f.name||'')}</b><br><span style="font-size:11px;opacity:.7">${(f.labels||[]).join(', ')}${f.sms_optin?' · 📱':''} · ${f.lang}</span></td><td>${fmtPhone(f.phone)}</td>${cells}</tr>`}).join('');
  A.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px"><div><div style="font-size:11px;letter-spacing:3px;font-weight:700;color:#5A1521">FRAMILY HOLIDAY FUN · ADMIN</div><div style="font-family:'Fraunces',serif;font-weight:900;font-size:30px">RSVPs &amp; payments</div></div>
-  <div><button class="tb" id="copyPh">Copy phone list</button><button class="tb" id="csv">Download CSV</button><button class="tb" id="addF">+ Add family</button><button class="tb" id="out">Log out</button></div></div>
+  <div><button class="tb on">RSVPs &amp; payments</button><button class="tb" id="tabG">Guest List</button><span style="display:inline-block;width:1px;height:24px;background:#16301F;opacity:.3;margin:0 8px;vertical-align:middle"></span><button class="tb" id="copyPh">Copy phone list</button><button class="tb" id="csv">Download CSV</button><button class="tb" id="out">Log out</button></div></div>
   <div class="k">${kpi}</div>
   <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center;margin:8px 0"><button class="tb ${filt==='all'?'on':''}" data-f="all">All</button>${evs.map(e=>`<button class="tb ${filt===e.id?'on':''}" data-f="${e.id}">${esc(chipLabel(e.id).split(' ')[1])}</button>`).join('')}<span style="margin-left:auto;font-weight:700;color:#C8302E">Unpaid: $${unpaidTotal/100}</span></div>
   <table><thead><tr><th>Family</th><th>Cell</th>${evs.map(e=>`<th>${esc(chipLabel(e.id).split(' ')[1])}</th>`).join('')}</tr></thead><tbody>${rows||'<tr><td colspan="8" style="opacity:.6;padding:20px">No RSVPs yet.</td></tr>'}</tbody></table>
-  <div style="font-size:11px;opacity:.7;margin:8px 0 20px">Tap a red/yellow chip to mark it paid after you see the Zelle. "says sent" = guest tapped "I sent it".</div>
-  <h3 style="font-family:'Fraunces',serif;margin:0 0 6px">Lillie's list (${(data.lillie_list||[]).length}/30)</h3>
-  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px"><input id="ln" placeholder="Name"><input id="lp" placeholder="Cell" inputmode="tel"><button class="tb on" id="ladd">Add</button></div>
-  <div>${lil||'<span style="opacity:.6">Empty. Add names and cells above, or paste a list to Claude.</span>'}</div>`;
+  <div style="font-size:11px;opacity:.7;margin:8px 0 20px">Tap a red/yellow chip to mark it paid after you see the Zelle. "says sent" = guest tapped "I sent it".</div>`;
  A.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{S.adminFilter=b.dataset.f;renderAdmin()});
  A.querySelectorAll('[data-pay]').forEach(b=>b.onclick=async()=>{const [fid,eid]=b.dataset.pay.split('|');await sb.rpc('admin_set_paid',{p_pass:pass,p_family:fid,p_event:eid,p_paid:true});renderAdmin()});
- A.querySelectorAll('[data-lrm]').forEach(b=>b.onclick=async()=>{await sb.rpc('admin_lillie_set',{p_pass:pass,p_phone:b.dataset.lrm,p_name:null,p_remove:true});renderAdmin()});
- $('#ladd').onclick=async()=>{const n=$('#ln').value,p=$('#lp').value;if(p.replace(/\D/g,'').length<10)return toast('Need a 10-digit cell');await sb.rpc('admin_lillie_set',{p_pass:pass,p_phone:p,p_name:n});renderAdmin()};
  $('#out').onclick=()=>{ls('adminpass','');renderAdmin()};
+ $('#tabG').onclick=()=>{S.adminTab='guests';renderAdmin()};
  $('#copyPh').onclick=()=>{const list=fams.filter(f=>filt==='all'||f.rsvps.some(r=>r.event_id===filt&&r.status==='in')).map(f=>fmtPhone(f.phone)).join(', ');navigator.clipboard?.writeText(list).then(()=>toast('Copied '+list.split(', ').length+' numbers'))};
  $('#csv').onclick=()=>{const h=['family','cell','tier','lillie','sms','lang',...evs.flatMap(e=>[e.id+'_status',e.id+'_count',e.id+'_paid'])];const r=fams.map(f=>[f.name,f.phone,f.tier,f.lillie,f.sms_optin,f.lang,...evs.flatMap(e=>{const x=f.rsvps.find(y=>y.event_id===e.id)||{};return [x.status||'',x.status==='in'?(e.id==='topgolf'?`${x.players}+${x.watchers}`:x.headcount):'',x.paid_confirmed?'paid':(x.paid_claimed?'claimed':'')]})]);const csv=[h,...r].map(a=>a.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='framily-rsvps.csv';a.click()};
- $('#addF').onclick=async()=>{const n=prompt('Family name');if(!n)return;const p=prompt('Cell');if(!p)return;const tier=confirm('Invited to Christmas? OK = yes')?'xmas':'open';await sb.rpc('admin_add_family',{p_pass:pass,p_name:n,p_phone:p,p_tier:tier});renderAdmin()};
 }
 
+
+/* ---------- admin: guest list ---------- */
+async function renderGuestList(pass){
+ const A=$('#admin'); const {data,error}=await sb.rpc('admin_guests',{p_pass:pass}); if(error){ls('adminpass','');S.adminTab=null;renderAdmin();return}
+ const evs=S.events; const fams=data.families||[]; const labels=(data.labels||[]).sort(); const q=(S.gq||'').toLowerCase(); const hosts=data.hosts||[];
+ const shown=fams.filter(f=>!q||(f.name||'').toLowerCase().includes(q)||f.phone.includes(q.replace(/\D/g,''))||(f.labels||[]).some(l=>l.toLowerCase().includes(q)));
+ const newN=fams.filter(f=>f.source==='web').length;
+ const rows=shown.map(f=>{
+  const rsv=f.rsvps.filter(r=>r.status==='in').length;
+  const cells=evs.map(e=>{const on=(f.invites||[]).includes(e.id);const def=e.default_invite;return `<td style="text-align:center"><button data-inv="${f.id}|${e.id}|${on?0:1}" title="${on?'invited':'not invited'}" style="width:24px;height:24px;border-radius:6px;border:2px solid ${def?'#9AA39C':'#16301F'};background:${on?(def?'#9AA39C':'#16301F'):'#fff'};cursor:pointer;position:relative">${on?'<span style="color:#F3E7D0;font-weight:700;font-size:13px">✓</span>':''}</button></td>`}).join('');
+  const hostOf=hosts.filter(h=>h.phone===f.phone).map(h=>chipLabel(h.event_id).split(' ').slice(1).join(' '));
+  return `<tr style="${f.source==='web'?'background:#FFF8EA':''}"><td><b data-edit="${f.id}" style="cursor:text">${esc(f.name||'(no name)')}</b> ${(f.labels||[]).map(l=>`<span class="chip" style="background:#EADBC3;color:#5A1521;font-size:10px">${esc(l)}</span>`).join(' ')}${f.source==='web'?' <span class="chip" style="background:#FFF1D6;color:#9A6B00;font-size:10px">NEW</span>':''}${hostOf.length?` <span class="chip" style="background:#DFF2E4;color:#2F7A48;font-size:10px">host: ${esc(hostOf.join(', '))}</span>`:''}<br><span style="font-size:11px;opacity:.7">${fmtPhone(f.phone)}${f.sms?' · 📱':''}</span></td>${cells}<td style="font-size:11px;white-space:nowrap">${rsv?`<span style="color:#2F7A48;font-weight:700">RSVP'd · ${rsv}</span>`:'<span style="opacity:.5">Not yet</span>'}</td><td><button data-del="${f.id}" style="border:0;background:none;color:#C8302E;font-weight:700;cursor:pointer">×</button></td></tr>`}).join('');
+ A.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px"><div><div style="font-size:11px;letter-spacing:3px;font-weight:700;color:#5A1521">FRAMILY HOLIDAY FUN · ADMIN</div><div style="font-family:'Fraunces',serif;font-weight:900;font-size:30px">Guest List</div></div>
+  <div><button class="tb" id="tabR">RSVPs &amp; payments</button><button class="tb on">Guest List</button><span style="display:inline-block;width:1px;height:24px;background:#16301F;opacity:.3;margin:0 8px;vertical-align:middle"></span><label class="tb" style="border-style:dashed;cursor:pointer">⬆ Import Google Contacts CSV<input type="file" id="csvIn" accept=".csv,text/csv" style="display:none"></label><button class="tb" id="addG">+ Add guest</button><button class="tb" id="hosts">Hosts</button><button class="tb" id="out">Log out</button></div></div>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0">
+   <input id="gq" placeholder="Search name, number or label…" value="${esc(S.gq||'')}" style="border-radius:999px;padding:9px 14px;width:260px">
+   <span style="font-size:10px;font-weight:700;letter-spacing:2px;opacity:.7;margin-left:6px">BULK BY LABEL</span>
+   <select id="bl" style="font-family:inherit;padding:8px 10px;border:1px solid #16301F;border-radius:999px;background:#fff">${labels.map(l=>`<option>${esc(l)}</option>`).join('')||'<option value="">(no labels yet)</option>'}</select>
+   <span style="font-size:12px">→</span>
+   <select id="be" style="font-family:inherit;padding:8px 10px;border:1px solid #16301F;border-radius:999px;background:#fff">${evs.map(e=>`<option value="${e.id}">${esc(S.lang==='es'?e.name_es:e.name_en)}</option>`).join('')}</select>
+   <button class="tb on" id="bOn">Invite</button><button class="tb" id="bOff">Uninvite</button>
+   <span style="margin-left:auto;font-size:12px;opacity:.8">${fams.length} guests · <b style="color:#9A6B00">${newN} came via the site</b></span></div>
+  <table><thead><tr><th>Guest</th>${evs.map(e=>`<th style="text-align:center">${esc(chipLabel(e.id))}</th>`).join('')}<th>Status</th><th></th></tr></thead><tbody>${rows||'<tr><td colspan="12" style="opacity:.6;padding:20px">No guests yet. Import a CSV or add one.</td></tr>'}</tbody></table>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;font-size:12px;line-height:1.45;margin-top:14px">
+   <div style="background:#fff;border-radius:12px;padding:12px 14px;border:1px solid #EADBC3"><b>Grey checks = defaults.</b> Bowling, Topgolf, Movie and Crossway are on for everyone automatically. Dark boxes are the ones you control.</div>
+   <div style="background:#fff;border-radius:12px;padding:12px 14px;border:1px solid #EADBC3"><b>Tap a box → it saves.</b> Uninviting also clears that guest's RSVP for that event.</div>
+   <div style="background:#fff;border-radius:12px;padding:12px 14px;border:1px solid #EADBC3"><b>Import = merge, never overwrite.</b> Google Contacts → Export → CSV. Matched by phone; contact labels become the bulk buttons.</div></div>`;
+ $('#tabR').onclick=()=>{S.adminTab=null;renderAdmin()};
+ $('#out').onclick=()=>{ls('adminpass','');S.adminTab=null;renderAdmin()};
+ $('#gq').oninput=e=>{S.gq=e.target.value;clearTimeout(S.gqT);S.gqT=setTimeout(()=>renderGuestList(pass),250)};
+ A.querySelectorAll('[data-inv]').forEach(b=>b.onclick=async()=>{const [fid,eid,on]=b.dataset.inv.split('|');await sb.rpc('admin_invite_set',{p_pass:pass,p_family:fid,p_event:eid,p_on:on==='1'});renderGuestList(pass)});
+ A.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{if(!confirm('Remove this guest and their RSVPs?'))return;await sb.rpc('admin_family_set',{p_pass:pass,p_family:b.dataset.del,p_delete:true});renderGuestList(pass)});
+ A.querySelectorAll('[data-edit]').forEach(b=>b.onclick=async()=>{const f=fams.find(x=>x.id===b.dataset.edit);const n=prompt('Name',f.name||'');if(n===null)return;const l=prompt('Labels (comma separated)',(f.labels||[]).join(', '));if(l===null)return;await sb.rpc('admin_family_set',{p_pass:pass,p_family:f.id,p_name:n,p_labels:l.split(',').map(x=>x.trim()).filter(Boolean)});renderGuestList(pass)});
+ $('#addG').onclick=async()=>{const n=prompt('Family name');if(!n)return;const p=prompt('Cell');if(!p)return;const l=prompt('Labels (comma separated)','Family')||'';const {data:r}=await sb.rpc('admin_import',{p_pass:pass,p_rows:[{name:n,phone:p,labels:l.split(',').map(x=>x.trim()).filter(Boolean)}]});toast(r?.added?'Added':'Merged');renderGuestList(pass)};
+ $('#bOn').onclick=async()=>{const l=$('#bl').value;if(!l)return;const {data:n}=await sb.rpc('admin_bulk_invite',{p_pass:pass,p_label:l,p_event:$('#be').value,p_on:true});toast(`Invited ${n}`);renderGuestList(pass)};
+ $('#bOff').onclick=async()=>{const l=$('#bl').value;if(!l)return;if(!confirm(`Uninvite everyone tagged ${l}?`))return;const {data:n}=await sb.rpc('admin_bulk_invite',{p_pass:pass,p_label:l,p_event:$('#be').value,p_on:false});toast(`Removed ${n}`);renderGuestList(pass)};
+ $('#hosts').onclick=()=>{const lines=hosts.map(h=>`${h.event_id}: ${h.name||''} ${fmtPhone(h.phone)}`).join('\n');const v=prompt('Hosts (one per line: event_id, name, cell). Event ids: '+evs.map(e=>e.id).join(', ')+'\n\nCurrent:\n'+lines+'\n\nAdd one as "event_id, Name, 9541234567" or "remove event_id, 9541234567":');if(!v)return;const parts=v.replace(/^remove\s+/i,'').split(',').map(x=>x.trim());if(/^remove/i.test(v)){sb.rpc('admin_host_set',{p_pass:pass,p_event:parts[0],p_phone:parts[1],p_remove:true}).then(()=>renderGuestList(pass))}else{sb.rpc('admin_host_set',{p_pass:pass,p_event:parts[0],p_phone:parts[2],p_name:parts[1]}).then(()=>renderGuestList(pass))}};
+ $('#csvIn').onchange=async e=>{const file=e.target.files[0];if(!file)return;const text=await file.text();const rows=parseContactsCsv(text);if(!rows.length){toast('No phone numbers found in that file');return}if(!confirm(`Import ${rows.length} contacts with phone numbers? Existing guests are merged, not overwritten.`))return;const {data:r,error}=await sb.rpc('admin_import',{p_pass:pass,p_rows:rows});if(error){toast('Import failed');return}toast(`Added ${r.added}, merged ${r.merged}, skipped ${r.skipped}`);renderGuestList(pass)};
+}
+function parseCsv(text){const rows=[];let row=[],cur='',q=false;for(let i=0;i<text.length;i++){const c=text[i];if(q){if(c==='"'){if(text[i+1]==='"'){cur+='"';i++}else q=false}else cur+=c}else{if(c==='"')q=true;else if(c===','){row.push(cur);cur=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&text[i+1]==='\n')i++;row.push(cur);rows.push(row);row=[];cur=''}else cur+=c}}if(cur.length||row.length){row.push(cur);rows.push(row)}return rows.filter(r=>r.some(x=>x.trim()))}
+function parseContactsCsv(text){
+ const rows=parseCsv(text); if(rows.length<2)return []; const H=rows[0].map(h=>h.trim().toLowerCase());
+ const idx=n=>H.findIndex(h=>h===n); const find=re=>H.map((h,i)=>re.test(h)?i:-1).filter(i=>i>=0);
+ const iName=idx('name')>=0?idx('name'):idx('display name'); const iFirst=idx('first name'),iLast=idx('last name'),iOrg=idx('organization name')>=0?idx('organization name'):idx('organization 1 - name');
+ const phoneCols=find(/^phone \d+ - value$/).concat(find(/^(mobile|phone|cell)( phone)?$/)); const iLabels=idx('labels')>=0?idx('labels'):idx('group membership');
+ const out=[]; for(const r of rows.slice(1)){
+  let name=(iName>=0?r[iName]:'')||[iFirst>=0?r[iFirst]:'',iLast>=0?r[iLast]:''].join(' ').trim()||(iOrg>=0?r[iOrg]:''); name=(name||'').trim();
+  let phone=''; for(const c of phoneCols){const v=(r[c]||'').split(':::')[0].replace(/\D/g,'');const d=v.length===11&&v[0]==='1'?v.slice(1):v;if(d.length===10){phone=d;break}}
+  if(!phone)continue;
+  const labels=(iLabels>=0?(r[iLabels]||''):'').split(/\s*:::\s*|\s*,\s*/).map(l=>l.replace(/^\* /,'').replace(/^myContacts$/i,'').replace(/^starred$/i,'').trim()).filter(Boolean);
+  out.push({name,phone,labels});
+ } return out;
+}
 
 /* ---------- pager: pages scroll inside, firm pull or chevron moves between pages ---------- */
 const P={i:0,lock:false,y0:0,t0:0,armed:0};

@@ -1,0 +1,1 @@
+migration applied via Supabase MCP; see chat history. rsvp_set now returns void (was jsonb).
