@@ -103,7 +103,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1250';
+const BUILD='1111.1300';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -126,7 +126,7 @@ en:{
  full:"This one's full. Text Jared.",nothing:"Tap I'm in on at least one night.",
  msg_hi:"Hey! The Dunsons are doing holiday nights again and you're invited 🎄",msg_link:"Details + RSVP:",
  paid:"paid",unpaid:"unpaid",pay_now:"Still need to pay",none_owed:"Nothing owed. You're set.",
- cal_note:"Calendar events include the address, time, cost and dress theme, with a reminder the morning of.",
+ calsub_t:"Put these on your calendar, automatically?",calsub_sub:"One tap adds a FRamily calendar to your phone. Every night you say I'm in to shows up on its own, with a reminder the morning of. Change an RSVP and it updates itself.",calsub_yes:"Yes, add it",calsub_later:"Maybe later",calsub_chip:"📅 FRamily calendar",calsub_on:"📅 Calendar added",calsub_android:"On Android: Google Calendar → Settings → Add calendar → From URL, and paste the link we copied.",cal_note:"Calendar events include the address, time, cost and dress theme, with a reminder the morning of.",
  gate_h:"Welcome to the FRamily.",gate_sub:"One place for the gatherings, all year. Tell us who you are once and we'll show you what you're invited to. Your cell is how we keep your RSVP, and it stays with us.",gate_btn:"Come on in →",gate_foot:"Expecting an invite you don't see? Text Jared · 954.376.0188",gate_tag:"Faith · Family · Friends · Fun",hey:"HEY, $NAME 👋",your_invites:"YOUR INVITES",
  coming:"We're coming ✓",bring_h:"BRINGING A DISH?",bring_ask:"would love:",bring_add:"+ I'll bring…",bring_save:"Add",bring_others:"ALSO COMING TO THE TABLE",bring_none:"Or just bring yourselves. Nobody's checking.",bring_taken:"Someone grabbed that one.",bring_what:"What are you bringing?",
  host_h:"YOU'RE HOSTING",host_in:"in",host_maybe:"maybe",host_none:"no answer",host_add:"+ Add a guest",host_copy:"Copy phones",host_req:"Requests",host_req_add:"+ Request a dish",host_need:"need",
@@ -165,7 +165,7 @@ es:{
  full:"Ya está lleno. Escríbele a Jared.",nothing:"Toca Me apunto en al menos una noche.",
  msg_hi:"¡Hola! Los Dunson hacen sus noches navideñas otra vez y estás invitado 🎄",msg_link:"Detalles + RSVP:",
  paid:"pagado",unpaid:"pendiente",pay_now:"Falta pagar",none_owed:"No debes nada. Todo listo.",
- cal_note:"Los eventos del calendario incluyen dirección, hora, costo y vestimenta, con recordatorio esa mañana.",
+ calsub_t:"¿Ponemos esto en tu calendario, automáticamente?",calsub_sub:"Un toque agrega un calendario FRamily a tu teléfono. Cada noche a la que digas Me apunto aparece sola, con recordatorio esa mañana. Si cambias tu RSVP, se actualiza solo.",calsub_yes:"Sí, agrégalo",calsub_later:"Después",calsub_chip:"📅 Calendario FRamily",calsub_on:"📅 Calendario agregado",calsub_android:"En Android: Google Calendar → Ajustes → Agregar calendario → Desde URL, y pega el enlace que copiamos.",cal_note:"Los eventos del calendario incluyen dirección, hora, costo y vestimenta, con recordatorio esa mañana.",
  gate_h:"Bienvenidos a la FRamily.",gate_sub:"Un solo lugar para las reuniones, todo el año. Dinos quién eres una vez y te mostramos a qué estás invitado. Tu celular es cómo guardamos tu RSVP, y se queda con nosotros.",gate_btn:"Adelante →",gate_foot:"¿Esperabas una invitación que no ves? Escríbele a Jared · 954.376.0188",gate_tag:"Fe · Familia · Amigos · Diversión",hey:"HOLA, $NAME 👋",your_invites:"TUS INVITACIONES",
  coming:"Ahí estaremos ✓",bring_h:"¿TRAES UN PLATO?",bring_ask:"agradecerían:",bring_add:"+ Yo traigo…",bring_save:"Agregar",bring_others:"TAMBIÉN LLEGA A LA MESA",bring_none:"O solo vengan ustedes. Nadie está revisando.",bring_taken:"Alguien ya tomó ese.",bring_what:"¿Qué vas a traer?",
  host_h:"TÚ ERES ANFITRIÓN",host_in:"vienen",host_maybe:"quizás",host_none:"sin respuesta",host_add:"+ Agregar invitado",host_copy:"Copiar celulares",host_req:"Pedidos",host_req_add:"+ Pedir un plato",host_need:"faltan",
@@ -305,7 +305,7 @@ function render(){
   <div class="lead" style="margin-top:10px;max-width:340px;position:relative">${L.hero_sub}</div>
   <div class="kicker" style="font-size:10px;opacity:.7;position:relative">${L.your_invites}</div>
   <div style="display:flex;gap:6px;margin-top:2px;flex-wrap:wrap;justify-content:center;position:relative">${chips}</div>
-  <button class="mbtn alt" id="friendBtn" style="position:relative;font-size:13px;padding:10px 16px;margin-top:6px">💛 ${L.friend}</button>
+  <div style="display:flex;gap:8px;margin-top:6px;position:relative;flex-wrap:wrap;justify-content:center"><button class="mbtn alt" id="friendBtn" style="font-size:13px;padding:10px 16px">💛 ${L.friend}</button><button class="mbtn alt" id="calChip" style="font-size:13px;padding:10px 16px">${(S.calsub||ls('calsub'))?L.calsub_on:L.calsub_chip}</button></div>
   <div style="font-size:10px;opacity:.5;position:relative"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · v${BUILD}</div>
   <div class="sp" style="width:100%"></div>
    </section>`;
@@ -558,7 +558,7 @@ function saveRsvp(id){
   if(!S.token)return; const r=rs(id); if(!r.status)return;
   const {error}=await sb.rpc('rsvp_set',{p_token:S.token,p_event:id,p_status:r.status,p_headcount:r.headcount|0,p_players:r.players|0,p_watchers:r.watchers|0,p_paid_claimed:null});
   if(error){ if((error.message||'').includes('full')){r.status='maybe';toast(t().full);rerenderEvent(id)} else toast("Hmm, that didn't save. Try again."); return }
-  toast(t().saved_live); S.done=true; ensurePayPage(); updateBar();
+  toast(t().saved_live); S.done=true; ensurePayPage(); updateBar(); if(r.status==='in') setTimeout(maybeOfferCal,900);
  },350);
 }
 function ensurePayPage(){
@@ -598,6 +598,7 @@ function bindEvents(){
  document.querySelectorAll('[data-parking]').forEach(b=>b.onclick=showParking);
  const cz=$('#copyZ'); if(cz) cz.onclick=()=>{navigator.clipboard?.writeText(ZELLE.replace(/-/g,'')).then(()=>toast(t().copied)).catch(()=>toast(ZELLE))};
  const fb=$('#friendBtn'); if(fb) fb.onclick=showShare;
+ const cc=$('#calChip'); if(cc) cc.onclick=subscribeCal;
  const fsent=$('#fSent'); if(fsent) fsent.onchange=async()=>{const on=fsent.checked;for(const e of visibleEvents()){const r=rs(e.id);if(price(e.id)&&r.status==='in'){r.paid_claimed=on;await sb.rpc('rsvp_set',{p_token:S.token,p_event:e.id,p_status:r.status,p_headcount:r.headcount|0,p_players:r.players|0,p_watchers:r.watchers|0,p_paid_claimed:on})}}toast(t().saved_live)};
 }
 function rerenderEvent(id){
@@ -638,6 +639,24 @@ async function loadFamily(){
 }
 async function loadBring(){
  for(const e of visibleEvents()){ if(!e.bring_enabled)continue; const {data}=await sb.rpc('bring_get',{p_token:S.token,p_event:e.id}); S.bring[e.id]=data||[]; }
+}
+
+
+const CAL_FEED=t=>`https://uclejspwudkdhlsllujr.supabase.co/functions/v1/cal?t=${t}`;
+function subscribeCal(){
+ if(!S.token)return; const https=CAL_FEED(S.token); const webcal=https.replace(/^https:/,'webcal:');
+ const ua=navigator.userAgent; const apple=/iPhone|iPad|iPod|Macintosh/.test(ua);
+ ls('calsub','1'); S.calsub=true;
+ if(apple){ location.href=webcal; }
+ else { navigator.clipboard?.writeText(webcal).catch(()=>{}); window.open('https://calendar.google.com/calendar/u/0/r?cid='+encodeURIComponent(webcal),'_blank'); toast(t().calsub_android); }
+ const m=document.querySelector('.modal'); if(m)m.remove(); const c=$('#calChip'); if(c)c.textContent=t().calsub_on;
+}
+function maybeOfferCal(){
+ if(S.calsub||ls('calsub')||ls('calask'))return; ls('calask','1');
+ const L=t(); const m=document.createElement('div'); m.className='modal';
+ m.innerHTML=`<div><div class="handle"></div><h3>${L.calsub_t}</h3><div style="font-size:13px;line-height:1.45;opacity:.85">${L.calsub_sub}</div><button class="mbtn" id="calYes">${L.calsub_yes}</button><button class="mbtn alt" id="calNo">${L.calsub_later}</button></div>`;
+ m.onclick=ev=>{if(ev.target===m)m.remove()}; document.body.appendChild(m);
+ $('#calYes').onclick=subscribeCal; $('#calNo').onclick=()=>m.remove();
 }
 
 /* ---------- calendar ---------- */
