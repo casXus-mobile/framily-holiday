@@ -101,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1145';
+const BUILD='1111.1150';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -232,9 +232,9 @@ function fmtPhone(p){p=(p||'').replace(/\D/g,'').slice(-10);return p.length===10
 /* ---------- gate ---------- */
 function renderGate(){
  const L=t();
- return `<section id="gate" style="background:#0F1A14;color:#F3E7D0;padding:72px 26px 28px;display:flex;flex-direction:column;gap:14px;position:relative;min-height:100svh;overflow:hidden">
+ return `<section id="gate" style="background:#0F1A14;color:#F3E7D0;padding:72px 26px 28px;display:flex;flex-direction:column;gap:14px;position:relative"><div style="min-height:calc(100svh - 100px);display:flex;flex-direction:column;gap:14px">
   <div style="position:absolute;inset:0;background:radial-gradient(circle at 20% 0%,rgba(29,158,117,.28) 0,transparent 45%),radial-gradient(circle at 90% 100%,rgba(217,181,108,.22) 0,transparent 50%);pointer-events:none"></div>
-  <div style="position:absolute;inset:14px;border:1px solid rgba(217,181,108,.35);border-radius:18px;pointer-events:none"></div>
+  <div style="position:absolute;left:14px;right:14px;top:14px;bottom:14px;border:1px solid rgba(217,181,108,.35);border-radius:18px;pointer-events:none"></div>
   <div style="text-align:center;position:relative">
    <div style="width:58px;height:58px;border-radius:50%;border:1.5px solid #D9B56C;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:900;font-size:20px;color:#D9B56C;letter-spacing:1px">FR</div>
    <div style="font-family:'Pinyon Script',cursive;font-size:52px;line-height:.9;color:#D9B56C">FRamily</div>
@@ -247,7 +247,7 @@ function renderGate(){
   <label style="display:flex;align-items:flex-start;gap:10px;background:#F3E7D0;color:#16301F;border:2px solid #D9B56C;border-radius:10px;padding:12px;font-size:12px;line-height:1.4;position:relative"><input type="checkbox" id="gSms" ${S.sms?'checked':''} style="width:22px;height:22px;flex:0 0 auto;accent-color:#16301F"><span><b style="display:block;font-size:13px;margin-bottom:2px">${L.sms_h}</b>${L.sms}</span></label>
   <button class="mbtn" id="gBtn" style="background:#D9B56C;color:#16301F;padding:16px;font-size:16px;position:relative">${L.gate_btn}</button>
   <div class="kicker" style="letter-spacing:4px;text-align:center;opacity:.75;margin-top:auto;position:relative">${L.gate_tag}</div>
-  <div style="font-size:10px;text-align:center;opacity:.5;position:relative"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · v${BUILD}</div>
+  <div style="font-size:10px;text-align:center;opacity:.5;position:relative"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · v${BUILD}</div></div>
  </section>`;
 }
 function bindGate(){
@@ -666,7 +666,7 @@ async function renderAdmin(){
  const evs=S.events; const fams=data.families||[]; const filt=S.adminFilter||'all';
  const stat={}; for(const e of evs){stat[e.id]={in:0,maybe:0,players:0,watchers:0,owed:0,paid:0,fams:0}}
  for(const f of fams)for(const r of f.rsvps){const s=stat[r.event_id];if(!s)continue;if(r.status==='in'){s.in+=r.headcount;s.players+=r.players;s.watchers+=r.watchers;s.fams++;const amt=(r.event_id==='topgolf'?r.players:r.headcount)*price(r.event_id);if(r.paid_confirmed)s.paid+=amt;else s.owed+=amt}else if(r.status==='maybe')s.maybe+=r.headcount}
- const col={bowling:'#15122B',topgolf:'#123D2C',movie:'#0D0C12',crossway:'#7A2E22',christmas:'#5A1521',lillie:'#0B0B0E'};
+ const col={thanksgiving:'#8A5A2B',laras:'#8E1B1B',bowling:'#15122B',topgolf:'#123D2C',movie:'#0D0C12',crossway:'#7A2E22',christmas:'#5A1521',lillie:'#0B0B0E'};
  const kpi=evs.map(e=>{const s=stat[e.id];const n=e.id==='topgolf'?`${s.players} <span style="font-size:13px;font-weight:400">+${s.watchers}</span>`:s.in;const cap=e.cap?` <span style="font-size:13px;font-weight:400">/ ${e.cap}</span>`:'';const lanes=e.id==='bowling'?` · ${Math.ceil(s.in/6)} lanes`:e.id==='topgolf'?` · ${Math.ceil(s.players/6)} bays`:'';
   return `<div style="background:${col[e.id]}"><div style="font-size:10px;letter-spacing:2px;font-weight:700;opacity:.85">${esc(chipLabel(e.id))}</div><b>${n}${cap}</b><div style="font-size:11px;opacity:.85">${s.fams} families${lanes}${price(e.id)?` · $${s.paid/100} / $${(s.paid+s.owed)/100}`:''}${s.maybe?` · ${s.maybe} maybe`:''}</div></div>`}).join('');
  const unpaidTotal=Object.values(stat).reduce((a,s)=>a+s.owed,0);
@@ -783,7 +783,7 @@ async function boot(){
  const {data:counts}=await sb.rpc('event_counts'); S.counts=counts||{};
  loadLocal(); await loadFamily();
  render();
- initPager(); pages().forEach(p=>p.addEventListener('scroll',onInnerScroll,{passive:true})); $('#app').addEventListener('scroll',updateNav,{passive:true});
+ initPager(); $('#app').addEventListener('scroll',updateNav,{passive:true});
  $('#barBtn').onclick=()=>goTo(pages().length-1);
 }
 boot();

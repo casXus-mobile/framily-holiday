@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//FRamily Holiday Fun//EN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:framily-thanksgiving-2026@framily-holiday
+DTSTAMP:20261111T160000Z
+DTSTART:20261127T000000Z
+DTEND:20261127T030000Z
+SUMMARY:Thanksgiving at the Espinals (FRamily)
+LOCATION:The Espinals'\, 311 SW 96th Terrace\, Pembroke Pines\, FL 33025
+DESCRIPTION:Thanksgiving at the Espinals · FRamily Holiday Fun\nThe Espinals'\n311 SW 96th Terrace\, Pembroke Pines\, FL 33025\nDress: Classic Thanksgiving\nRSVP: https://casxus-mobile.github.io/framily-holiday/
+URL:https://casxus-mobile.github.io/framily-holiday/
+BEGIN:VALARM
+TRIGGER:-PT10H
+ACTION:DISPLAY
+DESCRIPTION:Thanksgiving at the Espinals
+END:VALARM
+END:VEVENT
+END:VCALENDAR
