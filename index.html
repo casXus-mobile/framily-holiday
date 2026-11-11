@@ -101,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1210';
+const BUILD='1111.1212';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -229,7 +229,7 @@ function fmtPhone(p){p=(p||'').replace(/\D/g,'').slice(-10);return p.length===10
 
 
 function famLabel(n){ n=(n||'').trim().replace(/\s+/g,' '); if(!n) return '';
- const low=n.toLowerCase(); const hasFam=/\b(family|familia|fam)\b/.test(low)||/'s$/.test(low)||/\b(and|&|y)\b/.test(low);
+ const low=n.toLowerCase(); const hasFam=/\b(family|familia|fam|los|las)\b/.test(low)||/'s$/.test(low)||/\b(and|y)\b/.test(low)||low.includes('&')||low.includes('+')||/^the\b/.test(low)||/^los\b/.test(low);
  if(S.lang==='es') return hasFam?n:`familia ${n}`;
  return hasFam?n:`${n} family`; }
 function famGreet(n){ const l=famLabel(n); if(!l) return ''; return S.lang==='es'?`Hola, ${l} 👋`:`Hey, ${l.replace(/ family$/,' Family')} 👋`; }
