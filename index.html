@@ -101,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1212';
+const BUILD='1111.1215';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -394,7 +394,6 @@ function renderEvent(e){
    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:6px;color:#7A5A3A"><div style="width:50px;height:1px;background:#7A5A3A"></div><div style="font-size:12px">♥</div><div style="width:50px;height:1px;background:#7A5A3A"></div></div>
    <div style="font-size:11px;letter-spacing:3px;font-weight:600;margin-top:10px;color:${th.ac}">${d.hosted}</div>
   </div>
-  ${hostPanel(id,th)}
   ${rsvpButtons(id,th,null,L.coming)}
   <div class="${hidden}" data-when="${id}">${stepper(id,'headcount',L.howmany,th)}</div>
   ${bringBoard(id,th)}`;
@@ -412,12 +411,12 @@ function renderEvent(e){
    <div style="font-family:'Amatic SC',cursive;font-weight:700;font-size:26px;letter-spacing:2px;color:#8E1B1B;text-align:center;line-height:1;margin-top:4px;position:relative">${d.dress_h}</div>
    <div style="font-size:12px;text-align:center;line-height:1.4;opacity:.85;position:relative">${d.dress}</div>
    <div style="position:relative">${detailsBlock(id,th)}</div>
-   <div style="position:relative">${hostPanel(id,th)}</div>
    <div style="position:relative">${rsvpButtons(id,th,null,L.coming)}</div>
    <div class="${hidden}" data-when="${id}" style="position:relative">${stepper(id,'headcount',L.howmany,th)}</div>
    <div style="position:relative">${bringBoard(id,th)}</div>
    <div style="position:relative">${calBtn(id)}</div>
-  </div>`;
+  </div>
+  <div style="position:relative;background:#F4ECDC;border-radius:14px;padding:4px">${hostPanel(id,th)}</div>`;
   return `<section class="ev" id="ev-${id}" style="background:#8E1B1B;color:${th.fg}">${inner}</section>`;
  } else if(id==='bowling'){
   inner=`<svg aria-hidden="true" width="100%" height="240" viewBox="0 0 430 240" preserveAspectRatio="none" style="position:absolute;left:0;top:0" fill="none"><path d="M0 240 L183 0 L247 0 L430 240 Z" fill="#1F1A3D"/><path d="M56 240 L198 0 M127 240 L206 0 M215 240 L215 0 M303 240 L224 0 M374 240 L232 0" stroke="#2A2350" stroke-width="1.5"/><path d="M183 0 L0 240 M247 0 L430 240" stroke="${th.ac}" stroke-width="1.5"/></svg>
@@ -485,10 +484,10 @@ function renderEvent(e){
    <div style="background:#F3E7D0;padding:8px;border-radius:4px;transform:rotate(-1.5deg);box-shadow:0 8px 20px rgba(0,0,0,.35)"><div style="width:280px;max-width:72vw;aspect-ratio:300/190;overflow:hidden;border-radius:2px"><img src="img/nutcracker-2025.jpg" alt="${esc(d.cap)}" style="width:173%;height:auto;display:block;margin-top:-33%;margin-left:-30%"></div><div style="font-family:'Pinyon Script',cursive;font-size:16px;color:#5A1521;margin-top:4px">${d.cap}</div></div>
    <div style="font-size:13px;font-weight:700">${d.host}</div>
    <div style="width:100%;text-align:left">${detailsBlock(id,th,d.t,`<button class="cal" data-parking="1" style="margin-top:10px;border-color:${th.ac}">${L.parking}</button>`)}</div>
-   <div style="width:100%;text-align:left">${hostPanel(id,th)}</div>
    <div style="width:100%">${rsvpButtons(id,th,[d.btn,L.not_time])}</div>
    <div class="${hidden}" data-when="${id}" style="width:100%">${stepper(id,'headcount',L.howmany,th)}</div>
-  </div></div>`;
+  </div></div>
+  <div style="margin-top:40px">${hostPanel(id,th)}</div>`;
  } else if(id==='lillie'){
   const c=S.counts[id]||{}; const full=c.cap&&c.in>=c.cap&&r.status!=='in';
   inner=`<svg aria-hidden="true" viewBox="0 0 430 520" preserveAspectRatio="xMidYMin slice" style="position:absolute;left:0;top:0;width:100%;height:100%;max-height:100%;pointer-events:none" fill="none"><defs><linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3E2A8" stop-opacity=".5"/><stop offset="1" stop-color="#D4AF37" stop-opacity=".02"/></linearGradient></defs><path d="M60 -10 L40 -10 L300 520 L430 520 L430 470 Z" fill="url(#gb)"/><path d="M370 -10 L390 -10 L130 520 L0 520 L0 470 Z" fill="url(#gb)"/></svg>
@@ -510,7 +509,7 @@ function renderEvent(e){
   ${full?`<div class="row" style="background:${th.card};justify-content:center;font-weight:700">${d.full}</div>`:rsvpButtons(id,th)}
   <div class="${hidden}" data-when="${id}">${stepper(id,'headcount',L.howmany,th)}${totalLine(id,th)}</div>`;
  }
- return `<section class="ev" id="ev-${id}" style="background:${th.bg};color:${th.fg}">${inner}${calBtn(id)}</section>`;
+ return `<section class="ev" id="ev-${id}" style="background:${th.bg};color:${th.fg}">${inner}${calBtn(id)}${hostPanel(id,th)}</section>`;
 }
 
 function renderLock(){
