@@ -101,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1230';
+const BUILD='1111.1240';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -112,7 +112,7 @@ en:{
  in:"I'm in ✓",maybe:"Maybe",out:"Out",yes_seats:"Yes, save us seats",not_time:"Not this time",
  howmany:"How many coming?",bowlers:"How many bowling?",players:"Players",watching:"Watching",tickets:"Tickets",seats:"How many seats?",
  total:"Your total",payend:"pay at the end",dress:"Dress theme",details:"THE DETAILS",cal:"Add to my calendar",
- lock:"Lock it in",lock_sub:"One RSVP for the whole family. Three quick steps, and you can come back and change it anytime.",
+ lock:"Pay with Zelle",lock_sub:"Your RSVPs are saved. The only thing left is the nights that have a cost. One Zelle covers it all.",saved_live:"Saved ✓",
  s1:"1 · WHO'S COMING",s2:"2 · YOUR NIGHTS",s3:"3 · PAY WITH ZELLE",fam:"FAMILY NAME",cell:"CELL (FOR REMINDERS)",
  sms_h:"Yes, text me the details",sms:"Text me RSVP confirmations and reminders from <b>FRamily</b> (the Dunson family's gatherings hub) for the events I choose. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to cancel, HELP for help. See <a href='privacy.html'>Privacy</a> and <a href='terms.html'>Terms</a>.",
  owed:"Still owed",zelle_to:"ZELLE $AMT TO",memo:"Jared Dunson · put your family name in the memo",copy:"Copy #",copied:"Copied",
@@ -120,7 +120,7 @@ en:{
  q:"Questions? Text Jared · 954.376.0188",friend:"Show some love · bring a friend",friend_sub:"Know someone who could use a night out? Bring them.",
  share_t:"Show some love",share_sub:"Know someone who could use a night out this season? Pick the nights to share.",share_x:"Welcome someone to the FRamily fun.",
  write:"Write the text",copy_msg:"Copy message",lillie_lock:"Lillie's · invite only",
- bar_fin:"Finish RSVP ↓",bar_n:"events",event_1:"event",total_cost:"Total Cost",need_name:"Add your family name and cell first.",bad_phone:"That cell number doesn't look right.",
+ bar_fin:"Pay ↓",bar_n:"events",event_1:"event",total_cost:"Total Cost",need_name:"Add your family name and cell first.",bad_phone:"That cell number doesn't look right.",
  full:"This one's full. Text Jared.",nothing:"Tap I'm in on at least one night.",
  msg_hi:"Hey! The Dunsons are doing holiday nights again and you're invited 🎄",msg_link:"Details + RSVP:",
  paid:"paid",unpaid:"unpaid",pay_now:"Still need to pay",none_owed:"Nothing owed. You're set.",
@@ -151,7 +151,7 @@ es:{
  in:"Me apunto ✓",maybe:"Quizás",out:"No",yes_seats:"Sí, guárdenos asientos",not_time:"Esta vez no",
  howmany:"¿Cuántos vienen?",bowlers:"¿Cuántos juegan boliche?",players:"Jugadores",watching:"Acompañan",tickets:"Boletos",seats:"¿Cuántos asientos?",
  total:"Tu total",payend:"se paga al final",dress:"Vestimenta",details:"LOS DETALLES",cal:"Agregar a mi calendario",
- lock:"Confirma",lock_sub:"Un solo RSVP para toda la familia. Tres pasos rápidos, y puedes volver a cambiarlo cuando quieras.",
+ lock:"Paga con Zelle",lock_sub:"Tus RSVPs ya están guardados. Solo falta lo de las noches con costo. Un solo Zelle lo cubre todo.",saved_live:"Guardado ✓",
  s1:"1 · QUIÉNES VIENEN",s2:"2 · TUS NOCHES",s3:"3 · PAGA CON ZELLE",fam:"NOMBRE DE FAMILIA",cell:"CELULAR (PARA RECORDATORIOS)",
  sms_h:"Sí, mándenme los detalles por texto",sms:"Envíenme por texto confirmaciones y recordatorios de <b>FRamily</b> (el hub de reuniones de la familia Dunson) para los eventos que elija. La frecuencia varía. Pueden aplicar tarifas de mensajes y datos. Responde STOP para cancelar, HELP para ayuda. Ver <a href='privacy.html'>Privacidad</a> y <a href='terms.html'>Términos</a>.",
  owed:"Pendiente",zelle_to:"ZELLE $AMT A",memo:"Jared Dunson · pon el nombre de tu familia en la nota",copy:"Copiar #",copied:"Copiado",
@@ -159,7 +159,7 @@ es:{
  q:"¿Preguntas? Escríbele a Jared · 954.376.0188",friend:"Comparte el amor · trae a un amigo",friend_sub:"¿Conoces a alguien que necesita una noche fuera? Tráelo.",
  share_t:"Comparte el amor",share_sub:"¿Conoces a alguien que necesita una salida esta temporada? Elige las noches para compartir.",share_x:"Dale la bienvenida a alguien a la diversión FRamily.",
  write:"Escribir el mensaje",copy_msg:"Copiar mensaje",lillie_lock:"Lillie · solo con invitación",
- bar_fin:"Terminar RSVP ↓",bar_n:"eventos",event_1:"evento",total_cost:"Costo total",need_name:"Primero pon el nombre de tu familia y tu celular.",bad_phone:"Ese número de celular no parece correcto.",
+ bar_fin:"Pagar ↓",bar_n:"eventos",event_1:"evento",total_cost:"Costo total",need_name:"Primero pon el nombre de tu familia y tu celular.",bad_phone:"Ese número de celular no parece correcto.",
  full:"Ya está lleno. Escríbele a Jared.",nothing:"Toca Me apunto en al menos una noche.",
  msg_hi:"¡Hola! Los Dunson hacen sus noches navideñas otra vez y estás invitado 🎄",msg_link:"Detalles + RSVP:",
  paid:"pagado",unpaid:"pendiente",pay_now:"Falta pagar",none_owed:"No debes nada. Todo listo.",
@@ -303,9 +303,11 @@ function render(){
   <div class="lead" style="margin-top:10px;max-width:340px;position:relative">${L.hero_sub}</div>
   <div class="kicker" style="font-size:10px;opacity:.7;position:relative">${L.your_invites}</div>
   <div style="display:flex;gap:6px;margin-top:2px;flex-wrap:wrap;justify-content:center;position:relative">${chips}</div>
+  <button class="mbtn alt" id="friendBtn" style="position:relative;font-size:13px;padding:10px 16px;margin-top:6px">💛 ${L.friend}</button>
+  <div style="font-size:10px;opacity:.5;position:relative"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · v${BUILD}</div>
    </section>`;
  for(const e of evs) h+=renderEvent(e);
- h+=renderLock();
+ if(owed()>0) h+=renderLock();
  app.innerHTML=h;
  bindEvents();
  pages().forEach(p=>p.addEventListener('scroll',onInnerScroll,{passive:true}));
@@ -516,32 +518,19 @@ function renderEvent(e){
 }
 
 function renderLock(){
- const L=t(); const evs=visibleEvents(); const o=owed();
- const lines=evs.filter(e=>rs(e.id).status).map(e=>{const r=rs(e.id);const d=L.ev[e.id];const nm=S.lang==='es'?e.name_es:e.name_en;
-  let cnt=r.status==='in'?(e.id==='topgolf'?`${r.players}+${r.watchers}`:r.headcount):'';
-  let right=r.status!=='in'?`<span style="opacity:.6">${r.status==='maybe'?L.maybe:L.out}</span>`:(price(e.id)?`<b>${money(evTotal(e.id))}</b> · <span style="color:${r.paid_confirmed?'#2F7A48':'#C8302E'}">${r.paid_confirmed?L.paid:L.unpaid}</span>`:`<b>${L.in.replace(' ✓','')}</b>`);
-  const cal=r.status==='in'?`<button class="cal" data-cal="${e.id}" style="width:auto;padding:4px 10px;font-size:11px;margin-left:8px;border-color:var(--ink)">📅</button>`:'';
-  return `<div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;gap:8px"><span>${esc(chipLabel(e.id).slice(0,5))} ${esc(nm)}${cnt?' · '+cnt:''}</span><span style="white-space:nowrap">${right}${cal}</span></div>`}).join('');
+ const L=t(); const evs=visibleEvents().filter(e=>price(e.id)&&rs(e.id).status==='in'); const o=owed();
+ const lines=evs.map(e=>{const r=rs(e.id);const nm=S.lang==='es'?e.name_es:e.name_en;const cnt=e.id==='topgolf'?`${r.players}`:r.headcount;
+  return `<div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;gap:8px"><span>${esc(chipLabel(e.id).slice(0,5))} ${esc(nm)} · ${cnt}</span><span style="white-space:nowrap"><b>${money(evTotal(e.id))}</b> · <span style="color:${r.paid_confirmed?'#2F7A48':'#C8302E'}">${r.paid_confirmed?L.paid:L.unpaid}</span></span></div>`}).join('');
+ const claimed=evs.some(e=>rs(e.id).paid_claimed);
  return `<section id="lock" style="background:var(--cream);color:var(--ink);padding:36px 24px calc(60px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:14px">
   <div style="font-family:'Fraunces',serif;font-weight:900;font-size:30px;line-height:1">${L.lock}</div>
   <div class="lead" style="font-size:13px;opacity:.85">${L.lock_sub}</div>
-  <div class="kicker" style="color:#5A1521;margin-top:4px">${L.s1}</div>
-  <label class="f">${L.fam}<input class="t" id="fName" value="${esc(S.name)}" autocomplete="family-name"></label>
-  <label class="f">${L.cell}<input class="t" id="fPhone" type="tel" value="${esc(fmtPhone(S.phone))}" autocomplete="tel" inputmode="tel"></label>
-  <label style="display:flex;align-items:flex-start;gap:10px;background:#fff;border:2px solid var(--gold);border-radius:10px;padding:12px;font-size:12px;line-height:1.4"><input type="checkbox" id="fSms" ${S.sms?'checked':''} style="width:22px;height:22px;margin-top:0;flex:0 0 auto;accent-color:#16301F"><span><b style="display:block;font-size:13px;margin-bottom:2px">${L.sms_h}</b>${L.sms}</span></label>
-  <div class="kicker" style="color:#5A1521;margin-top:6px">${L.s2}</div>
-  <div style="background:#fff;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;border:1px solid var(--gold)">${lines||`<div style="font-size:13px;opacity:.7">${L.nothing}</div>`}
+  <div style="background:#fff;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;border:1px solid var(--gold)">${lines}
    <div style="border-top:1px dashed var(--ink);padding-top:8px;display:flex;justify-content:space-between;font-size:14px;font-weight:700"><span>${L.owed}</span><span>${money(o)}</span></div></div>
-  ${o>0?`<div class="kicker" style="color:#5A1521;margin-top:6px">${L.s3}</div>
-  <div style="background:#6D1ED4;color:#fff;border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px"><div><div class="kicker" style="font-size:10px;letter-spacing:2px;opacity:.85">${L.zelle_to.replace('$AMT',money(o))}</div><div style="font-size:20px;font-weight:700">${ZELLE}</div><div style="font-size:11px;opacity:.85">${L.memo}</div></div><button class="mbtn" id="copyZ" style="background:#fff;color:#6D1ED4;padding:10px 14px;font-size:13px;white-space:nowrap">${L.copy}</button></div>
-  <label style="display:flex;align-items:center;gap:10px;font-size:13px;background:#fff;border-radius:10px;padding:10px 12px;border:1px solid var(--gold)"><input type="checkbox" id="fSent" ${S.sentClaim?'checked':''} style="width:18px;height:18px"><span>${L.sent}</span></label>`:(lines?`<div style="font-size:13px;opacity:.8">${L.none_owed}</div>`:'')}
-  <button class="mbtn" id="sendBtn" style="padding:16px;font-size:16px">${S.done?L.update:L.send}</button>
+  ${o>0?`<div style="background:#6D1ED4;color:#fff;border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px"><div><div class="kicker" style="font-size:10px;letter-spacing:2px;opacity:.85">${L.zelle_to.replace('$AMT',money(o))}</div><div style="font-size:20px;font-weight:700">${ZELLE}</div><div style="font-size:11px;opacity:.85">${L.memo}</div></div><button class="mbtn" id="copyZ" style="background:#fff;color:#6D1ED4;padding:10px 14px;font-size:13px;white-space:nowrap">${L.copy}</button></div>
+  <label style="display:flex;align-items:center;gap:10px;font-size:13px;background:#fff;border-radius:10px;padding:12px;border:2px solid var(--gold)"><input type="checkbox" id="fSent" ${claimed?'checked':''} style="width:22px;height:22px;accent-color:#16301F"><span><b>${L.sent}</b></span></label>`:`<div style="font-size:13px;opacity:.8">${L.none_owed}</div>`}
   <div style="font-size:11px;text-align:center;opacity:.75">${L.cal_note}</div>
-  <div style="border-top:1px dashed var(--ink);padding-top:14px;margin-top:4px;display:flex;flex-direction:column;gap:6px">
-   <button class="mbtn alt" id="friendBtn">💛 ${L.friend}</button>
-   <div style="font-size:11px;text-align:center;opacity:.7">${L.friend_sub}</div></div>
   <div style="font-size:12px;text-align:center;opacity:.75">${L.q}</div>
-  <div style="font-size:10px;text-align:center;opacity:.5"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · v${BUILD}</div>
  </section>`;
 }
 
@@ -550,12 +539,30 @@ function updateNav(){const ps=pages();const i=curPage();const nav=$('#nav');if(!
 function updateBar(){
  updateNav();
  const L=t(); const n=inCount(); const bar=$('#bar');
- if(S.admin||n===0){bar.classList.add('hidden');document.documentElement.style.setProperty('--barh','0px');return}
- const lockVisible=curPage()===pages().length-1;
+ if(S.admin||owed()===0){bar.classList.add('hidden');document.documentElement.style.setProperty('--barh','0px');return}
+ const lockVisible=!!$('#lock')&&curPage()===pages().length-1;
  bar.classList.toggle('hidden',lockVisible); document.documentElement.style.setProperty('--barh',lockVisible?'0px':'74px');
  $('#barTxt').textContent=`${L.total_cost} · ${money(owed())}`;
  $('#barSub').textContent=`${n} ${n===1?L.event_1:L.bar_n}${S.name?' · '+famLabel(S.name):''}`;
  $('#barBtn').textContent=L.bar_fin;
+}
+
+
+const SV={};
+function saveRsvp(id){
+ clearTimeout(SV[id]); SV[id]=setTimeout(async()=>{
+  if(!S.token)return; const r=rs(id); if(!r.status)return;
+  const {error}=await sb.rpc('rsvp_set',{p_token:S.token,p_event:id,p_status:r.status,p_headcount:r.headcount|0,p_players:r.players|0,p_watchers:r.watchers|0,p_paid_claimed:null});
+  if(error){ if((error.message||'').includes('full')){r.status='maybe';toast(t().full);rerenderEvent(id)} else toast("Hmm, that didn't save. Try again."); return }
+  toast(t().saved_live); S.done=true; ensurePayPage(); updateBar();
+ },350);
+}
+function ensurePayPage(){
+ const app=$('#app'); const lk=$('#lock'); const need=owed()>0;
+ if(need&&!lk){const d=document.createElement('div');d.innerHTML=renderLock();const el=d.firstElementChild;app.appendChild(el);el.addEventListener('scroll',onInnerScroll,{passive:true});bindEvents()}
+ else if(!need&&lk){lk.remove()}
+ else if(need&&lk){const st=lk.scrollTop;const d=document.createElement('div');d.innerHTML=renderLock();const el=d.firstElementChild;lk.replaceWith(el);el.scrollTop=st;el.addEventListener('scroll',onInnerScroll,{passive:true});bindEvents()}
+ updateNav();
 }
 
 /* ---------- events ---------- */
@@ -564,13 +571,13 @@ function bindEvents(){
   const id=b.dataset.rsvp, st=b.dataset.st, r=rs(id);
   r.status=st;
   if(st==='in'){ if(id==='topgolf'){if(!r.players&&!r.watchers)r.players=1} else if(!r.headcount) r.headcount=1 }
-  rerenderEvent(id); persistLocal(); updateBar();
+  rerenderEvent(id); persistLocal(); updateBar(); saveRsvp(id);
  });
  document.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>{
   const id=b.dataset.step,f=b.dataset.f,d=+b.dataset.d,r=rs(id);
   r[f]=Math.max(0,(r[f]||0)+d);
   const c=S.counts[id]; if(c&&c.cap&&f==='headcount'&&r[f]>c.cap){r[f]=c.cap}
-  rerenderEvent(id); persistLocal(); updateBar();
+  rerenderEvent(id); persistLocal(); updateBar(); saveRsvp(id);
  });
 
  document.querySelectorAll('[data-bring]').forEach(b=>b.onclick=async()=>{const on=b.dataset.on==='1';const {error}=await sb.rpc('bring_claim',{p_token:S.token,p_item:b.dataset.bring,p_on:on});if(error){toast(t().bring_taken)}const id=b.closest('section').id.replace('ev-','');const {data}=await sb.rpc('bring_get',{p_token:S.token,p_event:id});S.bring[id]=data||[];rerenderEvent(id)});
@@ -585,18 +592,14 @@ function bindEvents(){
  document.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>{const el=$('#ev-'+b.dataset.jump);if(el)goTo(pages().indexOf(el))});
  $('#nav button').onclick=()=>goTo(curPage()+1);
  document.querySelectorAll('[data-parking]').forEach(b=>b.onclick=showParking);
- const sb_=$('#sendBtn'); if(sb_) sb_.onclick=submitRsvp;
  const cz=$('#copyZ'); if(cz) cz.onclick=()=>{navigator.clipboard?.writeText(ZELLE.replace(/-/g,'')).then(()=>toast(t().copied)).catch(()=>toast(ZELLE))};
  const fb=$('#friendBtn'); if(fb) fb.onclick=showShare;
- ['fName','fPhone'].forEach(i=>{const el=$('#'+i);if(el)el.oninput=()=>{S.name=$('#fName').value;S.phone=$('#fPhone').value;persistLocal()}});
- const fs=$('#fSms'); if(fs) fs.onchange=()=>{S.sms=fs.checked;persistLocal()};
- const fsent=$('#fSent'); if(fsent) fsent.onchange=()=>{S.sentClaim=fsent.checked};
+ const fsent=$('#fSent'); if(fsent) fsent.onchange=async()=>{const on=fsent.checked;for(const e of visibleEvents()){const r=rs(e.id);if(price(e.id)&&r.status==='in'){r.paid_claimed=on;await sb.rpc('rsvp_set',{p_token:S.token,p_event:e.id,p_status:r.status,p_headcount:r.headcount|0,p_players:r.players|0,p_watchers:r.watchers|0,p_paid_claimed:on})}}toast(t().saved_live)};
 }
 function rerenderEvent(id){
  const e=S.events.find(x=>x.id===id); const old=$('#ev-'+id); if(!old)return;
  const app=$('#app'); const appTop=app.scrollTop; const st=old.scrollTop;
  const tmp=document.createElement('div'); tmp.innerHTML=renderEvent(e); const nu=tmp.firstElementChild; old.replaceWith(nu); nu.scrollTop=st;
- const lk=$('#lock'); if(lk){const ls_=lk.scrollTop;const t2=document.createElement('div');t2.innerHTML=renderLock();const nl=t2.firstElementChild;lk.replaceWith(nl);nl.scrollTop=ls_;nl.addEventListener('scroll',onInnerScroll,{passive:true})}
  nu.addEventListener('scroll',onInnerScroll,{passive:true});
  app.scrollTop=appTop;
  bindEvents();
@@ -801,7 +804,7 @@ async function boot(){
  loadLocal(); await loadFamily();
  render(); jumpDeep();
  initPager(); $('#app').addEventListener('scroll',updateNav,{passive:true});
- $('#barBtn').onclick=()=>goTo(pages().length-1);
+ $('#barBtn').onclick=()=>{const lk=$('#lock');if(lk)goTo(pages().indexOf(lk))};
 }
 boot();
 </script>
