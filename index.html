@@ -13,7 +13,7 @@
 html,body{height:100%;overflow:hidden}
 body{margin:0;background:#0E0E10;color:var(--cream);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 #app{max-width:480px;margin:0 auto;height:100vh;height:100svh;overflow:hidden;background:#0E0E10;position:relative;box-shadow:0 0 60px rgba(0,0,0,.6);-webkit-overflow-scrolling:touch}
-#app>section{height:100vh;height:100svh;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+#app>section{height:100vh;height:100svh;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 section.ev{padding:36px 24px calc(var(--navh,46px) + 28px + var(--barh,0px));display:flex;flex-direction:column;gap:14px;position:relative}
 #nav{position:fixed;left:0;right:0;bottom:calc(var(--barh,0px) + env(safe-area-inset-bottom));z-index:45;display:flex;justify-content:center;height:var(--navh,46px);background:rgba(8,8,10,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.12);transition:bottom .25s,opacity .2s}
 #nav.scrolling{opacity:0;pointer-events:none}
@@ -101,7 +101,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1220';
+const BUILD='1111.1222';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
