@@ -14,7 +14,9 @@ html,body{height:100%;overflow:hidden}
 body{margin:0;background:#0E0E10;color:var(--cream);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 #app{max-width:480px;margin:0 auto;height:100vh;height:100svh;overflow:hidden;background:#0E0E10;position:relative;box-shadow:0 0 60px rgba(0,0,0,.6);-webkit-overflow-scrolling:touch}
 #app>section{height:100vh;height:100svh;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
-section.ev{padding:36px 24px calc(var(--navh,46px) + 28px + var(--barh,0px));display:flex;flex-direction:column;gap:14px;position:relative}
+section.ev{padding:36px 24px 0;display:flex;flex-direction:column;gap:14px;position:relative}
+.sp{flex:0 0 auto;height:calc(var(--navh,46px) + 28px + var(--barh,0px) + env(safe-area-inset-bottom))}
+#app>section>*{flex-shrink:0}
 #nav{position:fixed;left:0;right:0;bottom:calc(var(--barh,0px) + env(safe-area-inset-bottom));z-index:45;display:flex;justify-content:center;height:var(--navh,46px);background:rgba(8,8,10,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.12);transition:bottom .25s,opacity .2s}
 #nav.scrolling{opacity:0;pointer-events:none}
 #nav button{background:none;color:#fff;border:0;height:100%;padding:0 24px;font-family:inherit;font-size:11px;letter-spacing:2.5px;font-weight:700;display:flex;align-items:center;gap:10px;cursor:pointer;width:100%;justify-content:center}
@@ -101,7 +103,7 @@ label.f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:70
 const SUPA_URL='https://uclejspwudkdhlsllujr.supabase.co';
 const SUPA_KEY='sb_publishable_SnyfOMP5ghnpQ7-R2j9Jzg_DXjFu_BG';
 const SITE='https://casxus-mobile.github.io/framily-holiday/';
-const BUILD='1111.1242';
+const BUILD='1111.1250';
 const ZELLE='954-376-0188', JARED='954-376-0188';
 const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
@@ -289,7 +291,7 @@ function render(){
  const evs=visibleEvents();
  const chips=evs.map(e=>`<button class="pill" data-jump="${e.id}" style="color:var(--gold);background:transparent;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:6px 12px">${CHIP_ICON[e.id]||''}${esc(chipLabel(e.id))}</button>`).join('');
  let h=`
- <section id="ev-hero" style="background:#16301F;padding:clamp(48px,8vh,90px) 24px calc(var(--navh,46px) + 24px + var(--barh,0px));text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;gap:clamp(8px,1.6vh,22px);position:relative">
+ <section id="ev-hero" style="background:#16301F;padding:clamp(48px,8vh,90px) 24px 0;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;gap:clamp(8px,1.6vh,22px);position:relative">
   <svg aria-hidden="true" width="480" height="60" viewBox="0 0 430 60" style="position:absolute;left:0;top:-4px;width:100%" fill="none"><path d="M-10 6 Q110 60 215 18 T440 6" stroke="#2F5A3C" stroke-width="14" stroke-linecap="round"/><g><circle cx="50" cy="26" r="7" fill="#C8302E"/><circle cx="120" cy="40" r="7" fill="#D9B56C"/><circle cx="215" cy="22" r="7" fill="#F3E7D0"/><circle cx="300" cy="14" r="7" fill="#C8302E"/><circle cx="380" cy="18" r="7" fill="#D9B56C"/></g></svg>
   <div style="font-family:'Pinyon Script',cursive;font-size:clamp(44px,6.5vh,60px);line-height:.9;color:var(--gold);margin-top:10px;margin-bottom:-8px;position:relative">FRamily</div>
   <div style="font-family:'Fraunces',serif;font-weight:900;font-size:clamp(42px,6vh,56px);line-height:.95;position:relative">HOLIDAY FUN</div>
@@ -305,6 +307,7 @@ function render(){
   <div style="display:flex;gap:6px;margin-top:2px;flex-wrap:wrap;justify-content:center;position:relative">${chips}</div>
   <button class="mbtn alt" id="friendBtn" style="position:relative;font-size:13px;padding:10px 16px;margin-top:6px">💛 ${L.friend}</button>
   <div style="font-size:10px;opacity:.5;position:relative"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · v${BUILD}</div>
+  <div class="sp" style="width:100%"></div>
    </section>`;
  for(const e of evs) h+=renderEvent(e);
  if(owed()>0) h+=renderLock();
@@ -423,7 +426,7 @@ function renderEvent(e){
    <div style="position:relative">${calBtn(id)}</div>
   </div>
   <div style="position:relative;background:#F4ECDC;border-radius:14px;padding:4px">${hostPanel(id,th)}</div>`;
-  return `<section class="ev" id="ev-${id}" style="background:#8E1B1B;color:${th.fg}">${inner}</section>`;
+  return `<section class="ev" id="ev-${id}" style="background:#8E1B1B;color:${th.fg}">${inner}<div class="sp"></div></section>`;
  } else if(id==='bowling'){
   inner=`<svg aria-hidden="true" width="100%" height="240" viewBox="0 0 430 240" preserveAspectRatio="none" style="position:absolute;left:0;top:0" fill="none"><path d="M0 240 L183 0 L247 0 L430 240 Z" fill="#1F1A3D"/><path d="M56 240 L198 0 M127 240 L206 0 M215 240 L215 0 M303 240 L224 0 M374 240 L232 0" stroke="#2A2350" stroke-width="1.5"/><path d="M183 0 L0 240 M247 0 L430 240" stroke="${th.ac}" stroke-width="1.5"/></svg>
   <div class="kicker" style="color:${th.ac}">${d.k}</div>
@@ -514,7 +517,7 @@ function renderEvent(e){
   ${full?`<div class="row" style="background:${th.card};justify-content:center;font-weight:700">${d.full}</div>`:rsvpButtons(id,th)}
   <div class="${hidden}" data-when="${id}">${stepper(id,'headcount',L.howmany,th)}${totalLine(id,th)}</div>`;
  }
- return `<section class="ev" id="ev-${id}" style="background:${th.bg};color:${th.fg}">${inner}${calBtn(id)}${hostPanel(id,th)}</section>`;
+ return `<section class="ev" id="ev-${id}" style="background:${th.bg};color:${th.fg}">${inner}${calBtn(id)}${hostPanel(id,th)}<div class="sp"></div></section>`;
 }
 
 function renderLock(){
@@ -522,7 +525,7 @@ function renderLock(){
  const lines=evs.map(e=>{const r=rs(e.id);const nm=S.lang==='es'?e.name_es:e.name_en;const cnt=e.id==='topgolf'?`${r.players}`:r.headcount;
   return `<div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;gap:8px"><span>${esc(chipLabel(e.id).slice(0,5))} ${esc(nm)} · ${cnt}</span><span style="white-space:nowrap"><b>${money(evTotal(e.id))}</b> · <span style="color:${r.paid_confirmed?'#2F7A48':'#C8302E'}">${r.paid_confirmed?L.paid:L.unpaid}</span></span></div>`}).join('');
  const claimed=evs.some(e=>rs(e.id).paid_claimed);
- return `<section id="lock" style="background:var(--cream);color:var(--ink);padding:36px 24px calc(60px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:14px">
+ return `<section id="lock" style="background:var(--cream);color:var(--ink);padding:36px 24px 0;display:flex;flex-direction:column;gap:14px">
   <div style="font-family:'Fraunces',serif;font-weight:900;font-size:30px;line-height:1">${L.lock}</div>
   <div class="lead" style="font-size:13px;opacity:.85">${L.lock_sub}</div>
   <div style="background:#fff;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;border:1px solid var(--gold)">${lines}
@@ -531,6 +534,7 @@ function renderLock(){
   <label style="display:flex;align-items:center;gap:10px;font-size:13px;background:#fff;border-radius:10px;padding:12px;border:2px solid var(--gold)"><input type="checkbox" id="fSent" ${claimed?'checked':''} style="width:22px;height:22px;accent-color:#16301F"><span><b>${L.sent}</b></span></label>`:`<div style="font-size:13px;opacity:.8">${L.none_owed}</div>`}
   <div style="font-size:11px;text-align:center;opacity:.75">${L.cal_note}</div>
   <div style="font-size:12px;text-align:center;opacity:.75">${L.q}</div>
+  <div class="sp"></div>
  </section>`;
 }
 
