@@ -27,9 +27,10 @@ const nm = (e: Ev, lang: string) => (lang === "es" ? e.name_es || e.name_en : e.
 const money = (c: number) => `$${(c / 100).toFixed(c % 100 ? 2 : 0)}`;
 const first = (name: string | null) => (name || "").split(/\s+/)[0] || "";
 
+const CUSTOM = new Set<string>();
 function compose(c: Cand, site: string): string | null {
   const es = c.lang === "es";
-  const L = (id: string) => `${site}g/${id}`;
+  const L = (id: string) => CUSTOM.has(id) ? `${Deno.env.get("SUPABASE_URL")}/functions/v1/og/${id}` : `${site}g/${id}`;
   const stop = es ? " · Responde STOP para salir" : " · Reply STOP to opt out";
   const evs = c.events || [];
   switch (c.kind) {
@@ -134,6 +135,7 @@ Deno.serve(async (req) => {
   const site = (S.site_url || "").replace(/\/?$/, "/");
   const ny = nyParts();
 
+  { const { data: cu } = await sb.from("events").select("id").eq("custom", true); CUSTOM.clear(); (cu || []).forEach((r: { id: string }) => CUSTOM.add(r.id)); }
   const { data: cands, error } = await sb.rpc("sms_candidates");
   if (error) return Response.json({ error: error.message }, { status: 500 });
 
