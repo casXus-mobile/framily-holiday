@@ -29,7 +29,7 @@ const first = (name: string | null) => (name || "").split(/\s+/)[0] || "";
 
 function compose(c: Cand, site: string): string | null {
   const es = c.lang === "es";
-  const L = (id: string) => `${site}#${id}`;
+  const L = (id: string) => `${site}g/${id}`;
   const stop = es ? " · Responde STOP para salir" : " · Reply STOP to opt out";
   const evs = c.events || [];
   switch (c.kind) {
@@ -37,14 +37,16 @@ function compose(c: Cand, site: string): string | null {
       if (!evs.length) return null;
       const hosts = [...new Set(evs.map(e => e.host).filter(Boolean))];
       const who = hosts.length === 1 ? hosts[0] : "FRamily";
-      const list = evs.map(e => `${nm(e, c.lang)} ${whenStr(e.starts_at, c.lang)}`).join(", ");
+      const shown = evs.slice(0, 3); const more = evs.length - shown.length;
+      const list = shown.map(e => `${nm(e, c.lang)} ${whenStr(e.starts_at, c.lang)}`).join(", ") + (more > 0 ? (es ? ` y ${more} más` : ` and ${more} more`) : "");
       return es
         ? `FRamily: ¡Hola ${first(c.name)}! ${who} te invita: ${list}. Confirma aquí → ${L(evs[0].id)}${stop}`
         : `FRamily: Hey ${first(c.name)}! ${who} invited you: ${list}. Say you're in → ${L(evs[0].id)}${stop}`;
     }
     case "rsvp": {
       if (!evs.length) return null;
-      const list = evs.map(e => `${nm(e, c.lang)} ${whenStr(e.starts_at, c.lang)}${e.venue ? " · " + e.venue : ""}`).join(", ");
+      const shown = evs.slice(0, 3); const more = evs.length - shown.length;
+      const list = shown.map(e => `${nm(e, c.lang)} ${whenStr(e.starts_at, c.lang)}`).join(", ") + (more > 0 ? (es ? ` y ${more} más` : ` and ${more} more`) : "");
       return es
         ? `FRamily: ¡Gracias, ${first(c.name)}! Estás dentro para ${list}. Cambia cuando quieras: ${L(evs[0].id)}${stop}`
         : `FRamily: Thanks, ${first(c.name)}! You're in for ${list}. Change anytime: ${L(evs[0].id)}${stop}`;
@@ -55,7 +57,7 @@ function compose(c: Cand, site: string): string | null {
     }
     case "b2_in": {
       const e = evs[0]; const x = c.extra || {};
-      const home = !!e.host && e.host !== "FRamily";
+      const home = (!!e.host && e.host !== "FRamily") || /'\s*$/.test(e.venue || "");
       let s = es ? `FRamily: ${nm(e, c.lang)} es ${whenStr(e.starts_at, c.lang)}` : `FRamily: ${nm(e, c.lang)} is ${whenStr(e.starts_at, c.lang)}`;
       s += e.address ? `, ${e.address}.` : ".";
       if (home && x.bring) s += es ? ` Llevas: ${x.bring}.` : ` You're bringing: ${x.bring}.`;
