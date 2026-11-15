@@ -27,7 +27,8 @@ const nm = (e: Ev, lang: string) => (lang === "es" ? e.name_es || e.name_en : e.
 const money = (c: number) => `$${(c / 100).toFixed(c % 100 ? 2 : 0)}`;
 const first = (name: string | null) => (name || "").split(/\s+/)[0] || "";
 
-const CUSTOM = new Set<string>();
+const CUSTOM = new Set<string>(); const STATUS = new Map<string, string>();
+const ready = (id: string) => (STATUS.get(id) || "published") === "published";
 function compose(c: Cand, site: string): string | null {
   const es = c.lang === "es";
   const L = (id: string) => CUSTOM.has(id) ? `${Deno.env.get("SUPABASE_URL")}/functions/v1/og/${id}` : `${site}g/${id}`;
@@ -35,14 +36,21 @@ function compose(c: Cand, site: string): string | null {
   const evs = c.events || [];
   switch (c.kind) {
     case "invite": {
-      if (!evs.length) return null;
-      const hosts = [...new Set(evs.map(e => e.host).filter(Boolean))];
+      const live = evs.filter(e => ["published", "poll"].includes(STATUS.get(e.id) || "published"));
+      if (!live.length) return null;
+      const hosts = [...new Set(live.map(e => e.host).filter(Boolean))];
       const who = hosts.length === 1 ? hosts[0] : "FRamily";
-      const shown = evs.slice(0, 3); const more = evs.length - shown.length;
-      const list = shown.map(e => `${nm(e, c.lang)} ${whenStr(e.starts_at, c.lang)}`).join(", ") + (more > 0 ? (es ? ` y ${more} más` : ` and ${more} more`) : "");
+      if (live.length === 1 && STATUS.get(live[0].id) === "poll") {
+        const e = live[0];
+        return es
+          ? `FRamily: ¡Hola ${first(c.name)}! ${who} quiere organizar ${nm(e, c.lang)} — ayuda a elegir la fecha → ${L(e.id)}${stop}`
+          : `FRamily: Hey ${first(c.name)}! ${who} wants to get ${nm(e, c.lang)} on the calendar — help pick the date → ${L(e.id)}${stop}`;
+      }
+      const shown = live.slice(0, 3); const more = live.length - shown.length;
+      const list = shown.map(e => STATUS.get(e.id) === "poll" ? `${nm(e, c.lang)} (${es ? "fecha por votar" : "date TBD, vote"})` : `${nm(e, c.lang)} ${whenStr(e.starts_at, c.lang)}`).join(", ") + (more > 0 ? (es ? ` y ${more} más` : ` and ${more} more`) : "");
       return es
-        ? `FRamily: ¡Hola ${first(c.name)}! ${who} te invita: ${list}. Confirma aquí → ${L(evs[0].id)}${stop}`
-        : `FRamily: Hey ${first(c.name)}! ${who} invited you: ${list}. Say you're in → ${L(evs[0].id)}${stop}`;
+        ? `FRamily: ¡Hola ${first(c.name)}! ${who} te invita: ${list}. Confirma aquí → ${L(live[0].id)}${stop}`
+        : `FRamily: Hey ${first(c.name)}! ${who} invited you: ${list}. Say you're in → ${L(live[0].id)}${stop}`;
     }
     case "rsvp": {
       if (!evs.length) return null;
@@ -130,12 +138,13 @@ Deno.serve(async (req) => {
   const { data: st } = await sb.from("settings").select("key,value").in("key", ["sms_paused", "sms_live", "site_url", "cron_key"]);
   const S = Object.fromEntries((st || []).map((r: any) => [r.key, r.value]));
   if (!S.cron_key || url.searchParams.get("k") !== S.cron_key) return new Response("nope", { status: 403 });
+  await sb.rpc("events_publish_due");
   if (S.sms_paused === "1") return Response.json({ paused: true });
   const live = S.sms_live === "1" && !dry;
   const site = (S.site_url || "").replace(/\/?$/, "/");
   const ny = nyParts();
 
-  { const { data: cu } = await sb.from("events").select("id").eq("custom", true); CUSTOM.clear(); (cu || []).forEach((r: { id: string }) => CUSTOM.add(r.id)); }
+  { const { data: cu } = await sb.from("events").select("id,custom,status"); CUSTOM.clear(); STATUS.clear(); (cu || []).forEach((r: { id: string; custom: boolean; status: string }) => { if (r.custom) CUSTOM.add(r.id); STATUS.set(r.id, r.status); }); }
   const { data: cands, error } = await sb.rpc("sms_candidates");
   if (error) return Response.json({ error: error.message }, { status: 500 });
 
@@ -143,6 +152,7 @@ Deno.serve(async (req) => {
   const out: any[] = []; let sent = 0, queued = 0, skipped = 0;
   for (const c of (cands as Cand[])) {
     if (!gateOpen(c.kind, ny)) { skipped++; continue; }
+    if (c.kind !== "invite" && (c.events || []).some(e => !ready(e.id))) { skipped++; continue; }
     const body = compose(c, site); if (!body) { skipped++; continue; }
     const key = dedupe(c, ny);
     const ids = (c.events || []).map(e => e.id);
