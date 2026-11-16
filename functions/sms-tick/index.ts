@@ -27,7 +27,7 @@ const nm = (e: Ev, lang: string) => (lang === "es" ? e.name_es || e.name_en : e.
 const money = (c: number) => `$${(c / 100).toFixed(c % 100 ? 2 : 0)}`;
 const first = (name: string | null) => (name || "").split(/\s+/)[0] || "";
 
-const CUSTOM = new Set<string>(); const STATUS = new Map<string, string>();
+const CUSTOM = new Set<string>(); const STATUS = new Map<string, string>(); const SURPRISE = new Map<string, { name: string; fam: string | null }>();
 const ready = (id: string) => (STATUS.get(id) || "published") === "published";
 function compose(c: Cand, site: string): string | null {
   const es = c.lang === "es";
@@ -144,7 +144,11 @@ Deno.serve(async (req) => {
   const site = (S.site_url || "").replace(/\/?$/, "/");
   const ny = nyParts();
 
-  { const { data: cu } = await sb.from("events").select("id,custom,status"); CUSTOM.clear(); STATUS.clear(); (cu || []).forEach((r: { id: string; custom: boolean; status: string }) => { if (r.custom) CUSTOM.add(r.id); STATUS.set(r.id, r.status); }); }
+  { const { data: cu } = await sb.from("events").select("id,custom,status,surprise,surprise_person,surprise_name"); CUSTOM.clear(); STATUS.clear(); SURPRISE.clear();
+    const pids = (cu || []).filter((r: any) => r.surprise && r.surprise_person).map((r: any) => r.surprise_person);
+    const famOf = new Map<string, string>();
+    if (pids.length) { const { data: pp } = await sb.from("people").select("id,family_id").in("id", pids); (pp || []).forEach((p: any) => famOf.set(p.id, p.family_id)); }
+    (cu || []).forEach((r: any) => { if (r.custom) CUSTOM.add(r.id); STATUS.set(r.id, r.status); if (r.surprise) SURPRISE.set(r.id, { name: r.surprise_name || "", fam: r.surprise_person ? (famOf.get(r.surprise_person) || null) : null }); }); }
   const { data: cands, error } = await sb.rpc("sms_candidates");
   if (error) return Response.json({ error: error.message }, { status: 500 });
 
@@ -153,7 +157,11 @@ Deno.serve(async (req) => {
   for (const c of (cands as Cand[])) {
     if (!gateOpen(c.kind, ny)) { skipped++; continue; }
     if (c.kind !== "invite" && (c.events || []).some(e => !ready(e.id))) { skipped++; continue; }
-    const body = compose(c, site); if (!body) { skipped++; continue; }
+    { const sp = (c.events || []).map(e => SURPRISE.get(e.id)).filter(Boolean) as { name: string; fam: string | null }[];
+      if (sp.some(x => x.fam && x.fam === c.family_id)) { skipped++; continue; } }
+    let body = compose(c, site); if (!body) { skipped++; continue; }
+    { const sp = (c.events || []).map(e => SURPRISE.get(e.id)).filter(Boolean) as { name: string }[];
+      if (sp.length && c.kind !== "digest") body = (c.lang === "es" ? `🤫 Sorpresa para ${sp[0].name} — ni una palabra. ` : `🤫 Surprise for ${sp[0].name} — keep it quiet. `) + body; }
     const key = dedupe(c, ny);
     const ids = (c.events || []).map(e => e.id);
     if (!live) { out.push({ kind: c.kind, to: c.phone, body }); queued++; continue; }

@@ -21,10 +21,11 @@ Deno.serve(async (req: Request) => {
   const lines: string[] = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//FRamily//Hub//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "X-WR-CALNAME:FRamily", "X-WR-TIMEZONE:America/New_York", "REFRESH-INTERVAL;VALUE=DURATION:PT1H", "X-PUBLISHED-TTL:PT1H"];
 
   // gatherings I'm in (published only)
-  const { data: rows } = await sb.from("rsvps").select("event_id,status,headcount,players,watchers,paid_confirmed,events(id,name_en,name_es,venue,address,arrive_at,starts_at,ends_at,price_cents,host_label,zelle,status,active,custom)").eq("family_id", fam.id).eq("status", "in");
+  const { data: rows } = await sb.from("rsvps").select("event_id,status,headcount,players,watchers,paid_confirmed,events(id,name_en,name_es,venue,address,arrive_at,starts_at,ends_at,price_cents,host_label,zelle,status,active,custom,surprise,surprise_person,surprise_name)").eq("family_id", fam.id).eq("status", "in");
   for (const r of rows || []) {
     const e: any = (r as any).events; if (!e || !e.active || e.status !== "published") continue;
-    const name = es ? e.name_es : e.name_en;
+    if (e.surprise && e.surprise_person) { const { data: hp } = await sb.from("people").select("family_id").eq("id", e.surprise_person).maybeSingle(); if (hp && hp.family_id === fam.id) continue; }
+    const name = (e.surprise ? "🤫 " : "") + (es ? e.name_es : e.name_en);
     const end = e.ends_at ? new Date(e.ends_at) : new Date(new Date(e.starts_at).getTime() + 2.5 * 3600e3);
     const n = e.id === "topgolf" ? r.players : r.headcount;
     const cost = e.price_cents ? `${es ? "Tu total" : "Your total"}: $${(n * e.price_cents / 100).toFixed(0)} (${n} x $${e.price_cents / 100}) · ${r.paid_confirmed ? (es ? "pagado" : "paid") : `Zelle ${e.zelle || "954-376-0188"}`}` : "";
