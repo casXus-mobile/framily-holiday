@@ -178,5 +178,19 @@ Deno.serve(async (req) => {
       skipped++;
     }
   }
-  return Response.json({ live, ny, candidates: (cands as any[]).length, sent, queued, skipped, preview: live ? undefined : out.slice(0, 20) });
+  // one-off texts queued directly in the outbox (e.g. Secret Santa draws)
+  let oneoff = 0;
+  if (gateOpen("rsvp", ny)) {
+    const { data: q } = await sb.from("sms_outbox").select("id,to_phone,body,family_id,event_id,kind").eq("status", "queued").is("sent_at", null).in("kind", ["santa", "oneoff"]).limit(50);
+    for (const row of q || []) {
+      if (!live) { out.push({ kind: row.kind, to: row.to_phone, body: row.body }); queued++; continue; }
+      try {
+        const sid = await twilio(row.to_phone, row.body);
+        await sb.from("sms_outbox").update({ status: "sent", sent_at: new Date().toISOString(), twilio_sid: sid }).eq("id", row.id);
+        await sb.from("sms_log").insert({ family_id: row.family_id, event_id: row.event_id, kind: row.kind, to_phone: row.to_phone, body: row.body, sent_at: new Date().toISOString(), twilio_sid: sid, status: "sent" });
+        oneoff++;
+      } catch (e) { await sb.from("sms_outbox").update({ status: "error", error: String(e) }).eq("id", row.id); }
+    }
+  }
+  return Response.json({ live, ny, candidates: (cands as any[]).length, sent, oneoff, queued, skipped, preview: live ? undefined : out.slice(0, 20) });
 });
